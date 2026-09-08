@@ -136,8 +136,9 @@ table.tight{font-size:2.75vmin}
 .ref b{color:#94a3b8}
 
 /* ── 分段顯示（講一段出現一段）─────────── */
-.step{opacity:0;transition:opacity .18s}
-.step.shown{opacity:1}
+/* 未出現的段落連框線一起藏起來（表格列尤其明顯），但位置保留、版面不跳動 */
+.step{opacity:0;visibility:hidden;transition:opacity .18s ease, visibility 0s linear .18s}
+.step.shown{opacity:1;visibility:visible;transition:opacity .18s ease, visibility 0s}
 
 /* ── HUD ──────────────────────────────── */
 .hud{position:fixed;bottom:1.4vmin;left:0;right:0;display:flex;
