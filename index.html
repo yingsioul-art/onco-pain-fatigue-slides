@@ -20,6 +20,10 @@ html,body{height:100%;background:var(--bg);color:var(--fg);
   justify-content:center;padding:var(--pad) calc(var(--pad)*1.3) calc(var(--pad)*1.5);overflow:hidden}
 .slide.on{display:flex}
 .slide.center{align-items:center;text-align:center}
+/* 內容盒：整頁內容量完高度後等比縮到裝得下，全螢幕也不會被切掉 */
+.fit{display:flex;flex-direction:column;justify-content:center;width:100%;
+  transform-origin:center center}
+.slide.center .fit{align-items:center}
 
 /* ── 放大後的字級（大字流優先）───────────── */
 h1{font-size:9vmin;line-height:1.28;font-weight:800;letter-spacing:.01em}
@@ -1646,8 +1650,27 @@ WHO 三階梯，<b>快速帶過</b>，他們藥理學都學過藥名。1 分鐘�
 const slides=[...document.querySelectorAll('.slide')];
 let i=0, notesOn=false;
 
+/* 每頁的內容包進 .fit（絕對定位的來源標記留在外面，不跟著縮） */
+slides.forEach(s=>{
+  const fit=document.createElement('div'); fit.className='fit';
+  [...s.children].forEach(c=>{ if(getComputedStyle(c).position!=='absolute') fit.appendChild(c); });
+  s.appendChild(fit);
+});
+/* 內容比版面高（或寬）就整頁等比縮小；分段隱藏的元素一樣佔位，所以量到的是最終高度 */
+function fitSlide(k){
+  const s=slides[k], box=s.querySelector(':scope > .fit'); if(!box) return;
+  box.style.transform='none';
+  const cs=getComputedStyle(s);
+  const availH=s.clientHeight-parseFloat(cs.paddingTop)-parseFloat(cs.paddingBottom);
+  const availW=s.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
+  const sc=Math.min(1, availH/box.scrollHeight, availW/box.scrollWidth);
+  box.style.transform = sc<0.995 ? 'scale('+sc.toFixed(4)+')' : 'none';
+}
+addEventListener('resize',()=>fitSlide(i));
+
 function render(){
   slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  fitSlide(i);
   document.getElementById('num').textContent=(i+1)+' / '+slides.length;
   document.getElementById('act').textContent=slides[i].dataset.act||'';
   document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
