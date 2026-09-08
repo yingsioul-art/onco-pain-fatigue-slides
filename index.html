@@ -128,7 +128,9 @@ table.tight{font-size:2.75vmin}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vmin;margin-top:.9em;width:100%}
 .slot{background:var(--bg2);border:.22vmin dashed #475569;border-radius:1.1vmin;
   padding:1.9vmin;font-size:3.1vmin;text-align:center;line-height:1.4}
-.slot b{color:var(--warn);display:block;font-size:4.4vmin;margin-bottom:.2em}
+/* 只有開頭那個 b 是大字獨立一行；句子中間的 b 維持行內強調（否則會被硬拆行） */
+.slot b{color:var(--warn)}
+.slot > b:first-child{display:block;font-size:4.4vmin;margin-bottom:.2em}
 
 /* ── 來源標記 ─────────────────────────── */
 .ref{position:absolute;top:2.2vmin;right:3vmin;font-size:2.3vmin;color:#64748b;
@@ -139,6 +141,8 @@ table.tight{font-size:2.75vmin}
 /* 未出現的段落連框線一起藏起來（表格列尤其明顯），但位置保留、版面不跳動 */
 .step{opacity:0;visibility:hidden;transition:opacity .18s ease, visibility 0s linear .18s}
 .step.shown{opacity:1;visibility:visible;transition:opacity .18s ease, visibility 0s}
+/* 表格是 border-collapse，隱藏的列要另外把邊框設透明，否則會留下空格線 */
+tr.step:not(.shown) td, tr.step:not(.shown) th{border-color:transparent}
 
 /* ── HUD ──────────────────────────────── */
 .hud{position:fixed;bottom:1.4vmin;left:0;right:0;display:flex;
