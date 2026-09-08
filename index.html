@@ -103,6 +103,11 @@ table.tight{font-size:2.75vmin}
 .eg{background:#14261a;border-left:.45vmin solid var(--green);border-radius:0 1.1vmin 1.1vmin 0;
   padding:1.7vmin 2.3vmin;margin-top:.9em;font-size:3.1vmin;line-height:1.45}
 .eg b{color:var(--green)}
+/* 第一次分組才出現：站起來組隊的指令條 */
+.standup{align-self:stretch;background:#2a1616;border:.28vmin solid var(--red);border-radius:1.1vmin;
+  padding:1.5vmin 2.1vmin;margin:.2em 0 .8em;font-size:3.4vmin;line-height:1.45}
+.standup b{color:var(--red)}
+.standup .sm{display:block;font-size:2.7vmin;color:var(--dim);margin-top:.35em}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vmin;margin-top:.9em;width:100%}
 .slot{background:var(--bg2);border:.22vmin dashed #475569;border-radius:1.1vmin;
   padding:1.9vmin;font-size:3.1vmin;text-align:center;line-height:1.4}
@@ -249,7 +254,9 @@ table.tight{font-size:2.75vmin}
 </section>
 
 <section class="slide" data-act="第一幕" data-notes="
-🔴 <b>互動點一。鄰座三人，3 分鐘。</b><br>
+🔴 <b>互動點一。鄰座三人，3 分鐘。這是今天第一次分組。</b><br>
+🔴 <b>先分組再講題目</b>：<span class='say'>「請大家站起來，找到三人一組，找到了就坐下。找不到組的舉手，我幫你們湊。」</span><br>
+站著的人清空、全班坐定之後，再往下講規則。<b>組隊時間不計入 3 分鐘。</b><br>
 <b>規則先講完再開始計時</b>，否則會冷場：<br>
 <span class='say'>「轉頭跟旁邊兩位一組，三個人。每個人想一個問題，湊成三題。</span><br>
 <span class='say'>重點是：要寫你會怎麼跟病人講出口的那句話，不是寫『評估疼痛性質』。」</span><br>
@@ -259,6 +266,8 @@ table.tight{font-size:2.75vmin}
 🔴 <b>不要評價對錯</b>，下一頁就對答案。">
 
   <span class="badge talk">🗣 鄰座三人　3 分鐘</span>
+  <div class="standup">開始前，先<b>站起來</b>，找到<b>三人一組</b>，再<b>坐下</b>。
+    <span class="sm">找不到組的舉手，我幫你們湊；坐定了我們再看題目。</span></div>
   <div class="task">
     <div class="tl">討 論 ①</div>
     <div class="body">在給藥之前，你要再問陳女士<span class="warn">三個問題</span>。<br>
