@@ -108,6 +108,19 @@ table.tight{font-size:2.75vmin}
   padding:1.5vmin 2.1vmin;margin:.2em 0 .8em;font-size:3.4vmin;line-height:1.45}
 .standup b{color:var(--red)}
 .standup .sm{display:block;font-size:2.7vmin;color:var(--dim);margin-top:.35em}
+/* 五要素 × 三個問法：左標籤＋三句原句 */
+.exgrid{display:grid;grid-template-columns:auto 1fr 1fr 1fr;gap:.9vmin 1.1vmin;
+  margin-top:.6em;align-items:stretch;width:100%}
+.exgrid .lb{display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:var(--bg2);border-radius:.9vmin;padding:.7vmin 1.1vmin;min-width:11vmin;
+  font-size:2.9vmin;font-weight:800;line-height:1.25;text-align:center}
+.exgrid .lb small{display:block;font-size:2vmin;font-weight:600;color:var(--dim);margin-top:.2em}
+.exgrid .q{background:#111c2e;border-left:.3vmin solid #334155;border-radius:0 .9vmin .9vmin 0;
+  padding:.9vmin 1.2vmin;font-size:2.45vmin;line-height:1.42}
+.exgrid .q b{color:var(--accent)}
+.exgrid .hi .lb{background:#3a2c0d;color:var(--warn)}
+.exgrid .hi .q{border-left-color:var(--warn)}
+.exgrid .row{display:contents}
 .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vmin;margin-top:.9em;width:100%}
 .slot{background:var(--bg2);border:.22vmin dashed #475569;border-radius:1.1vmin;
   padding:1.9vmin;font-size:3.1vmin;text-align:center;line-height:1.4}
@@ -300,6 +313,53 @@ table.tight{font-size:2.75vmin}
   <p style="margin-top:1.1em;font-size:3.7vmin">
     🔴 通常最少被想到的是<b class="warn">節奏</b>與<b class="warn">病因</b>。<br>
     但這兩格分別決定了<b>用長效藥還是短效救援藥</b>、以及<b>要不要處理病因</b>。</p>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+<b>把五格變成講得出口的句子。</b>上一頁是骨架，這頁是台詞。<br>
+🔴 <b>不要十五句全唸</b>（會拖到 3 分鐘以上）。做法：<br>
+每一格<b>只唸第一句</b>，唸完問<span class='say'>「這樣問，病人聽得懂嗎？」</span>；
+到<b class='warn'>節奏</b>那一列<b>三句都唸</b>，因為第三句（做什麼會突然痛）是等一下第二幕突發性疼痛的伏筆。<br>
+<span class='say'>「你們剛才寫的句子，跟這裡對一下——不用一樣，只要問得到同一件事就算到位。」</span><br>
+<b>2 分鐘。</b>提醒他們：這頁講義上有，<b>不用抄</b>，聽就好。">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h3>同樣五件事，實際問出口長這樣</h3>
+  <h2 style="font-size:5vmin">每一格，<span class="warn">三種問法</span>都可以</h2>
+  <div class="exgrid">
+    <div class="row">
+      <div class="lb">病程<small>多久了</small></div>
+      <div class="q">「這個痛是<b>什麼時候開始</b>的？」</div>
+      <div class="q">「是這幾天才這樣，還是<b>已經好幾個禮拜</b>了？」</div>
+      <div class="q">「跟上次住院比起來，是<b>變更痛</b>還是差不多？」</div>
+    </div>
+    <div class="row">
+      <div class="lb">機轉<small>怎麼個痛法</small></div>
+      <div class="q">「痛起來是<b>悶悶的痠痛</b>，還是<b>像被電到</b>？」</div>
+      <div class="q">「會不會<b>麻麻的、燒燒的</b>，或像螞蟻在爬？」</div>
+      <div class="q">「這個痛會不會<b>跑</b>？會不會從背這裡跑到腿？」</div>
+    </div>
+    <div class="row">
+      <div class="lb">病因<small>跟什麼有關</small></div>
+      <div class="q">「會痛的位置，跟醫師說<b>骨頭有轉移</b>的地方是同一個嗎？」</div>
+      <div class="q">「是<b>打完這次化療／放療之後</b>才開始痛的嗎？」</div>
+      <div class="q">「你<b>以前就有的腰痛</b>，跟現在這個是同一種嗎？」</div>
+    </div>
+    <div class="row">
+      <div class="lb">嚴重度<small>0 至 10 分</small></div>
+      <div class="q">「0 分是完全不痛、10 分是你想像中最痛，<b>現在幾分</b>？」</div>
+      <div class="q">「<b>最痛</b>的時候幾分？<b>最不痛</b>的時候幾分？」</div>
+      <div class="q">「痛到<b>幾分你會受不了</b>、希望我幫你處理？」</div>
+    </div>
+    <div class="row hi">
+      <div class="lb">節奏<small>持續／間歇／突發</small></div>
+      <div class="q">「這個痛是<b>一直都在</b>，還是<b>一陣一陣</b>的？」</div>
+      <div class="q">「一天大概會<b>突然痛起來幾次</b>？每次痛多久？」</div>
+      <div class="q">「<b>做什麼事</b>會突然痛起來？翻身、下床、換藥的時候嗎？」</div>
+    </div>
+  </div>
+  <p class="step" style="margin-top:.7em;font-size:3.3vmin">
+    🔴 共同點：<b>每一句都是病人聽得懂的話</b>，不是「評估疼痛性質」。<br>
+    最後一列第三句（做什麼會痛），就是等一下<b class="warn">突發性疼痛</b>的入口。</p>
 </section>
 
 <section class="slide" data-act="第一幕" data-notes="
