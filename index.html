@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>腫瘤病人的疼痛與疲憊｜115-1 內外科護理學</title>
+<style>
+:root{
+  --bg:#0f172a; --bg2:#1e293b; --fg:#f8fafc; --dim:#9aa8bd;
+  --accent:#38bdf8; --warn:#fbbf24; --red:#f87171; --green:#4ade80; --purple:#c4b5fd;
+  --pad:5.5vmin;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--fg);
+  font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;overflow:hidden}
+
+.deck{position:relative;width:100vw;height:100vh}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;
+  justify-content:center;padding:var(--pad) calc(var(--pad)*1.3) calc(var(--pad)*1.5);overflow:hidden}
+.slide.on{display:flex}
+.slide.center{align-items:center;text-align:center}
+
+/* ── 放大後的字級（大字流優先）───────────── */
+h1{font-size:9vmin;line-height:1.28;font-weight:800;letter-spacing:.01em}
+h2{font-size:6.6vmin;line-height:1.3;font-weight:800;margin-bottom:.55em}
+h3{font-size:4.4vmin;line-height:1.35;font-weight:700;color:var(--accent);margin-bottom:.45em}
+p,li{font-size:3.8vmin;line-height:1.6}
+.big{font-size:11vmin;line-height:1.18;font-weight:900}
+.huge{font-size:15vmin;line-height:1.08;font-weight:900}
+.sub{font-size:3.1vmin;color:var(--dim);line-height:1.55}
+.dim{color:var(--dim)}
+.accent{color:var(--accent)} .warn{color:var(--warn)}
+.red{color:var(--red)} .green{color:var(--green)} .purple{color:var(--purple)}
+.u{text-decoration:underline;text-decoration-color:var(--warn);text-decoration-thickness:.11em;text-underline-offset:.16em}
+
+ul{list-style:none}
+ul.bullets li{margin:.5em 0;padding-left:1.4em;position:relative}
+ul.bullets li::before{content:"▸";position:absolute;left:0;color:var(--accent)}
+ol.num{counter-reset:n;list-style:none}
+ol.num li{counter-increment:n;margin:.45em 0;padding-left:1.8em;position:relative}
+ol.num li::before{content:counter(n);position:absolute;left:0;width:1.25em;height:1.25em;
+  background:var(--accent);color:#0f172a;border-radius:50%;
+  display:grid;place-items:center;font-size:.72em;font-weight:800;top:.2em}
+
+.section{background:linear-gradient(135deg,#1e3a8a,#0c4a6e)}
+.actlabel{font-size:3.4vmin;letter-spacing:.5em;color:var(--accent);margin-bottom:.5em}
+
+table{border-collapse:collapse;width:100%;font-size:3.1vmin}
+th,td{border:1px solid #334155;padding:.6em .75em;text-align:left;vertical-align:top;line-height:1.45}
+th{background:#1e293b;font-weight:700;color:var(--accent)}
+td.k{background:#172033;font-weight:700;white-space:nowrap}
+tr.hi td{background:#3f2d16}
+table.tight{font-size:2.75vmin}
+
+/* ── 三欄橋 ───────────────────────────── */
+.bridge{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1.3vmin;align-items:stretch;width:100%}
+.bcard{background:var(--bg2);border-radius:1.4vmin;padding:2.6vmin;border-top:.65vmin solid #475569}
+.bcard h4{font-size:2.7vmin;letter-spacing:.14em;color:var(--dim);margin-bottom:.6em;font-weight:700}
+.bcard p{font-size:3.2vmin;line-height:1.45}
+.bcard.b1{border-top-color:var(--red)}
+.bcard.b2{border-top-color:var(--accent)}
+.bcard.b3{border-top-color:var(--green)}
+.arrow{display:grid;place-items:center;font-size:4.4vmin;color:#475569}
+
+/* ── 半文半圖 ─────────────────────────── */
+.halfs{display:grid;grid-template-columns:38% 1fr;gap:4vmin;align-items:center;width:100%}
+.halfs.rev{grid-template-columns:1fr 38%}
+.viz{display:grid;place-items:center}
+.viz svg{width:100%;height:auto;max-height:52vh}
+.htext li{margin:.55em 0}
+
+/* ── 互動與病例 ───────────────────────── */
+/* align-self 必須指定：slide 是 flex column，inline-block 仍會被 stretch 拉滿整行 */
+.badge{display:inline-block;align-self:flex-start;background:var(--warn);color:#0f172a;
+  font-size:3vmin;font-weight:800;padding:.32em .95em;border-radius:99px;margin-bottom:.9em}
+.slide.center .badge{align-self:center}
+.badge.talk{background:var(--green)}
+.badge.vote{background:var(--accent)}
+.badge.new{background:var(--purple)}
+
+.case{background:var(--bg2);border-left:.85vmin solid var(--warn);
+  border-radius:0 1.2vmin 1.2vmin 0;padding:2.8vmin 3.2vmin;margin:.7em 0}
+.case p{font-size:3.9vmin;line-height:1.55}
+.quote{font-size:5.2vmin;line-height:1.4;font-weight:700;color:var(--warn)}
+
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:1.5vmin;margin-top:.8em;width:100%}
+.opts.one{grid-template-columns:1fr}
+.opt{background:var(--bg2);border-radius:1.2vmin;padding:2.2vmin 2.6vmin;font-size:3.5vmin;
+  border:.22vmin solid #334155;line-height:1.4}
+.opt b{color:var(--accent);margin-right:.45em}
+
+/* ── 討論任務：明確題目、範圍小、限時可完成 ── */
+.task{background:#08243b;border:.3vmin solid var(--green);border-radius:1.5vmin;
+  padding:2.4vmin 3vmin;margin:.4em 0;width:100%}
+.task .tl{font-size:3vmin;font-weight:800;color:var(--green);letter-spacing:.08em;margin-bottom:.45em}
+.task .body{font-size:4.4vmin;line-height:1.4;font-weight:700}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vmin;margin-top:.9em;width:100%}
+.rules.two{grid-template-columns:repeat(2,1fr)}
+.rule{background:var(--bg2);border-radius:1.1vmin;padding:1.7vmin 2.1vmin;
+  font-size:2.95vmin;line-height:1.42;border-left:.45vmin solid var(--accent)}
+.rule .n{display:block;font-size:2.35vmin;color:var(--dim);letter-spacing:.12em;margin-bottom:.3em;font-weight:700}
+.eg{background:#14261a;border-left:.45vmin solid var(--green);border-radius:0 1.1vmin 1.1vmin 0;
+  padding:1.7vmin 2.3vmin;margin-top:.9em;font-size:3.1vmin;line-height:1.45}
+.eg b{color:var(--green)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5vmin;margin-top:.9em;width:100%}
+.slot{background:var(--bg2);border:.22vmin dashed #475569;border-radius:1.1vmin;
+  padding:1.9vmin;font-size:3.1vmin;text-align:center;line-height:1.4}
+.slot b{color:var(--warn);display:block;font-size:4.4vmin;margin-bottom:.2em}
+
+/* ── 來源標記 ─────────────────────────── */
+.ref{position:absolute;top:2.2vmin;right:3vmin;font-size:2.3vmin;color:#64748b;
+  border:.18vmin solid #334155;border-radius:99px;padding:.28em .95em}
+.ref b{color:#94a3b8}
+
+/* ── 分段顯示（講一段出現一段）─────────── */
+.step{opacity:0;transition:opacity .18s}
+.step.shown{opacity:1}
+
+/* ── HUD ──────────────────────────────── */
+.hud{position:fixed;bottom:1.4vmin;left:0;right:0;display:flex;
+  justify-content:space-between;align-items:center;padding:0 2.4vmin;
+  font-size:2vmin;color:#475569;pointer-events:none;z-index:20}
+.bar{position:fixed;top:0;left:0;height:.5vmin;background:var(--accent);z-index:21;transition:width .18s}
+#timer{font-variant-numeric:tabular-nums;letter-spacing:.05em}
+.hud .left{display:flex;align-items:center;gap:1.4vmin}
+#home{pointer-events:auto;cursor:pointer;font:inherit;font-size:2vmin;color:#94a3b8;
+  background:var(--bg2);border:.18vmin solid #334155;border-radius:99px;padding:.3em 1.1em;
+  transition:color .15s,border-color .15s}
+#home:hover{color:var(--accent);border-color:var(--accent)}
+#timer.run{color:var(--green)}
+
+#notes{position:fixed;left:0;right:0;bottom:0;max-height:40vh;overflow:auto;
+  background:#020617;border-top:.32vmin solid var(--accent);
+  padding:2.2vmin 3vmin 3.4vmin;font-size:2.3vmin;line-height:1.65;display:none;z-index:30}
+#notes.on{display:block}
+#notes b{color:var(--warn)}
+#notes .say{color:var(--green)}
+
+#grid{position:fixed;inset:0;background:#020617;overflow:auto;padding:3vmin;display:none;z-index:40}
+#grid.on{display:block}
+#grid .g{display:grid;grid-template-columns:repeat(auto-fill,minmax(21vmin,1fr));gap:1.2vmin}
+#grid .c{background:var(--bg2);border-radius:.8vmin;padding:1.4vmin;font-size:1.75vmin;
+  cursor:pointer;border:.2vmin solid #334155;line-height:1.4}
+#grid .c:hover{border-color:var(--accent)}
+#grid h3{position:sticky;top:0;background:#020617;padding:.5em 0}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="deck" id="deck">
+
+<!-- ═════════ 開場 ═════════ -->
+
+<section class="slide center" data-act="開場" data-notes="
+提早到教室測投影與麥克風。這頁停著等學生坐定。<br>
+<span class='say'>「早安，我是林盈秀。接下來三個小時，我們只談兩件事：病人說『我好痛』，跟病人說『我好累』。」</span><br>
+<b>09:10 開始。開場全段 15 分鐘，09:25 前要進第一幕。</b>">
+  <p class="sub">115-1 內外科護理學｜大學部三年級</p>
+  <h1 style="margin:.35em 0">腫瘤病人的<span class="warn">疼痛</span>與<span class="warn">疲憊</span></h1>
+  <p class="big" style="font-size:5.4vmin;color:var(--accent)">
+    當病人說「我好痛」「我好累」，<br>你的腦袋要跑哪一條流程？</p>
+  <p class="sub" style="margin-top:1.6em">2026.09.09（三）09:10 至 12:00｜護理系館一 3F 階梯教室</p>
+</section>
+
+<section class="slide center" data-act="開場" data-notes="
+<b>開場 1：提問互動法</b>（福哥 3-3）。<br>
+🔴 <b>自己先舉手示範</b>，不示範沒人敢舉。<br>
+第一題大多數會舉，第二題會刷掉一大半。那個落差就是這堂課的價值。<br>
+<span class='say'>「第二題沒舉手的別緊張，那正是今天要處理的。」</span><br>
+<b>2 分鐘，不要拖。</b>">
+  <span class="badge vote">✋ 全班舉手</span>
+  <h2>先問兩個問題</h2>
+  <div style="text-align:left;max-width:82%">
+    <ol class="num" style="font-size:1.12em">
+      <li>照顧過、或看過腫瘤病人喊痛的，<span class="u">請舉手</span>。</li>
+      <li style="margin-top:.9em">這裡面，知道「痛得更厲害」有時候<span class="warn">不是止痛藥的問題，是要立刻通知醫師、不能等下一班交班</span>的，<span class="u">請舉手</span>。</li>
+    </ol>
+  </div>
+</section>
+
+<section class="slide" data-act="開場" data-notes="
+<b>開場 2：自問法</b>（福哥 3-3）。不問台下，直接把他們心裡的話說出來。<br>
+🔴 <b>全課最重要的一頁</b>。不是因為內容難，是因為<b>這三個直覺你們每個人都有</b>。<br>
+一句一句唸，唸完停三秒。<br>
+<span class='say'>「第一句不完整、第二句是錯的、第三句會害你漏掉需要立刻通知醫師的狀況。三小時後我們回來看它。」</span><br>
+<b>不要在這裡解釋為什麼</b>，留到各幕揭曉。這是伏筆。">
+  <h2>你現在的直覺，大概是這三句</h2>
+  <div class="case" style="border-left-color:var(--red)">
+    <p class="quote">「病人喊痛 → 查 PRN → 給藥 → 記錄」</p></div>
+  <div class="case" style="border-left-color:var(--red)">
+    <p class="quote">「病人喊累 → 叫他多休息」</p></div>
+  <div class="case" style="border-left-color:var(--red)">
+    <p class="quote">「痛得更厲害 → 再給一次止痛藥」</p></div>
+  <p style="margin-top:.9em;font-size:4.2vmin">
+    第一句<span class="warn">不完整</span>；第二句<span class="red">是錯的</span>；第三句<span class="red">會讓你漏掉急症</span>。</p>
+</section>
+
+<section class="slide" data-act="開場" data-notes="
+<b>3P</b>（福哥 3-4）。<br>
+🔴 <b>好處</b>要講到他們<b>這學期實習就會遇到</b>的場景，不要講「以後」。<br>
+<span class='say'>「你們現在就在實習。病人喊痛、學姊很忙，站在床邊的人是你。」</span>">
+  <h2>今天這三小時</h2>
+  <table>
+    <tr><td class="k accent">目的</td>
+        <td>不是教你背指引，是給你一套<b>面對症狀時腦袋要跑的流程</b>：
+            把你的<span class="warn">直覺</span>、你學過的<span class="accent">基礎醫學</span>、和<span class="green">臨床判斷</span>接起來。</td></tr>
+    <tr><td class="k accent">過程</td>
+        <td>三節課，跟著<b>同一位病人</b>走完她的三個時間點。<br>
+            每一節你會先被問「你會怎麼做」，再一起把答案推出來。</td></tr>
+    <tr><td class="k accent">好處</td>
+        <td>之後你進臨床，甚至<b>這學期實習</b>就會用到：<br>
+            病人喊痛時<b>你知道要先問什麼</b>、<b>什麼時候該按鈴叫醫師</b>、<br>
+            病人喊累時<b>你不會說錯那句話</b>。</td></tr>
+  </table>
+</section>
+
+<section class="slide center" data-act="開場" data-notes="
+病人登場。<b>放慢</b>，讓她成為一個人，不是案例編號。<br>
+<span class='say'>「今天的主角叫陳女士。她會陪我們走完三個小時。」</span><br>
+不要先講她會發生什麼事。">
+  <span class="badge">今天的主角</span>
+  <div class="case" style="max-width:82%;text-align:left">
+    <p><b class="accent">陳女士，55 歲</b></p>
+    <p style="margin-top:.4em">乳癌，兩年前手術，現在<b class="warn">多處骨轉移</b>。</p>
+    <p>這次因疼痛控制不佳住院，今天是<b>住院第 3 天</b>。</p>
+    <p style="margin-top:.4em">你是她的<b>主護</b>。</p>
+  </div>
+</section>
+
+<!-- ═════════ 第一幕 ═════════ -->
+
+<section class="slide center section" data-act="第一幕" data-notes="
+段落投影片（福哥 4-4）。<b>09:25 應該在這裡。</b>第一幕到 10:00。">
+  <p class="actlabel">第 一 幕</p>
+  <h1>從<span class="warn">分數</span>，走到<span class="accent">評估</span></h1>
+  <p class="sub" style="margin-top:1.4em">09:25 至 10:00</p>
+</section>
+
+<section class="slide center" data-act="第一幕" data-notes="
+用她的語氣唸，不要用報告的語氣。<b>停三秒</b>再翻頁。">
+  <p class="sub">住院第 3 天　早上 09:00</p>
+  <div class="case" style="max-width:80%">
+    <p class="quote">「護理師，我背好痛……<br>大概<span style="font-size:1.35em">7 分</span>吧。」</p>
+  </div>
+  <p style="margin-top:.9em;font-size:4.2vmin">你翻開醫囑，有 PRN 止痛藥。</p>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+🔴 <b>互動點一。鄰座三人，3 分鐘。</b><br>
+<b>規則先講完再開始計時</b>，否則會冷場：<br>
+<span class='say'>「轉頭跟旁邊兩位一組，三個人。每個人想一個問題，湊成三題。</span><br>
+<span class='say'>重點是：要寫你會怎麼跟病人講出口的那句話，不是寫『評估疼痛性質』。」</span><br>
+<b>唸一次範例</b>，他們才知道要多具體。<br>
+按 <b>T</b> 開始計時，<b>走下中央走道</b>聽他們在講什麼。<br>
+時間到抽點 <b>3 組，每組只念一題，不重複</b>。把念到的關鍵詞寫在白板或記在心裡。<br>
+🔴 <b>不要評價對錯</b>，下一頁就對答案。">
+
+  <span class="badge talk">🗣 鄰座三人　3 分鐘</span>
+  <div class="task">
+    <div class="tl">討 論 ①</div>
+    <div class="body">在給藥之前，你要再問陳女士<span class="warn">三個問題</span>。<br>
+      請寫下這三個問題<span class="u">你會怎麼問出口的原句</span>。</div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="n">怎麼分工</span>三個人<b>各想一個</b>，湊成三題</div>
+    <div class="rule"><span class="n">寫成什麼樣子</span>🔴 要寫<b>對病人講的原句</b>，<br>不是「評估疼痛性質」這種標題</div>
+    <div class="rule"><span class="n">等一下</span>請 <b>3 組</b>各念<b>一題</b>，<br>不重複</div>
+  </div>
+  <div class="eg">
+    <b>範例</b>：「陳女士，這個痛是<b>一直都在</b>，還是<b>一陣一陣</b>的？」</div>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+<b>對答案。</b>把剛才各組念的問題，一題一題對到這五個要素上。<br>
+<span class='say'>「你們剛才問的，其實都落在這五格裡面。看看你們湊出了幾格。」</span><br>
+🔴 <b>沒被問到的那幾格，就是今天要補的。</b>通常「節奏」和「病因」最少被想到。<br>
+這一頁不用久，1 分鐘，重點是讓他們看到自己的缺口。">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h3>對答案：你們剛才問的，落在哪幾格？</h3>
+  <h2 style="font-size:5.4vmin">問疼痛，要問滿這<span class="warn">五件事</span></h2>
+  <div class="slots" style="grid-template-columns:repeat(5,1fr)">
+    <div class="slot"><b>病程</b>多久了</div>
+    <div class="slot"><b>機轉</b>怎麼個痛法</div>
+    <div class="slot"><b>病因</b>跟腫瘤、治療、<br>還是老毛病有關</div>
+    <div class="slot"><b>嚴重度</b>0 至 10 分</div>
+    <div class="slot" style="border-color:var(--warn)"><b class="warn">節奏</b>持續／間歇／<br><b>突發</b></div>
+  </div>
+  <p style="margin-top:1.1em;font-size:3.7vmin">
+    🔴 通常最少被想到的是<b class="warn">節奏</b>與<b class="warn">病因</b>。<br>
+    但這兩格分別決定了<b>用長效藥還是短效救援藥</b>、以及<b>要不要處理病因</b>。</p>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+全課的<b>方法論骨架</b>，第一次出現要講清楚，之後每幕都會再出現。<br>
+<span class='say'>「今天每一件事都這樣走：你本來會怎麼做 → 你在藥理病理學過什麼 → 所以臨床上該怎麼判斷。」</span><br>
+<b>重點</b>：中間那一欄<b>你們已經有了</b>。">
+  <h2>今天每一段，都走這三步</h2>
+  <div class="bridge">
+    <div class="bcard b1"><h4>既有印象</h4><p>你現在的直覺<br>「喊痛就給藥」</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b2"><h4>基礎醫學</h4><p>你<b>已經學過</b>的<br>解剖・生理・病理・藥理</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b3"><h4>臨床判斷</h4><p>床邊<b>真正要做</b>的決定</p></div>
+  </div>
+  <p style="margin-top:1.4em;font-size:3.7vmin">
+    🔴 中間那一欄，<span class="u">你們已經有了</span>。<br>
+    今天不是教你新的基礎醫學，是<b class="accent">把它接到病人床邊</b>。</p>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+半文半圖。先建立「癌痛不只是痛」。<br>
+<span class='say'>「一個痛 8 分的病人，可能有一半的分數來自『我是不是快死了』。只處理藥，處理不完。」</span><br>
+食藥署手冊開宗明義就是這段。">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h2>癌痛不只是「痛」</h2>
+  <div class="halfs">
+    <div class="viz">
+      <svg viewBox="0 0 300 300" role="img" aria-label="生理心理社會三環相扣">
+        <circle cx="150" cy="105" r="72" fill="none" stroke="#38bdf8" stroke-width="5" opacity=".9"/>
+        <circle cx="108" cy="185" r="72" fill="none" stroke="#fbbf24" stroke-width="5" opacity=".9"/>
+        <circle cx="192" cy="185" r="72" fill="none" stroke="#4ade80" stroke-width="5" opacity=".9"/>
+        <text x="150" y="72" fill="#38bdf8" font-size="26" font-weight="800" text-anchor="middle">生理</text>
+        <text x="80" y="228" fill="#fbbf24" font-size="26" font-weight="800" text-anchor="middle">心理</text>
+        <text x="220" y="228" fill="#4ade80" font-size="26" font-weight="800" text-anchor="middle">社會</text>
+      </svg>
+    </div>
+    <div class="htext">
+      <p style="font-size:4.6vmin;font-weight:700;margin-bottom:.5em">biopsychosocial</p>
+      <ul class="bullets">
+        <li>癌痛造成的<b>不只是疼痛</b>，是全面性影響</li>
+        <li>所以癌痛採<b>全人照護</b>（holistic care）</li>
+      </ul>
+      <div class="case" style="margin-top:1em">
+        <p style="font-size:3.5vmin">一個「痛 8 分」的病人，可能有一半的分數來自
+          <b class="warn">「我是不是快死了」「我拖累家人」</b>。<br>
+          <b>只處理藥，處理不完。</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+<b>癌痛治療的目標，五個 A</b>（食藥署 2021）。<br>
+🔴 <b>只講一件事就好：目標不是把分數壓到零。</b><br>
+<span class='say'>「如果目標是零分，你會一直加藥，加到他整天昏睡。可是他要的可能只是能自己走去廁所、能坐著吃完一頓飯。」</span><br><br>
+<b>Activities 那一列要停下來講</b>，其餘四個唸過去就好。<br>
+🔴 回扣：這一列在最後一頁還會再出現（把生活品質當成治療目標）。">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h2>癌痛治療目標：<span class="u">5A</span></h2>
+  <table>
+    <tr><th style="width:34%">A</th><th>意思</th></tr>
+    <tr><td class="k">Analgesia</td><td>適當緩解疼痛</td></tr>
+    <tr class="hi"><td class="k warn">Activities 🔴</td>
+        <td class="warn"><b>恢復身體與生活功能</b>　目標不是「<b>零分</b>」，是「<b>能做想做的事</b>」</td></tr>
+    <tr><td class="k">Adverse effect</td><td>降低治療副作用</td></tr>
+    <tr><td class="k">Affect</td><td>維持良好情緒</td></tr>
+    <tr><td class="k">Aberrant drug taking</td><td>防止藥品濫用</td></tr>
+  </table>
+  <p style="font-size:3.4vmin;margin-top:.8em">
+    主要目標是兩件事：<b class="warn">緩解疼痛</b>、<b class="warn">提升生活／生命品質</b>。</p>
+</section>
+
+<section class="slide center" data-act="第一幕" data-notes="
+<b>大字流。</b>第一幕的核心句，慢、要停。講完停 3 秒再翻頁。">
+  <p class="huge warn">「7 分」</p>
+  <h2 style="margin-top:.45em">是一個<span class="u">欄位</span>，<br>不是一次<span class="accent">評估</span>。</h2>
+</section>
+
+<section class="slide center" data-act="第一幕" data-notes="
+🔴 <b>NCCN 的起點</b>，這是新加的內容。<br>
+<span class='say'>「NCCN 整套演算法的第一個前提是：所有癌症病人都要被篩檢疼痛。不是等他喊。」</span><br>
+三個時機唸清楚。第三個（開始新治療時）最常被忽略。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>NCCN 成人癌症疼痛指引的起點</h3>
+  <h2 style="margin-bottom:.7em">所有癌症病人<br>都應<span class="u">被篩檢</span>疼痛與生活品質</h2>
+  <div style="display:flex;gap:2.4vmin;justify-content:center;flex-wrap:wrap">
+    <div class="case" style="border-left-color:var(--accent);margin:0;min-width:26vmin"><p><b>初次評估時</b></p></div>
+    <div class="case" style="border-left-color:var(--accent);margin:0;min-width:26vmin"><p><b>每一次接觸時</b></p></div>
+    <div class="case" style="border-left-color:var(--warn);margin:0;min-width:26vmin"><p><b>每次開始新治療時</b></p></div>
+  </div>
+  <p style="margin-top:1.3em;font-size:3.6vmin">
+    沒有痛，<b>下次見面還是要再篩</b>：癌症疼痛對同一位病人而言<span class="u">是高度動態的</span>。</p>
+</section>
+
+<section class="slide center" data-act="第一幕" data-notes="
+大字流。這句是 NCCN 原文的立場。<br>
+<span class='say'>「疼痛本質上是主觀的，所以病人自己講，就是目前的照護標準。」</span><br>
+這句可以接住學生心裡「他會不會誇大」的疑問，直接處理掉。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h1>疼痛本質上是<span class="warn">主觀</span>的。<br><br>
+    <span class="accent">病人自己說的分數，<br>就是目前的照護標準。</span></h1>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+🔴 <b>全面疼痛評估，第一組：痛本身。</b>這是使用者要求擴充的部分。<br>
+不要一項一項唸，唸<b>粗體那幾個</b>就好，其他讓他們看講義。<br>
+🔴 <b>「休息時 vs 活動時」</b>要停一下：很多人只記一個分數。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>全面疼痛評估　Comprehensive Pain Assessment　①／③</h3>
+  <h2 style="font-size:5.4vmin">痛本身要問到什麼</h2>
+  <table>
+    <tr><td class="k">類型與性質</td><td>是哪一種痛、痛起來是什麼感覺</td></tr>
+    <tr><td class="k">疼痛病史</td><td>何時開始（onset）、持續多久（duration）、變化過程（course）</td></tr>
+    <tr class="hi"><td class="k warn">強度</td><td class="warn"><b>休息時的痛</b>與<b>活動時的痛</b>要分開問 🔴</td></tr>
+    <tr><td class="k">預估走向</td><td>這個痛接下來可能怎麼變</td></tr>
+    <tr><td class="k">位置</td><td>位置、<b>轉移型態</b>（referral pattern）、<b>放射</b>（radiation）</td></tr>
+    <tr><td class="k">加重與緩解</td><td>什麼讓它更痛、什麼讓它變好</td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+<b>全面疼痛評估，第二組：影響與治療脈絡。</b><br>
+🔴 <b>「影響」</b>那一列要停：工作、睡眠、人際互動。這呼應 5A 裡的 Activities。<br>
+🔴 <b>突發痛</b>在這裡第一次出現，等一下會單獨講。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>全面疼痛評估　②／③</h3>
+  <h2 style="font-size:5.4vmin">痛造成什麼影響、目前怎麼處理</h2>
+  <table>
+    <tr class="hi"><td class="k warn">影響</td>
+        <td class="warn">干擾到<b>工作、睡眠、人際互動</b>了嗎 🔴</td></tr>
+    <tr><td class="k">目前計畫</td><td>現在的疼痛處置計畫是什麼</td></tr>
+    <tr><td class="k">治療反應</td><td>病人的<b>疼痛經驗</b>與對目前治療的<b>反應</b></td></tr>
+    <tr><td class="k">過去治療</td><td>以前用過哪些止痛方式</td></tr>
+    <tr class="hi"><td class="k warn">突發痛</td>
+        <td class="warn">現行處方<b>沒能控制住</b>的突發性或陣發性疼痛 🔴</td></tr>
+    <tr><td class="k">目標</td><td>病人對疼痛處置的<b>目標與期待</b>，包含舒適與功能的程度；<b>家屬照顧者一起討論</b></td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+<b>全面疼痛評估，第三組：心理社會與意義。</b>這一組最常被跳過。<br>
+<span class='say'>「這裡有一個詞叫 existential suffering，存在性的受苦。指引把它明文寫進疼痛評估項目。」</span><br>
+🔴 <b>「疼痛未被充分治療的風險因子」</b>要說：指引明文要求要評估這個。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>全面疼痛評估　③／③</h3>
+  <h2 style="font-size:5.4vmin">心理社會脈絡與痛的意義</h2>
+  <table>
+    <tr><td class="k">心理社會</td>
+        <td>病人的<b>身心困擾</b>（distress）、<b>家屬與照顧者的支持</b>、<b>精神科病史</b></td></tr>
+    <tr class="hi"><td class="k warn">🔴 風險因子</td>
+        <td class="warn">疼痛<b>未被充分治療</b>的風險因子</td></tr>
+    <tr><td class="k">痛的意義</td>
+        <td>疼痛對<b>病人與家屬</b>的意義，包含病人過去的<b>醫療創傷</b>經驗</td></tr>
+    <tr><td class="k">文化</td>
+        <td>對疼痛、<b>疼痛表達</b>、以及治療的<b>文化信念</b></td></tr>
+    <tr><td class="k">心靈</td>
+        <td>靈性或宗教考量、<b>存在性的受苦</b>（existential suffering）</td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+🔴 <b>評估不只是問，還要查。</b>這一頁常被忽略。<br>
+NCCN 舉的例子很銳利，直接唸：<span class='say'>「對一個即將脊髓壓迫的病人只給類鴉片，是不恰當的。沒有類固醇跟局部放療，痛不會好，而且病人持續處在脊髓損傷的高風險。」</span><br>
+這句同時是<b>第二幕的伏筆</b>。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h2>評估不只是「問」，還要「查」</h2>
+  <ul class="bullets" style="font-size:1.05em">
+    <li>完整的<b>身體檢查</b></li>
+    <li>檢視相關的<b>實驗室檢驗</b>與<b>影像檢查</b></li>
+    <li>目的：判斷這個痛<b class="warn">是不是來自一個需要特定治療的病因</b></li>
+  </ul>
+  <div class="case" style="border-left-color:var(--red);margin-top:1.1em">
+    <p style="font-size:3.6vmin">NCCN 原文舉的例子：<br>
+      對一個<b class="warn">即將發生脊髓壓迫</b>的病人<b>只給類鴉片，是不恰當的</b>。<br>
+      沒有<b>類固醇</b>與<b>局部放射治療</b>，疼痛不會被好好控制，
+      而且病人會持續處在<b class="red">脊髓損傷的高風險</b>。</p>
+  </div>
+</section>
+
+<section class="slide center" data-act="第一幕" data-notes="
+<b>大字流。</b>NCCN 對全面評估下的終點定義。<br>
+<span class='say'>「評估的終點不是給一個分數，是給一個診斷。」</span><br>
+🔴 注意：NCCN 這句話裡的病理生理只寫了三個（軀體、內臟、神經病變），
+但同一篇前面的分類寫的是三大機轉且含 nociplastic。等一下會講到這個差異。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>全面疼痛評估的終點</h3>
+  <h1>不是給出一個<span class="dim">分數</span>，<br>是<span class="warn">診斷出病因</span><br>與<span class="warn">病理生理機轉</span>。</h1>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+🔴 <b>微互動。鄰座三人，1 分鐘。不用起立、不用寫，講完就好。</b><br>
+<span class='say'>「剛才三組評估內容，一個人負責一組。各挑出一項你覺得在病房最容易被漏掉的。」</span><br>
+按 T 計時 1 分鐘。抽點 <b>2 組</b>就好，不要拖。<br>
+🔴 <b>學生最常挑到的通常是</b>：休息時 vs 活動時分開問、影響到睡眠與人際、痛的意義與文化。<br>
+接住那個答案：<span class='say'>「對，這些不是不重要，是很忙的時候第一個被跳過的。」</span>">
+  <span class="badge talk">🗣 鄰座三人　1 分鐘</span>
+  <div class="task">
+    <div class="tl">微 互 動</div>
+    <div class="body">剛才三組評估內容裡，<br>
+      各挑一項你覺得<span class="warn">在病房最容易被漏掉</span>的。</div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="n">怎麼分工</span>一個人負責<b>一組</b>，湊三項</div>
+    <div class="rule"><span class="n">不用寫</span>講出來就好，<b>1 分鐘</b></div>
+    <div class="rule"><span class="n">等一下</span>抽 <b>2 組</b>各說一項</div>
+  </div>
+  <div class="slots" style="margin-top:1.1em">
+    <div class="slot"><b>①</b>痛本身</div>
+    <div class="slot"><b>②</b>影響與治療脈絡</div>
+    <div class="slot"><b>③</b>心理社會與意義</div>
+  </div>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+把 NCCN 的完整評估<b>收攏成可以背的骨架</b>。這一頁是回到開頭那五格，補上「為什麼要問」。<br>
+讓他們抄或拍照，給 30 秒。<br>
+<b>節奏</b>那一列要停，它引出突發性疼痛。<br>
+量表快帶：<span class='say'>「量表有很多種，但你交班說不出『NRS 從 7 降到 3』就沒有共同語言。」</span>">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h3>回到開頭那五格，補上「為什麼」</h3>
+  <h2 style="font-size:5.4vmin">收攏成可以背的五件事</h2>
+  <table>
+    <tr><th>要素</th><th>問什麼</th><th>為什麼要問</th></tr>
+    <tr><td class="k">病程</td><td>多久了？</td><td>急性小於 3 個月多來自診斷或處置；慢性大於 3 個月多來自腫瘤侵犯或治療</td></tr>
+    <tr><td class="k">機轉</td><td>怎麼個痛法？</td><td><b>決定用哪一類藥</b></td></tr>
+    <tr><td class="k">病因</td><td>跟腫瘤、治療、還是老毛病有關？</td><td>決定要不要處理病因，而不只是處理痛</td></tr>
+    <tr><td class="k">嚴重度</td><td>0 至 10 分</td><td>決定治療階梯與追蹤頻率</td></tr>
+    <tr class="hi"><td class="k warn">節奏</td><td class="warn">持續／間歇／<b>突發</b>？</td><td class="warn"><b>決定長效藥還是短效救援藥</b></td></tr>
+  </table>
+  <p class="sub" style="margin-top:.8em">量表：VAS、NRS、VRS、Wong-Baker FACES、BPI、McGill。疼痛已被視為<b>第五生命徵象</b>。</p>
+</section>
+
+<section class="slide" data-act="第一幕" data-notes="
+突發性疼痛。<b>臨床天天遇到，卻最容易被漏記。這是本節最重要的名詞之一。</b><br>
+定義的關鍵在<b>「背景疼痛已經被控制」</b>這個前提：沒有這個前提就不叫突發痛。<br>
+🔴 <b>次數</b>是第二幕的伏筆，一定要說：<span class='say'>「記住這個次數，等一下它會決定醫囑要不要改。」</span>">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h3>本節最重要的名詞之一（<span class="warn">臨床天天遇到</span>）</h3>
+  <h2>突發性疼痛　breakthrough pain</h2>
+  <div class="case">
+    <p style="font-size:3.6vmin">在<b class="warn">背景疼痛相對穩定且大致被控制</b>的情況下，
+      自發或被誘發產生的<b>短暫</b>疼痛，強度<b>比背景疼痛更高</b>，
+      <b>3 至 5 分鐘</b>內達到最痛，可持續 <b>30 至 60 分鐘</b>。</p>
+  </div>
+  <table class="tight" style="margin-top:.7em">
+    <tr><td class="k">1</td><td>自發還是誘發（翻身？換藥？進食？）</td>
+        <td class="k warn">2 🔴</td><td class="warn"><b>每日發作幾次</b></td></tr>
+    <tr><td class="k">3</td><td>每次持續多久</td><td class="k">4</td><td>疼痛強度</td></tr>
+    <tr><td class="k">5</td><td>特質（針刺／撕裂／灼燒／痠痛）</td><td class="k">6</td><td>誘發與緩解因素</td></tr>
+  </table>
+  <p class="sub" style="margin-top:.7em">
+    🔴 第 2 項是護理判斷的關鍵。你只寫「主訴疼痛，予 PRN 一次」，這個資訊<b>永遠不會出現在病歷裡</b>。</p>
+</section>
+
+<section class="slide center" data-act="第一幕" data-notes="
+<b>第一幕結尾。回收討論①。</b><br>
+<span class='say'>「剛才多數組選①給 PRN。給藥不算錯，但如果你只做了這件事，你會漏掉什麼？」</span><br>
+讓他們自己說出「還沒問清楚」。啟示句大字流停 3 秒。<b>10:00 下課。</b>">
+  <p class="actlabel">第 一 幕 ・ 啟 示</p>
+  <h1>給藥<span class="dim">不是錯的</span>。<br><span class="warn">只給藥</span>才是。</h1>
+  <p style="margin-top:1.3em;font-size:4.2vmin">
+    「7 分」告訴你<b>強度</b>，<br>
+    但沒告訴你<span class="accent">是什麼痛、為什麼痛、有沒有危險</span>。</p>
+  <p class="sub" style="margin-top:1.4em">☕ 休息 10 分鐘</p>
+</section>
+
+<!-- ═════════ 第二幕 ═════════ -->
+
+<section class="slide center section" data-act="第二幕" data-notes="
+<b>10:10 開始，11:00 結束。</b>🔴 <b>這一幕最緊：28 張要在 50 分鐘走完，其中 5 分鐘是討論。</b><br><br>
+<b>時間錨點</b>（落後就啟動取捨）：<br>
+　10:20 要講完討論②並進到三大機轉<br>
+　10:35 要講完六個紅旗與揭曉<br>
+　10:45 要講完救援劑量<br><br>
+🔴 <b>落後時的取捨順序</b>（由先砍到絕不砍）：<br>
+　1. 「同一類藥四種叫法」可壓到 30 秒，只講一句結論<br>
+　2. WHO 三階梯可壓到 30 秒，他們藥理學都學過<br>
+　3. methadone 與呼吸抑制細節可改為「看補充教材」<br>
+　4. 「回答家屬」微互動可從 2 分縮成 1 分，只抽 1 組<br><br>
+🔴 <b>絕不砍</b>：六個紅旗、揭曉脊髓壓迫、地板與補洞、便秘從第一天預防、寫一句交班。">
+  <p class="actlabel">第 二 幕</p>
+  <h1>從<span class="warn">止痛</span>，走到<span class="accent">判斷急症</span></h1>
+  <p class="sub" style="margin-top:1.4em">10:10 至 11:00</p>
+</section>
+
+<section class="slide center" data-act="第二幕" data-notes="
+劇情推進。唸的時候把<b>「腳有點麻」</b>加重。停頓，不要急著問。">
+  <p class="sub">同一天　上午 11:00（你給了 PRN 兩小時後）</p>
+  <div class="case" style="max-width:82%">
+    <p class="quote">「還是痛……<br>而且我覺得<span style="font-size:1.15em">腳有點麻</span>，<br><span style="font-size:1.15em">使不上力</span>。」</p>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>互動點二。鄰座三人，3 分鐘。</b><br>
+這題有兩小題，都很短，<b>但第二小題要三個人有共識</b>，那是重點。<br>
+<span class='say'>「第一題只要圈兩個詞。第二題你們三個要講好，只能選一個答案，而且只給一個理由。」</span><br>
+按 T 計時。抽點 <b>3 組</b>，每組先報第二題的答案與理由。<br>
+🔴 <b>會有組別選「等交班」</b>，不要否定，問一句：<span class='say'>「如果等到下一班，最壞會發生什麼？」</span><br>
+第一題答案是<b>「麻」與「使不上力」</b>（09:00 那句沒有）。接住這兩個詞往下走。">
+  <span class="badge talk">🗣 鄰座三人　3 分鐘</span>
+  <div class="task">
+    <div class="tl">討 論 ②</div>
+    <div class="body">
+      <span class="accent">第 1 題</span>　<b>11:00 有、而 09:00 沒有</b>的，是哪<span class="warn">兩個詞</span>？<br>
+      <span class="accent" style="display:inline-block;margin-top:.35em">第 2 題</span>　你要
+      <span class="warn">現在就通知醫師</span>，還是<span class="warn">等下一班交班再說</span>？</div>
+  <div class="slots" style="grid-template-columns:1fr 1fr;margin-top:.9em">
+    <div class="slot" style="text-align:left;font-size:3.2vmin">
+      <b>09:00</b>「我背好痛……大概 7 分吧。」<br>
+      <span class="sub">你依醫囑給了短效止痛藥</span></div>
+    <div class="slot" style="text-align:left;font-size:3.2vmin;border-color:var(--warn)">
+      <b class="warn">11:00</b>「還是痛……而且我覺得<br><b>腳有點麻</b>、<b>使不上力</b>。」</div>
+  </div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="n">第 1 題</span>只要<b>圈出兩個詞</b>，不用解釋</div>
+    <div class="rule"><span class="n">第 2 題</span>三個人要有<b>共識</b>，<br>只能選一個，只給<b>一個理由</b></div>
+    <div class="rule"><span class="n">等一下</span>抽 <b>3 組</b>，<br>先報第 2 題的答案與理由</div>
+  </div>
+  <div class="eg">
+    <b>提示</b>：「麻」跟「使不上力」，在<b>解剖學</b>上指向哪個系統？</div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>今天最重要的一座橋。</b><br>
+<span class='say'>「你們在藥理學學過：嗎啡活化 μ 受體產生止痛。那我問你，如果痛的來源是神經本身壞掉了呢？」</span><br>
+讓他們自己想三秒再翻。">
+  <h3>橋接 ②　🔴 今天最重要的一座橋</h3>
+  <h2>為什麼「加藥也沒用」？</h2>
+  <div class="bridge" style="margin-top:.3em">
+    <div class="bcard b1"><h4>既有印象</h4><p>還是痛<br>＝<b>劑量不夠</b><br>→ 再給一次</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b2"><h4>你學過的藥理學</h4><p>嗎啡活化 <b>μ 受體</b><br>→ 抑制痛覺傳遞<br><span class="sub">（藥理學考過的）</span></p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b3"><h4>臨床判斷</h4><p>如果痛的來源是<br><b>神經本身受損</b>，<br>μ 受體那條路<br><b class="warn">就不是主要戰場</b></p></div>
+  </div>
+  <p style="margin-top:1.2em;font-size:3.9vmin">
+    「止痛藥加到底還是痛」，有時候<span class="u">不是劑量不夠，是用錯類別</span>。</p>
+</section>
+
+<section class="slide center" data-act="第二幕" data-notes="
+🔴 <b>新內容，取代舊教材的兩分類。</b><br>
+<span class='say'>「NCCN 2025 年版把癌痛的病理生理分成三大機轉。前兩個你們可能聽過，第三個是這幾年才被寫進指引的。」</span><br>
+先出三個名字，<b>不要急著解釋</b>，下面三頁一個一個講。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <span class="badge new">分類已更新</span>
+  <h3>Pathophysiologic Classification of Cancer Pain Syndromes</h3>
+  <h2 style="margin-bottom:.8em">癌痛有<span class="warn">三大</span>病理生理機轉</h2>
+  <div style="display:flex;gap:3vmin;justify-content:center;width:100%">
+    <div class="case" style="border-left-color:var(--accent);margin:0;flex:1">
+      <p class="big" style="font-size:5.2vmin">組織傷害性</p><p class="sub">nociceptive</p></div>
+    <div class="case" style="border-left-color:var(--warn);margin:0;flex:1">
+      <p class="big" style="font-size:5.2vmin">神經病變性</p><p class="sub">neuropathic</p></div>
+    <div class="case" style="border-left-color:var(--purple);margin:0;flex:1">
+      <p class="big purple" style="font-size:5.2vmin">痛覺可塑性</p><p class="sub">nociplastic</p></div>
+  </div>
+  <p style="margin-top:1.3em;font-size:3.7vmin">
+    <b class="warn">治療策略取決於病理生理機轉</b>，而機轉是靠<b>檢查與評估</b>判斷出來的。</p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+半文半圖。第一種機轉。<br>
+<b>受器在哪裡</b>唸一次：皮膚、內臟、肌肉、結締組織。這接他們學過的解剖。<br>
+軀體痛的形容詞：<b>銳、位置明確、抽痛、壓迫感</b>。癌症最常見的來源是<b>骨轉移</b>與手術後。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>機轉一之一</h3>
+  <h2 style="font-size:5.6vmin">組織傷害性痛：<span class="accent">軀體</span>　somatic</h2>
+  <div class="halfs">
+    <div class="viz">
+      <svg viewBox="0 0 260 220" role="img" aria-label="皮膚肌肉骨骼受器受刺激">
+        <rect x="30" y="30" width="200" height="34" rx="8" fill="none" stroke="#38bdf8" stroke-width="4"/>
+        <text x="130" y="53" fill="#38bdf8" font-size="19" font-weight="700" text-anchor="middle">皮膚</text>
+        <rect x="30" y="78" width="200" height="34" rx="8" fill="none" stroke="#38bdf8" stroke-width="4"/>
+        <text x="130" y="101" fill="#38bdf8" font-size="19" font-weight="700" text-anchor="middle">肌肉・結締組織</text>
+        <rect x="30" y="126" width="200" height="34" rx="8" fill="none" stroke="#38bdf8" stroke-width="4"/>
+        <text x="130" y="149" fill="#38bdf8" font-size="19" font-weight="700" text-anchor="middle">骨骼</text>
+        <path d="M130 168 L130 196" stroke="#fbbf24" stroke-width="5"/>
+        <path d="M120 186 L130 198 L140 186" fill="none" stroke="#fbbf24" stroke-width="5"/>
+        <text x="130" y="216" fill="#fbbf24" font-size="17" font-weight="700" text-anchor="middle">nociceptor 活化</text>
+      </svg>
+    </div>
+    <div class="htext">
+      <p style="font-size:3.6vmin;margin-bottom:.5em">受器分布於<b>皮膚、內臟、肌肉、結締組織</b>。</p>
+      <p style="font-size:4.4vmin;font-weight:700;color:var(--warn);margin:.5em 0">病人會這樣形容</p>
+      <ul class="bullets">
+        <li><b>銳痛</b>（sharp）</li>
+        <li><b>位置明確</b>（well localized）</li>
+        <li><b>抽痛</b>（throbbing）</li>
+        <li><b>壓迫感</b>（pressure-like）</li>
+      </ul>
+      <p style="margin-top:.8em;font-size:3.5vmin">
+        癌症常見來源：<b class="warn">骨轉移</b>、外科手術後。</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+半文半圖。第二種。<br>
+<b>形容詞對比</b>要講：軀體痛位置明確，內臟痛<b>瀰漫</b>。<br>
+機轉是<b>壓迫、浸潤、擴張</b>腹腔或胸腔的內臟。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>機轉一之二</h3>
+  <h2 style="font-size:5.6vmin">組織傷害性痛：<span class="accent">內臟</span>　visceral</h2>
+  <div class="halfs">
+    <div class="viz">
+      <svg viewBox="0 0 260 220" role="img" aria-label="內臟受壓迫浸潤擴張">
+        <ellipse cx="130" cy="112" rx="82" ry="66" fill="none" stroke="#38bdf8" stroke-width="4"/>
+        <text x="130" y="106" fill="#38bdf8" font-size="20" font-weight="700" text-anchor="middle">腹腔・胸腔</text>
+        <text x="130" y="132" fill="#38bdf8" font-size="20" font-weight="700" text-anchor="middle">內臟</text>
+        <path d="M18 112 L44 112" stroke="#fbbf24" stroke-width="5"/><path d="M36 104 L46 112 L36 120" fill="none" stroke="#fbbf24" stroke-width="5"/>
+        <path d="M242 112 L216 112" stroke="#fbbf24" stroke-width="5"/><path d="M224 104 L214 112 L224 120" fill="none" stroke="#fbbf24" stroke-width="5"/>
+        <text x="130" y="204" fill="#fbbf24" font-size="17" font-weight="700" text-anchor="middle">壓迫・浸潤・擴張</text>
+      </svg>
+    </div>
+    <div class="htext">
+      <p style="font-size:4.4vmin;font-weight:700;color:var(--warn);margin-bottom:.5em">病人會這樣形容</p>
+      <ul class="bullets">
+        <li><b>比較瀰漫</b>（more diffuse），說不清楚哪一點</li>
+        <li><b>悶痛</b>（aching）</li>
+        <li><b>絞痛</b>（cramping）</li>
+      </ul>
+      <p style="margin-top:.9em;font-size:3.5vmin">
+        機轉：腹腔或胸腔內臟受到<b>壓迫、浸潤、擴張</b>。</p>
+      <p style="margin-top:.5em;font-size:3.5vmin">
+        對照軀體痛：一個<b>位置明確</b>，一個<b class="warn">說不清楚在哪</b>。</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+半文半圖。第三種，也是<b>臨床上最要緊的</b>。<br>
+<span class='say'>「這一類的形容詞是：燒灼、銳、電擊樣。」</span><br>
+🔴 NCCN 舉的癌症相關例子要唸：<b>化學治療（例如 vincristine）、放射治療、手術傷到神經</b>。
+這正好接學生的「化療後手腳麻」。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h3>機轉二</h3>
+  <h2 style="font-size:5.6vmin"><span class="warn">神經病變性</span>疼痛　neuropathic</h2>
+  <div class="halfs">
+    <div class="viz">
+      <svg viewBox="0 0 260 220" role="img" aria-label="周邊或中樞神經受損">
+        <path d="M20 110 L100 110" stroke="#fbbf24" stroke-width="6"/>
+        <path d="M160 110 L240 110" stroke="#fbbf24" stroke-width="6"/>
+        <path d="M104 92 L142 128 M142 92 L104 128" stroke="#f87171" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="123" cy="110" r="34" fill="none" stroke="#f87171" stroke-width="3" stroke-dasharray="6 6"/>
+        <text x="130" y="180" fill="#f87171" font-size="18" font-weight="700" text-anchor="middle">神經本身受損</text>
+        <text x="130" y="205" fill="#9aa8bd" font-size="15" text-anchor="middle">周邊或中樞神經系統</text>
+      </svg>
+    </div>
+    <div class="htext">
+      <p style="font-size:4.4vmin;font-weight:700;color:var(--warn);margin-bottom:.5em">病人會這樣形容</p>
+      <ul class="bullets">
+        <li><b>燒灼</b>（burning）</li>
+        <li><b>銳痛</b>（sharp）</li>
+        <li><b>電擊樣</b>（shooting）</li>
+      </ul>
+      <p style="margin-top:.9em;font-size:3.5vmin">NCCN 舉的例子：脊椎狹窄、糖尿病神經病變，
+        以及<b class="warn">癌症治療的副作用</b>：</p>
+      <ul class="bullets" style="font-size:.95em">
+        <li><b>化學治療</b>（例如 vincristine）</li>
+        <li><b>放射治療</b></li>
+        <li><b>手術傷到神經</b>之後</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>這是指引新增的第三種機轉。</b><br>
+<span class='say'>「第三種叫 nociplastic，中文可以講痛覺可塑性疼痛。它的定義是用『沒有什麼』來寫的。」</span><br>
+唸定義時強調兩個「沒有明確證據」。<br>
+<b>教學重點</b>：這一類的存在，說明「找不到組織損傷」不等於「病人在裝」。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <span class="badge new">指引新增的第三種機轉</span>
+  <h2 style="font-size:5.6vmin"><span class="purple">痛覺可塑性</span>疼痛　nociplastic</h2>
+  <div class="case" style="border-left-color:var(--purple)">
+    <p style="font-size:3.6vmin">源自<b class="purple">痛覺處理本身被改變</b>（altered nociception）。<br>
+      這一類疼痛<b>沒有明確證據</b>顯示存在實際或即將發生的組織損傷去活化周邊痛覺受器，
+      也<b>沒有明確證據</b>顯示體感覺系統有疾病或病灶造成疼痛。</p>
+  </div>
+  <p style="margin-top:.9em;font-size:3.7vmin">
+    指引認為它<b>參與了部分癌痛症候群</b>，也參與慢性下背痛、頭痛、纖維肌痛症。</p>
+  <div class="case" style="border-left-color:var(--green);margin-top:.9em">
+    <p style="font-size:3.5vmin">🧠 <b>對護理的意義</b>：<br>
+      「檢查找不到明確的組織損傷」<b class="u">不等於</b>「這個人在裝痛」。<br>
+      這一類疼痛<b class="green">是被指引承認的機轉</b>。</p>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+把三種收成一頁對照。<b>讓他們拍照，給 40 秒。</b><br>
+講的時候<b>只唸「病人怎麼形容」那一列</b>，其他讓他們看講義。<br>
+🔴 最後一句一定要說：護理端要做的不是自己換藥，是<b>把形容詞寫進紀錄並回報</b>。">
+  <div class="ref">來源：<b>NCCN 2.2025</b>＋<b>食藥署 2021</b></div>
+  <h2 style="font-size:5.4vmin">病人的<span class="warn">形容詞</span>就是線索</h2>
+  <table class="tight">
+    <tr><th style="width:15%"></th><th>軀體痛</th><th>內臟痛</th><th class="warn">神經病變痛</th></tr>
+    <tr class="hi"><td class="k warn">怎麼形容</td>
+        <td>銳、<b>位置明確</b>、抽痛、壓迫感</td>
+        <td><b>瀰漫</b>、悶痛、絞痛</td>
+        <td class="warn"><b>燒灼、電擊、針刺、麻木</b></td></tr>
+    <tr><td class="k">癌症情境</td>
+        <td><b>骨轉移</b>、手術後</td>
+        <td>肝腫脹、腸阻塞、後腹腔</td>
+        <td>神經叢侵犯、<b>脊髓神經根壓迫</b>、化療周邊神經病變</td></tr>
+    <tr><td class="k">一般止痛藥</td><td>通常有反應</td><td>通常有反應</td>
+        <td class="red"><b>常常「加藥也沒用」</b></td></tr>
+    <tr><td class="k">治療方向</td><td>NSAIDs、類鴉片、放射治療</td><td>類鴉片、處理病因</td>
+        <td class="warn"><b>需輔助藥</b>：TCA、gabapentin、pregabalin、局部麻醉貼布</td></tr>
+  </table>
+  <p class="sub" style="margin-top:.8em">
+    🔴 護理端要做的<b>不是自己換藥</b>，是把「病人形容的是燒灼、電擊、麻」<b>寫進紀錄並回報</b>。</p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>微互動：判讀練習。鄰座三人，2 分鐘。</b><br>
+<span class='say'>「三句病人的原話，一個人負責一句。判斷各屬哪一種機轉，只要講出機轉名稱。」</span><br>
+按 T 計時 2 分鐘。<b>抽點時直接請他們喊答案</b>，一句一句對，很快。<br>
+<b>答案</b>：①軀體　②內臟　③神經病變。<br>
+🔴 ③ 之後補一句：<span class='say'>「棉被碰到就痛，這叫異感痛。你在病房看到病人不讓你蓋被子，不是他難搞。」</span><br>
+如果時間緊，這頁可以壓到 1 分鐘，但<b>不要跳過</b>，這是本幕唯一的動手練習。">
+  <span class="badge talk">🗣 鄰座三人　2 分鐘</span>
+  <div class="task">
+    <div class="tl">判 讀 練 習</div>
+    <div class="body">三句病人原話，各屬<span class="warn">哪一種機轉</span>？</div>
+  </div>
+  <div class="slots" style="margin-top:1em">
+    <div class="slot" style="text-align:left;font-size:3.3vmin">
+      <b>①</b>「這裡<b>按下去</b>就痛，<br>位置我指得出來。」</div>
+    <div class="slot" style="text-align:left;font-size:3.3vmin">
+      <b>②</b>「肚子<b>悶悶脹脹</b>的，<br>說不上來到底哪裡。」</div>
+    <div class="slot" style="text-align:left;font-size:3.3vmin">
+      <b>③</b>「腳像<b>被電到</b>，<br>棉被碰到就痛。」</div>
+  </div>
+  <div class="rules" style="margin-top:1em">
+    <div class="rule"><span class="n">怎麼分工</span>一個人<b>一句</b></div>
+    <div class="rule"><span class="n">只要答</span>機轉<b>名稱</b>就好，不用解釋</div>
+    <div class="rule"><span class="n">等一下</span>全班一起<b>喊答案</b></div>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+<b>六個紅旗。</b>本課<b>絕不能砍</b>的一段。<br>
+逐條唸，②停最久，那就是陳女士。<b>不要在這裡揭曉</b>，讓他們自己對上。<br>
+下一頁會補 NCCN 的定義。">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h2>🔴 六個紅旗：須<span class="red">緊急處置</span>的狀況</h2>
+  <table class="tight">
+    <tr><th style="width:6%">#</th><th style="width:34%">紅旗</th><th>護理可觀察到的線索</th></tr>
+    <tr><td class="k">①</td><td>轉移至<b>腦內或腦膜</b></td><td>頭痛（早晨加劇）、噁心嘔吐、意識或行為改變、神經學缺損</td></tr>
+    <tr class="hi"><td class="k warn">②</td><td class="warn"><b>轉移至脊髓腔或硬脊膜外腔</b></td>
+        <td class="warn"><b>新出現的下肢無力、麻木、大小便失禁、背痛加劇</b></td></tr>
+    <tr><td class="k">③</td><td>腸道<b>阻塞或穿孔</b></td><td>腹脹、嘔吐、無排氣排便、腹部僵硬</td></tr>
+    <tr><td class="k">④</td><td>主要骨幹<b>骨折或即將骨折</b></td><td>突然劇痛、無法承重、活動時異常疼痛</td></tr>
+    <tr><td class="k">⑤</td><td><b>感染、膿瘍或敗血症</b></td><td>發燒、局部紅腫熱痛、生命徵象變化</td></tr>
+    <tr><td class="k">⑥</td><td><b>心肺功能急性衰竭</b></td><td>呼吸窘迫、血氧下降、意識改變</td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+NCCN 用另一個名字講同一件事：<b>腫瘤急症</b>（oncologic emergency）。<br>
+<span class='say'>「NCCN 的定義是：直接或間接與癌症或癌症治療有關的、危及生命的事件。」</span><br>
+🔴 最後一句是行動指令：<b>一邊直接處理疼痛，一邊同時處理背後那個狀況</b>。">
+  <div class="ref">來源：<b>NCCN 2.2025</b></div>
+  <h2>NCCN 怎麼講同一件事：<span class="red">腫瘤急症</span></h2>
+  <p style="font-size:3.7vmin;margin-bottom:.6em">
+    定義：<b>直接或間接與病人的癌症或癌症治療有關的、危及生命的事件。</b></p>
+  <table>
+    <tr><td class="k">承重骨</td><td><b>骨折或即將骨折</b></td></tr>
+    <tr class="hi"><td class="k warn">神經軸</td><td class="warn"><b>神經軸轉移合併有損傷之虞</b>（neuraxial metastases with threatened injury）</td></tr>
+    <tr><td class="k">感染</td><td>感染</td></tr>
+    <tr><td class="k">內臟</td><td><b>阻塞或穿孔</b>（急性腹症）</td></tr>
+    <tr><td class="k">血栓</td><td>血栓栓塞急症</td></tr>
+  </table>
+  <p style="margin-top:1em;font-size:3.7vmin">
+    🔴 <b>處置原則：直接治療疼痛，同時並行處理背後那個狀況。</b></p>
+</section>
+
+<section class="slide center" data-act="第二幕" data-notes="
+<b>大字流，一句話記法。</b>今天要他們帶走的第一句。<br>
+唸兩次，第二次放慢。">
+  <h2 style="font-size:7vmin;line-height:1.42">
+    「止痛藥沒效」<br><span class="dim">加上</span><br>
+    「<span class="warn">新出現</span>的神經或全身症狀」<br><span class="dim">等於</span><br>
+    <span class="red">這不是止痛問題，是急症。</span></h2>
+</section>
+
+<section class="slide center" data-act="第二幕" data-notes="
+<b>揭曉。</b>回到陳女士。<br>
+<span class='say'>「所以剛才選②的組是對的。她不是痛得更厲害，她是出現了新的神經症狀。」</span><br>
+🔴 強調：不是再給一次 PRN，是<b>立刻通知醫師</b>。<br>
+並回扣前面 NCCN 那句：只給類鴉片是不恰當的，要類固醇加局部放療。">
+  <span class="badge">回到陳女士</span>
+  <p style="font-size:4vmin">乳癌 <b class="warn">骨轉移</b>　加　背痛加劇　加　<b class="warn">新出現的下肢麻、無力</b></p>
+  <h1 style="margin:.5em 0" class="red">紅旗 ②：脊髓壓迫</h1>
+  <div class="bridge" style="margin-top:.3em">
+    <div class="bcard b1"><h4>既有印象</h4><p>痛加劇<br>→ 再給一次藥</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b2"><h4>你學過的病理學</h4><p>骨轉移好發<br><b>乳癌・攝護腺癌</b><br>脊椎是常見部位</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b3"><h4>臨床判斷</h4><p><b class="red">立刻通知醫師</b><br>只給類鴉片不恰當<br><span class="sub">需類固醇加局部放療</span></p></div>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>進入藥之前，先處理用詞。</b>一分鐘就好，但不講學生會困惑。<br>
+<span class='say'>「等一下開始講藥。在那之前先說一件事：同一類藥，你們在考卷上會看到四種叫法。」</span><br>
+<b>問一句</b>：<span class='say'>「你們在藥理學看到哪一個？在病房的醫囑上又看到哪一個？」</span><br>
+🔴 <b>藥理與法規是兩套不同的語彙系統</b>，這是學生困惑的真正來源。<br>
+重點只有一句：<b>看到「麻醉性止痛劑」不要以為是另一種藥。</b>">
+  <div class="ref">來源：<b>本課程自建題庫</b>＋<b>食藥署 2021</b></div>
+  <h2>進入藥之前：同一類藥，<span class="warn">四種叫法</span></h2>
+  <table class="tight">
+    <tr><th style="width:22%">用詞</th><th style="width:20%">出自哪個脈絡</th><th>你會在哪裡看到</th></tr>
+    <tr class="hi"><td class="k warn">類鴉片<br>opioid</td>
+        <td><b>藥理學</b><br>依作用受體定義</td>
+        <td><b>藥理與指引文獻</b>；<b>食藥署手冊全文用 142 次</b>，台灣官方指引的定調用詞</td></tr>
+    <tr class="hi"><td class="k warn">麻醉性止痛劑<br>narcotic analgesic</td>
+        <td><b>法規</b><br>管制藥品的分類</td>
+        <td><b>醫院管制藥品文件與用藥紀錄</b>；食藥署手冊<b>書名</b>就是這一套</td></tr>
+    <tr><td class="k">鴉片類藥物</td><td>混用</td><td>毒物學脈絡</td></tr>
+    <tr><td class="k">類嗎啡</td><td class="red">不精確</td>
+        <td>部分衛教文章。opioid 的定義是<b>作用於類鴉片受體</b>，不是「結構像嗎啡」</td></tr>
+  </table>
+  <p style="margin-top:1em;font-size:3.9vmin">
+    🔴 <b>看到「麻醉性止痛劑」，不要以為是另一種藥。</b></p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+WHO 三階梯，<b>快速帶過</b>，他們藥理學都學過藥名。1 分鐘。<br>
+重點在下一頁的地板與補洞。">
+  <div class="ref">來源：<b>WHO 1986</b>／<b>食藥署 2021</b></div>
+  <h2>WHO 三階梯<span class="sub" style="font-size:.42em">（1986 年發布，至今仍是基本模式）</span></h2>
+  <table>
+    <tr><th>階梯</th><th>疼痛程度</th><th>用藥</th></tr>
+    <tr><td class="k">一</td><td>輕度</td><td>非類鴉片：acetaminophen、aspirin、NSAIDs，必要時加輔助藥</td></tr>
+    <tr><td class="k">二</td><td>輕至中度</td><td>弱效類鴉片：codeine、tramadol，必要時加第一階梯藥</td></tr>
+    <tr><td class="k">三</td><td>中至重度</td><td>強效類鴉片：morphine、fentanyl，必要時加第二階梯藥</td></tr>
+  </table>
+  <p class="sub" style="margin-top:.9em">
+    癌痛用強效類鴉片是<b>依療效與副作用滴定</b>，不是依「已經用很多了」喊停。</p>
+</section>
+
+<section class="slide center" data-act="第二幕" data-notes="
+🔴 癌痛<b>最容易被做錯的一件事</b>。大字流。<br>
+<span class='say'>「長效藥不是等病人喊痛才給。定時給的是地板，PRN 給的是補洞。地板塌了，洞補不完。」</span><br>
+這個比喻要說，學生會記住。">
+  <div class="ref">來源：<b>NCCN 2.2025</b>／<b>食藥署 2021</b></div>
+  <h2 style="font-size:5.2vmin;margin-bottom:.9em">癌痛最容易被做錯的一件事</h2>
+  <p class="big" style="font-size:7vmin">
+    定時給的是 <span class="accent">地板</span>　　PRN 給的是 <span class="warn">補洞</span></p>
+  <p style="margin-top:1.2em;font-size:4vmin">
+    <span class="red">✗</span> 長效藥「等病人喊痛再給」<br>
+    <span class="green">✓</span> 長期持續的癌痛：<b>常規、定時</b>給長效藥（around the clock）<br>
+    　　突發性疼痛才輔以<b>短效</b>藥（as needed）</p>
+  <p class="warn" style="margin-top:1em;font-size:4.4vmin"><b>地板塌了，補洞補不完。</b></p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>回收第一幕的伏筆</b>（突發痛次數）。<br>
+<span class='say'>「還記得第一幕我要你們記住『每日發作幾次』嗎？就是為了這一頁。」</span><br>
+這是<b>護理判斷直接改變醫囑</b>的最具體例子。<br>
+兩份指引寫法不同要說明：NCCN 給原則，食藥署給可操作的數字。">
+  <div class="ref">來源：<b>NCCN 2.2025</b>＋<b>食藥署 2021</b></div>
+  <h3>回收第一幕的伏筆</h3>
+  <h2 style="font-size:5.4vmin">突發痛的救援劑量原則</h2>
+  <table>
+    <tr><td class="k">用什麼藥</td><td>起效快、作用短的類鴉片，口服或舌下</td></tr>
+    <tr><td class="k">給多少</td><td>每日類鴉片總量的 <b>10% 至 20%</b>，嚴重惡化時可每小時口服給一次</td></tr>
+    <tr class="hi"><td class="k warn">🔴 何時回報</td>
+        <td class="warn">NCCN：<b>一天需要多次救援</b>，即代表基礎治療可能要調整<br>
+            食藥署：<b>每日突發痛 3 次以上且連續 2 日</b> → 常規劑量考慮<b>調高 25 至 50%</b></td></tr>
+    <tr><td class="k">要會分辨</td><td><b>終末劑量不足</b>：給藥間隔快到時才痛 → 縮短間隔或加常規量，<b>不是一直加 PRN</b></td></tr>
+  </table>
+  <p class="sub" style="margin-top:.8em">
+    🔴 病人一天喊 4 次痛、連兩天都這樣，這不是病人「愛喊」，<b>這是常規劑量不足的訊號</b>。</p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>微互動：寫一句交班。鄰座三人，1 分鐘。</b>短，但這是全課<b>最可能真的改變行為</b>的一頁。<br>
+<span class='say'>「不要說『我會回報』。回報什麼？把那一句話講出來。」</span><br>
+按 T 計時 1 分鐘。抽 <b>2 組</b>念出來。<br><br>
+🔴 <b>對照兩種講法</b>（可以寫在白板上）：<br>
+　✗「陳女士今天有喊痛，有給 PRN。」<br>
+　✓「陳女士<b>昨天 4 次、今天 4 次</b>救援藥，<b>連續兩天</b>，依指引可能要考慮調常規劑量。」<br>
+差別不是用詞漂亮，是<b>後面那句醫師可以直接下決定</b>。">
+  <span class="badge talk">🗣 鄰座三人　1 分鐘</span>
+  <div class="task">
+    <div class="tl">寫 一 句 交 班</div>
+    <div class="body">陳女士<b>昨天用 4 次</b>救援藥，<b>今天也 4 次</b>。<br>
+      你交班時要說的那<span class="warn">一句話</span>，是什麼？</div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="n">規則一</span>🔴 <b>不能只說「我會回報」</b>，<br>要把那句話講出來</div>
+    <div class="rule"><span class="n">規則二</span>一句話，<b>要有數字</b></div>
+    <div class="rule"><span class="n">等一下</span>抽 <b>2 組</b>念出來</div>
+  </div>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+四個把關點，<b>剛上臨床最可能踩到</b>的地方。<br>
+每條只講一句理由。③ 可以接他們學過的 codeine prodrug。<br>
+">
+  <div class="ref">來源：<b>NCCN 2.2025</b>＋<b>食藥署 2021</b></div>
+  <h2>🔴 護理端的<span class="accent">四個把關點</span></h2>
+  <table class="tight">
+    <tr><td class="k">①</td><td><b>meperidine（pethidine）不用於癌痛</b></td>
+        <td>代謝產物經腎清除，蓄積可致<b>癲癇發作或心律不整</b>；腎功能不全或脫水者尤其禁用</td></tr>
+    <tr><td class="k">②</td><td><b>混合促效／拮抗劑不可與類鴉片促效劑併用</b><br>
+        （butorphanol、pentazocine、nalbuphine）</td>
+        <td>由純促效劑換成促效／拮抗劑，可<b>誘發戒斷危機</b>；且有<b>天花板效應</b></td></tr>
+    <tr class="hi"><td class="k warn">③</td><td class="warn"><b>codeine 與 tramadol：<br>12 歲以下病童禁用</b></td>
+        <td class="warn">CYP2D6 <b>基因多型性</b> → 藥效與呼吸抑制風險不可預測<br>
+        <span class="sub">（你們藥理學學過 codeine 是 prodrug）</span></td></tr>
+    <tr><td class="k">④</td><td><b>長效藥不可當 PRN</b></td>
+        <td>劑型與適應症綁定，<b>用錯就是給藥錯誤</b>；經皮 fentanyl <b>不能用來快速調量</b></td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>第二座重要的橋。</b><br>
+<span class='say'>「你們藥理學學過：大多數副作用會隨時間產生耐受性，會變好。對不對？」</span> 等他們點頭。<br>
+<span class='say'>「有兩個例外。」</span> 停。再翻出答案。<br>
+這一頁直接推翻「等發生再處理」的既有印象。">
+  <div class="ref">來源：<b>食藥署 2021</b>＋<b>NCCN 2.2025</b></div>
+  <h3>橋接 ③</h3>
+  <h2>為什麼便秘要<span class="warn">從第一天</span>就預防？</h2>
+  <div class="bridge" style="margin-top:.3em">
+    <div class="bcard b1"><h4>既有印象</h4><p>副作用<br><b>等發生了再處理</b></p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b2"><h4>你學過的藥理學</h4><p>大多數類鴉片副作用<br>會隨時間<b>產生耐受性</b><br>→ 會逐漸變好</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b3"><h4>臨床判斷</h4><p>🔴 有<b>兩個例外</b><br><b class="warn">腸道蠕動抑制（便秘）</b><br><b class="warn">瞳孔收縮</b><br>→ <b>不會</b>耐受</p></div>
+  </div>
+  <p style="margin-top:1.2em;font-size:4vmin;text-align:center">
+    NCCN 說得更直接：副作用的處理<b class="u">要與類鴉片治療同時啟動</b>。</p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+便秘預防五件事。<b>快速</b>，軟便劑加腸刺激劑他們藥理學都學過。<br>
+🔴 第 2 條後半最重要：<b>類鴉片劑量上調時，瀉劑也要跟著上調</b>，新人最常漏。">
+  <div class="ref">來源：<b>食藥署 2021</b>＋<b>NCCN 2.2025</b></div>
+  <h2>便秘預防：常態使用類鴉片者<span class="warn">幾乎都要做</span></h2>
+  <ol class="num">
+    <li>常態使用類鴉片者，<b>幾乎都要預防便秘</b></li>
+    <li>預防性給軟便劑（如 MgO）或<b>刺激性瀉劑</b>（如 sennoside、cascara）<br>
+        <span class="warn">🔴 類鴉片劑量上調時，這些藥也要<b>跟著上調</b></span></li>
+    <li>每日足量水分</li>
+    <li>每日高纖蔬果</li>
+    <li>鼓勵運動促進腸蠕動</li>
+  </ol>
+  <p class="sub" style="margin-top:1em">
+    NCCN：便秘在整個治療期間應<b>常規評估與處理</b>。<br>
+    發生便秘時先<b>鑑別</b>：其他藥物？腫瘤？<b class="warn">腸道阻塞？</b>（別忘了紅旗③）</p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+呼吸抑制與 naloxone。<b>藥理知識直接變成觀察頻率</b>的最典型例子。<br>
+🔴 <span class='say'>「naloxone 半衰期約 60 分鐘，比很多類鴉片短。給了 naloxone 病人醒過來，不等於安全了。」</span><br>
+這句是護理持續監測的直接理由。">
+  <div class="ref">來源：<b>食藥署 2021</b></div>
+  <h2 style="font-size:5.4vmin">呼吸抑制：藥理知識<span class="accent">直接變成</span>觀察頻率</h2>
+  <table>
+    <tr><td class="k red">警戒值</td><td><b>呼吸小於 10 次／分即須處理</b>；通常<b>高二氧化碳血症會先發生</b></td></tr>
+    <tr class="hi"><td class="k warn">🔴 關鍵</td>
+        <td class="warn"><b>naloxone 血漿半衰期約 60 分鐘，比許多類鴉片藥物短。</b><br>
+            給了 naloxone 病人醒過來，<b>不等於安全了</b>，可能再度昏睡與呼吸抑制。<br>
+            → <b>護理必須持續監測。</b></td></tr>
+    <tr><td class="k red">最危險組合</td><td>類鴉片加上<b>苯二氮平類（BZD）</b>、其他中樞抑制劑、或酒精</td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+成癮迷思。<b>家屬一定會問這題。</b><br>
+🔴 關鍵在最後那個但書：<b>DSM-5 自己說</b>，處方藥正確使用下的耐受與戒斷<b>不列入計分</b>。<br>
+<span class='say'>「所以下次家屬問你，你有依據可以回答，不是靠安慰。」</span>">
+  <div class="ref">來源：<b>食藥署 2021</b>（DSM-5）</div>
+  <h2>家屬問：「打嗎啡會不會<span class="warn">上癮</span>？」</h2>
+  <table>
+    <tr><th>名詞</th><th>意思</th><th>是不是問題</th></tr>
+    <tr><td class="k">耐藥性</td><td>需增加劑量才能達到原效果</td><td class="green"><b>生理現象</b>，可預期</td></tr>
+    <tr><td class="k">身體依賴</td><td>突然停藥會有戒斷症狀</td><td class="green"><b>生理現象</b>，減藥要漸進</td></tr>
+    <tr><td class="k red">成癮</td><td>DSM-5 定義的<b>行為疾患</b></td><td class="red">是問題，需專業評估</td></tr>
+  </table>
+  <div class="case" style="margin-top:1em">
+    <p style="font-size:3.6vmin">🔴 <b>DSM-5 準則自帶的但書</b>：<br>
+      若耐藥性與戒斷症狀是<b class="warn">「處方藥在正確使用下」</b>造成的，<b>不列入成癮的計分</b>。</p>
+  </div>
+  <p style="margin-top:.7em;font-size:3.6vmin">
+    反過來說：<span class="u">因為怕成癮而不敢用藥</span>造成的疼痛控制不良，<b class="red">才是實際上更常發生的傷害</b>。</p>
+</section>
+
+<section class="slide" data-act="第二幕" data-notes="
+🔴 <b>微互動：回答家屬。鄰座三人，2 分鐘。</b>這題他們<b>實習一定會被問到</b>。<br>
+<span class='say'>「三個人湊一句。等一下派一個人回答我，我當女兒。」</span><br>
+按 T 計時。抽 <b>2 到 3 組</b>，<b>你就站在台前當家屬</b>，聽完可以追問：<br>
+　<span class='say'>「可是我聽說嗎啡打久了會愈打愈多欸？」</span>（測他們會不會分辨耐藥性）<br>
+　<span class='say'>「那是不是留到最後真的很痛再用比較好？」</span>（這是最常見的迷思，一定要破）<br><br>
+🔴 <b>好答案要有的兩個元素</b>：①正確處方下的耐受與依賴<b>不算成癮</b>；
+②<b>因為怕成癮而不敢用</b>造成的痛控不良，才是更常發生的傷害。<br>
+不用要求他們講得完美，講得出第①點就很好。">
+  <span class="badge talk">🗣 鄰座三人　2 分鐘</span>
+  <div class="task">
+    <div class="tl">回 答 家 屬</div>
+    <div class="body">陳女士的女兒問你：<br>
+      <span class="warn">「打嗎啡會不會上癮？可不可以不要打？」</span><br>
+      用<span class="u">一句話</span>回答她。</div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="n">規則一</span>🔴 <b>不能只說「不會啦」</b>，<br>要有依據</div>
+    <div class="rule"><span class="n">規則二</span>要講給<b>家屬</b>聽，<br>不是背 DSM-5</div>
+    <div class="rule"><span class="n">等一下</span>派一個人<b>回答我</b>，<br>我當女兒</div>
+  </div>
+</section>
+
+<section class="slide center" data-act="第二幕" data-notes="
+<b>第二幕結尾。</b>大字流，停 3 秒。<b>11:00 下課。</b><br>
+提醒第三節換主題。">
+  <p class="actlabel">第 二 幕 ・ 啟 示</p>
+  <h1>止痛藥沒效，<br>有時候不是<span class="dim">劑量</span>的問題，<br>是<span class="warn">分類</span>的問題，<br>甚至<span class="red">不是痛的問題</span>。</h1>
+  <p class="sub" style="margin-top:1.4em">☕ 休息 10 分鐘</p>
+</section>
+
+<!-- ═════════ 第三幕 ═════════ -->
+
+<section class="slide center section" data-act="第三幕" data-notes="
+<b>11:10 開始。</b>第三幕到 11:45，結尾 11:45 至 12:00。">
+  <p class="actlabel">第 三 幕</p>
+  <h1>從<span class="warn">同情</span>，走到<span class="accent">開處方</span></h1>
+  <p class="sub" style="margin-top:1.4em">11:10 至 11:45</p>
+</section>
+
+<section class="slide center" data-act="第三幕" data-notes="
+劇情推進。<b>疼痛已經解決了</b>，這點要說清楚，否則學生以為還在講痛。<br>
+唸病人的話，慢。">
+  <p class="sub">兩週後　脊髓壓迫已處理，疼痛控制在 2 至 3 分</p>
+  <div class="case" style="max-width:82%">
+    <p class="quote">「我什麼都不想做。<br>走到巷口就要休息。<br><span style="font-size:1.08em">晚上睡 10 小時，起來還是累。</span>」</p>
+  </div>
+  <p class="sub" style="margin-top:.9em">你翻病歷：Hb <b>9.8</b> g/dL｜上次疼痛紀錄 <b>4 分</b>｜三週瘦 <b>3 公斤</b></p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+🔴 <b>互動點三。鄰座三人，3 分鐘。這題是全課最重要的一個互動。</b><br>
+🔴 <b>設計用意</b>：這題他們<b>一定答得出來</b>，因為三個數字全部踩在他們的基礎醫學上。<br>
+讓他們自己說出來，才會有「原來我已經會推了」的感覺。這就是賦能。<br><br>
+<span class='say'>「先不要給建議。三個人一人認領一個數字，用一句話說出它可能怎麼讓她累。」</span><br>
+按 T 計時。抽點 <b>3 組</b>，每組報<b>一個數字</b>，三組剛好湊滿。<br>
+🔴 <b>學生喊出貧血、發炎、營養的時候，就接住</b>：
+<span class='say'>「這些都是你們生理學、病理學學過的。你已經在做評估了。」</span><br>
+如果有組別說「我不確定疼痛怎麼會讓人累」，那很好，那就是下一段要講的。">
+  <span class="badge talk">🗣 鄰座三人　3 分鐘</span>
+  <div class="task">
+    <div class="tl">討 論 ③</div>
+    <div class="body">先不要給建議。<br>
+      這三個數字，各用<span class="warn">一句話</span>說出它可能<span class="u">怎麼讓陳女士「累」</span>。</div>
+  </div>
+  <div class="slots" style="margin-top:1em">
+    <div class="slot"><b>Hb 9.8</b> g/dL</div>
+    <div class="slot"><b>疼痛 4 分</b>（上次紀錄）</div>
+    <div class="slot"><b>三週瘦 3 公斤</b></div>
+  </div>
+  <div class="rules" style="margin-top:1em">
+    <div class="rule"><span class="n">怎麼分工</span>一個人<b>認領一個數字</b></div>
+    <div class="rule"><span class="n">答案長度</span>一句話就好，<b>用你學過的生理病理去推</b></div>
+    <div class="rule"><span class="n">等一下</span>抽 <b>3 組</b>，<br>各報<b>一個數字</b>，剛好湊滿</div>
+  </div>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+🔴 <b>最關鍵的一座橋，因為這是「錯的掛勾」。</b><br>
+<span class='say'>「你們在基礎醫學裡，唯一學過跟『累』有關的疾病是什麼？」</span> 等他們說重症肌無力。<br>
+🔴 <b>基礎醫學裡跟「累」有關、他們真的學過的疾病就是重症肌無力</b>，癌因性疲憊不在基礎醫學範圍。<br>
+<span class='say'>「那是肌肉無力，不是疲憊。這兩個不一樣。」</span>">
+  <h3>橋接 ④　🔴 這一次，你既有的掛勾<span class="red">會誤導你</span></h3>
+  <h2 style="font-size:5.6vmin">你學過的「累」，其實不是這個「累」</h2>
+  <div class="bridge" style="margin-top:.3em">
+    <div class="bcard b1"><h4>既有印象</h4><p>累＝體力不夠<br>→ <b>休息就會好</b></p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b2"><h4>你學過的基礎醫學</h4><p>跟「累」有關、<br>你真的學過的疾病是<br><b>重症肌無力</b><br><span class="sub">（神經肌肉接合處）</span></p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b3"><h4>臨床判斷</h4><p>那是<b>肌肉無力</b><br><b class="warn">不是疲憊</b><br>癌因性疲憊是<br><b>另一個東西</b></p></div>
+  </div>
+  <p class="sub" style="margin-top:1.1em">
+    ※ 這不是你們沒學，是<b>癌因性疲憊本來就不在基礎醫學的範圍裡</b>，它屬於腫瘤照護。</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+四個判準，<b>逐列對照</b>。<br>
+🔴 最關鍵是第二列<b>「睡再多也沒恢復」</b>：這一條把它跟「睡不夠」分開，
+也直接解釋了為什麼「叫他多休息」沒有用。<br>
+回到陳女士：她睡 10 小時起來還是累，對上了。">
+  <div class="ref">來源：<b>癌因性疲憊症之臨床治療指引 2017</b></div>
+  <h2 style="font-size:5.4vmin">癌因性疲憊　和　一般的累</h2>
+  <table>
+    <tr><th>判準</th><th class="warn">癌因性疲憊</th><th>一般的累</th></tr>
+    <tr><td class="k">與活動量的關係</td><td class="warn"><b>不成比例</b>（沒做什麼也累）</td><td>成比例（做多累多）</td></tr>
+    <tr class="hi"><td class="k warn">🔴 休息後</td><td class="warn"><b>睡再多也沒恢復</b></td><td>睡一覺會好</td></tr>
+    <tr><td class="k">持續性</td><td class="warn">持續、每天或幾乎每天</td><td>間斷</td></tr>
+    <tr><td class="k">影響</td><td class="warn"><b>足以影響正常生活</b></td><td>通常不影響</td></tr>
+  </table>
+  <p style="margin-top:1.1em;font-size:3.9vmin">
+    陳女士：<b>睡 10 小時，起來還是累</b> → 對上第二列。<br>
+    <span class="u">這一條就是「叫他多休息沒有用」的原因。</span></p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+台灣本土數據。<b>92% 和 56.2% 這兩個數字要停。</b><br>
+🔴 <b>病人為什麼不說</b>：指引明白寫出來的，講出來學生很有感。<br>
+<span class='say'>「病人擔心抱怨疲憊會增加醫護工作負擔、甚至轉移醫師對治療的注意力，所以選擇忍耐。」</span><br>
+<span class='say'>「意思是：疲憊不會自己走進你的紀錄裡。你不問，就不會有。」</span>">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b>（2015 年本土調查）</div>
+  <h3>台灣北中南 23 家醫療機構、1,207 位癌症病人</h3>
+  <div style="display:flex;gap:5vmin;justify-content:center;margin:.7em 0;align-items:flex-end">
+    <div><p class="huge accent" style="font-size:12vmin">92<span style="font-size:.5em">%</span></p><p class="sub">罹癌期間<br>有疲憊問題</p></div>
+    <div><p class="huge warn" style="font-size:12vmin">¼</p><p class="sub">屬<b>中重度</b></p></div>
+    <div><p class="huge red" style="font-size:12vmin">56.2<span style="font-size:.5em">%</span></p><p class="sub red">才會<b>主動</b><br>向醫護提及</p></div>
+    <div><p class="huge red" style="font-size:12vmin">54.8<span style="font-size:.5em">%</span></p><p class="sub red">醫護有<br>提供改善措施</p></div>
+  </div>
+  <div class="case">
+    <p style="font-size:3.6vmin">🔴 <b>病人為什麼不說？</b>指引明白寫出原因：<br>
+      病人<b class="warn">擔心抱怨疲憊會增加醫護工作負擔、甚至轉移醫師對治療的注意力</b>，於是選擇忍耐。</p>
+  </div>
+  <p style="margin-top:.6em;font-size:3.8vmin">
+    → <b>疲憊不會自己走進你的紀錄裡。<span class="u">你不問，就不會有。</span></b></p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+🔴 <b>這一頁讓學生發現「我其實已經會了」。</b>這是福哥說的賦能。<br>
+<span class='say'>「先不要給建議。先問：她為什麼累？你們基礎醫學學過的東西，這裡全部用得上。」</span><br>
+<b>讓學生喊答案</b>，不要自己唸。Hb 9.8 → 貧血；4 分 → 疼痛未控制；瘦 3 公斤 → 營養。">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b></div>
+  <h3>橋接 ⑤　🔴 你其實<span class="green">已經會推</span>了</h3>
+  <h2 style="font-size:5.2vmin">在給任何建議之前，先掃<span class="accent">七類可逆原因</span></h2>
+  <table class="tight">
+    <tr><th>可逆原因</th><th>護理可以查到的線索</th><th>陳女士對上了嗎</th></tr>
+    <tr class="hi"><td class="k warn">貧血</td><td>Hb 值</td><td class="warn"><b>✓ Hb 9.8</b></td></tr>
+    <tr class="hi"><td class="k warn">疼痛</td><td>疼痛紀錄、是否長期未控制</td><td class="warn"><b>✓ 4 分</b></td></tr>
+    <tr class="hi"><td class="k warn">營養失調</td><td>體重變化、進食狀況</td><td class="warn"><b>✓ 三週瘦 3 kg</b></td></tr>
+    <tr><td class="k">抗癌治療或止痛鎮靜藥物</td><td>用藥紀錄、最近是否增量</td><td>要查</td></tr>
+    <tr><td class="k">情緒困擾</td><td>談話、情緒評估</td><td>要問</td></tr>
+    <tr><td class="k">睡眠困擾</td><td>入睡與夜醒情形</td><td>要問</td></tr>
+    <tr><td class="k">體能下降與其他共病</td><td>ADL、活動耐受度；感染、心肺肝腎、內分泌</td><td>要查</td></tr>
+  </table>
+  <p style="margin-top:.8em;font-size:3.6vmin">
+    直接跳到「你要多運動」，跟直接跳到「你要多休息」，<b class="red">一樣是跳過了思考</b>。</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+分流。<b>4 分是分水嶺</b>，這是要背的。<br>
+本土數據支持：疲憊分數大於 3.5 分時，78.8% 符合 ICD-10 準則。1 分鐘帶過。">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b>（建議三）</div>
+  <h2>0 至 10 分怎麼分流　<span class="warn">4 分是分水嶺</span></h2>
+  <table>
+    <tr><th>分數</th><th>分級</th><th>處置方向</th></tr>
+    <tr><td class="k">0</td><td>無疲憊</td><td>仍可用<b>非藥物處置預防</b></td></tr>
+    <tr><td class="k">1 至 3</td><td>輕度</td><td><b>非藥物處置</b>即可改善；定期追蹤</td></tr>
+    <tr class="hi"><td class="k warn">4 至 6</td><td class="warn"><b>中度</b></td>
+        <td class="warn">🔴 <b>特別關注</b>：評估對日常生活、活動與心情的影響<br>非藥物加上<b>考慮合併藥物治療</b></td></tr>
+    <tr><td class="k">7 至 10</td><td>重度</td><td>非藥物加上<b>藥物治療</b>，持續追蹤療效</td></tr>
+  </table>
+  <p class="sub" style="margin-top:.9em">
+    本土數據：疲憊分數<b>大於 3.5 分</b>時，<b>78.8%</b> 符合 ICD-10 準則，支持「4 分」這條警戒線。<br>
+    評估時機：住院<b>每日一次</b>；門診<b>每次回診</b>。</p>
+</section>
+
+<section class="slide center" data-act="第三幕" data-notes="
+🔴 <b>本課最反直覺的一頁。大字流。</b><br>
+先停，讓他們看清楚 Level IA 與 Grade A。<br>
+<span class='say'>「這是整本指引裡證據等級最高的一條。不是專家覺得，是統合分析。」</span>">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b>（建議五）</div>
+  <h1 style="margin:.3em 0">病人喊累，<br>指引的處方是<br>
+    <span class="huge warn" style="display:block;margin-top:.15em">運　動</span></h1>
+  <p style="margin-top:.9em;font-size:4.2vmin">
+    <span class="green"><b>Level IA　Grade A</b></span>　＝ 隨機對照試驗的<b>統合分析</b></p>
+  <p class="sub">本指引非藥物處置中，擁有最多研究支持、最具實證成效的治療</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+🔴 <b>為什麼「多休息」反而更糟。</b><br>
+<span class='say'>「你們在生理學學過廢用性萎縮、心肺耐力。把它接到這裡。」</span><br>
+畫出惡性循環。<br>
+⚠️ 誠實標註：這個因果鏈是<b>教學上的機轉說明</b>；指引本身給的是「運動有效」的實證結論。">
+  <h3>橋接 ⑥</h3>
+  <h2>為什麼「多休息」<span class="red">反而更糟</span>？</h2>
+  <div class="bridge" style="margin-top:.3em">
+    <div class="bcard b1"><h4>既有印象</h4><p>累了就<b>休息</b><br>休息可以<b>存體力</b></p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b2"><h4>你學過的生理學</h4><p>不動 → <b>廢用</b><br>肌力↓　心肺耐力↓<br>粒線體氧化能力↓</p></div>
+    <div class="arrow">→</div>
+    <div class="bcard b3"><h4>臨床判斷</h4><p>同樣的活動<b>更費力</b><br>→ 更累 → 更不想動<br><b class="red">惡性循環</b></p></div>
+  </div>
+  <p style="margin-top:1.2em;font-size:4.2vmin;text-align:center">
+    <b class="warn">運動，是打斷這個循環的方式。</b></p>
+  <p class="sub" style="text-align:center;margin-top:.5em">
+    ※ 此因果鏈為教學上的機轉說明；指引本身給的是「運動有效」的實證結論（Level IA, Grade A）。</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+運動處方。<b>這是他們可以直接寫進衛教的東西</b>，要他們抄下來。<br>
+🔴 <b>暖身緩和各 5 分鐘</b>不能漏，這是安全要求。<br>
+時間允許可以問：<span class='say'>「誰能用一句話把這張處方唸給陳女士聽？」</span>">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b>（建議五）</div>
+  <h2>運動處方：可以直接寫進衛教</h2>
+  <table>
+    <tr><td class="k">起始</td><td><b>從低強度開始</b>，漸進調整</td></tr>
+    <tr class="hi"><td class="k warn">頻率</td><td class="warn"><b>每週至少 3 次</b></td></tr>
+    <tr class="hi"><td class="k warn">時間</td><td class="warn"><b>每次 20 至 30 分鐘</b></td></tr>
+    <tr><td class="k">強度</td><td>低或中強度；增幅以不超過前次心跳的 <b>60% 至 75%</b> 為準</td></tr>
+    <tr class="hi"><td class="k warn">🔴 安全</td><td class="warn"><b>運動前 5 分鐘暖身、運動後 5 分鐘緩和</b>，所有運動都要有</td></tr>
+    <tr><td class="k">個別化</td><td>依年齡、性別、疾病狀況、體能設計；必要時<b>轉介相關專業人員</b></td></tr>
+  </table>
+  <p class="sub" style="margin-top:.9em">
+    證據：最大規模統合分析納入 <b>70 項研究、4,881 位病人</b>，
+    對治療中與治療結束的病人效果一致。</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+🔴 <b>微互動：把處方翻成人話。鄰座三人，2 分鐘。</b><br>
+這是<b>應用</b>，不是回憶。他們要把上一頁的數字表，變成能對病人講的一句話。<br>
+<span class='say'>「三個人湊出一句最順的，等一下派一個人念給『陳女士』聽。我當陳女士。」</span><br>
+🔴 <b>抽 2 到 3 組，你就站在台前當病人回應</b>，這會讓全班笑，也會讓他們發現漏了什麼。<br>
+常見漏掉的是<b>暖身緩和</b>與<b>從低強度開始</b>。漏了就順口問：
+<span class='say'>「那我第一次要走多久？」「要先做什麼嗎？」</span><br>
+時間緊的話這頁可以只抽 1 組，但<b>不要跳過</b>，這是第三幕唯一的應用練習。">
+  <span class="badge talk">🗣 鄰座三人　2 分鐘</span>
+  <div class="task">
+    <div class="tl">把 處 方 翻 成 人 話</div>
+    <div class="body">用<span class="warn">一句話</span>，把剛才那張運動處方<br>
+      <span class="u">講給陳女士聽</span>。</div>
+  </div>
+  <div class="rules">
+    <div class="rule"><span class="n">規則一</span>🔴 <b>不能念數字表</b>，<br>要像跟病人說話</div>
+    <div class="rule"><span class="n">規則二</span>三個人湊出<b>一句</b>最順的</div>
+    <div class="rule"><span class="n">等一下</span>派一個人<b>念給我聽</b>，<br>我當陳女士</div>
+  </div>
+  <div class="eg">
+    <b>要蓋到的四件事</b>：從<b>多低</b>開始、一週<b>幾次</b>、一次<b>多久</b>、以及<b>前後各 5 分鐘</b>那件事。</div>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+能量保存法六策略。<b>快速帶過五條，停在 F。</b><br>
+🔴 <b>F 條：休息是有上限的</b>，不超過 15 至 20 分鐘。<br>
+<span class='say'>「注意，能量保存法裡也有休息，但它是有上限的。不是多躺一點，是短、有計畫地補。」</span>">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b>（ECAM）</div>
+  <h2>能量保存法（ECAM）<span class="accent">六策略</span></h2>
+  <table class="tight">
+    <tr><td class="k">A</td><td>設定活動優先順序</td><td class="k">D</td><td>善用能量最高峰的時間</td></tr>
+    <tr><td class="k">B</td><td>分配工作（交給家人朋友）</td><td class="k">E</td><td>調整步調 pacing</td></tr>
+    <tr class="hi"><td class="k">C</td><td>計畫活動方式（分階段、善用工具）</td>
+        <td class="k warn">F</td><td class="warn"><b>休息：想睡只能小睡，不超過 15 至 20 分鐘</b><br>
+        🔴 <b>能量保存法裡的「休息」是有上限的</b></td></tr>
+  </table>
+  <p style="margin-top:1.1em;font-size:3.8vmin">
+    這不是發一張衛教單就結束，是<b class="accent">護理主導的三週介入</b>：<br>
+    第 1 週說明並開始寫疲憊日誌　→　第 2 週畫出疲憊變化曲線、共同擬定計畫　→　第 3 週評值與修改。</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+🔴 <b>第二個反直覺的點。</b><br>
+<span class='say'>「你們可能會想：那讓她睡好一點總沒錯吧？」</span> 等一下。<br>
+<span class='say'>「多項隨機對照試驗顯示：睡眠介入確實改善了睡眠品質，但疲憊的嚴重程度，跟對照組沒有顯著差異。」</span>">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b></div>
+  <h2>那……讓她「<span class="warn">睡好一點</span>」總沒錯吧？</h2>
+  <div class="case" style="border-left-color:var(--red)">
+    <p style="font-size:3.8vmin">多項隨機對照試驗顯示：<br>
+      睡眠介入確實<b class="green">改善了睡眠品質</b>，<br>
+      但<b class="red">疲憊的嚴重程度與對照組沒有顯著差異</b>。</p>
+  </div>
+  <h2 style="margin-top:.9em;font-size:5.8vmin">
+    「睡好一點」<span class="u">不等於</span>「不累」。</h2>
+  <p style="margin-top:.7em;font-size:3.7vmin">
+    → 這就是指引把睡眠衛生定位成 <b class="warn">「應搭配其他非藥物處置」</b>（Level IB, Grade B）
+    而非單獨處置的原因。</p>
+</section>
+
+<section class="slide" data-act="第三幕" data-notes="
+證據等級。<b>這一頁是實證護理素養</b>，不要跳。<br>
+🔴 對比：<b>定義</b>是 Level IV / Grade D 專家意見；<b>運動</b>是 Level IA / Grade A。<br>
+<span class='say'>「同一本指引，不是每一條都一樣硬。讀指引要看等級。」</span>">
+  <div class="ref">來源：<b>癌因性疲憊指引 2017</b></div>
+  <h2>同一本指引，<span class="warn">不是每一條都一樣硬</span></h2>
+  <table>
+    <tr><th>Level</th><th>證據來源</th></tr>
+    <tr class="hi"><td class="k warn">IA</td><td class="warn">隨機對照試驗之<b>統合分析</b>　←　<b>運動</b>（建議五）</td></tr>
+    <tr><td class="k">IB</td><td>至少一項隨機對照試驗</td></tr>
+    <tr><td class="k">II 與 III</td><td>有對照但無隨機、準實驗、非實驗性描述性研究</td></tr>
+    <tr class="hi"><td class="k warn">IV</td><td class="warn"><b>專家意見或臨床經驗</b>　←　<b>疲憊的定義</b>（建議一）</td></tr>
+  </table>
+  <p style="margin-top:1.1em;font-size:4vmin">
+    讀指引要看等級。<b class="u">這是實證護理最基本的素養。</b></p>
+</section>
+
+<section class="slide center" data-act="第三幕" data-notes="
+<b>第三幕結尾。</b>大字流，停 3 秒。<b>11:45 前要到這裡。</b>">
+  <p class="actlabel">第 三 幕 ・ 啟 示</p>
+  <h1>病人說「我好累」，<br>你要先給的不是<span class="dim">建議</span>，<br>是<span class="warn">評估</span>。</h1>
+  <p style="margin-top:1.3em;font-size:4.4vmin">
+    而評估完之後，處方是 <b class="warn">運動</b>，不是休息。</p>
+</section>
+
+<!-- ═════════ 結尾 ═════════ -->
+
+<section class="slide center section" data-act="結尾" data-notes="
+<b>11:45 開始收尾。</b>結尾佔總時間十分之一（福哥 3-4）。<br>
+峰終理論：結尾佔觀眾印象非常重要的角色（福哥 5-4）。">
+  <p class="actlabel">收 尾</p>
+  <h1>三個小時，<br>其實只有<span class="warn">一件事</span></h1>
+  <p class="sub" style="margin-top:1.4em">11:45 至 12:00</p>
+</section>
+
+<section class="slide" data-act="結尾" data-notes="
+<b>結尾元素①：重述重點</b>（福哥 5-4）。<br>
+簡報越精彩台下忘得越快，主動把重點再走一遍。一幕一句，不要展開。">
+  <h2>陳女士陪我們走的三步</h2>
+  <table>
+    <tr><th style="width:10%">幕</th><th style="width:34%">她說了什麼</th><th>你要跨的那一步</th></tr>
+    <tr><td class="k accent">一</td><td>「背痛，7 分」</td>
+        <td><b>分數 → 評估</b><br><span class="warn">「7 分」是一個欄位，不是一次評估</span></td></tr>
+    <tr><td class="k accent">二</td><td>「還是痛，而且腳麻、使不上力」</td>
+        <td><b>止痛 → 判斷急症</b><br><span class="warn">止痛藥沒效加上新神經症狀，就不是痛的問題</span></td></tr>
+    <tr><td class="k accent">三</td><td>「我什麼都不想做」</td>
+        <td><b>同情 → 開處方</b><br><span class="warn">疲憊的處方是運動，不是休息</span></td></tr>
+  </table>
+</section>
+
+<section class="slide" data-act="結尾" data-notes="
+回到開場那三句直覺，<b>一句一句劃掉</b>。伏筆回收，學生會有「原來如此」的感覺。<br>
+<span class='say'>「三小時前我說：第一句不完整、第二句是錯的、第三句會讓你漏掉急症。現在你們知道為什麼了。」</span>">
+  <h2>回到開場那三句</h2>
+  <table class="tight">
+    <tr><th style="width:42%">你三小時前的直覺</th><th>現在</th></tr>
+    <tr><td><s class="dim">病人喊痛 → 查 PRN → 給藥 → 記錄</s></td>
+        <td class="green">先做<b>全面疼痛評估</b>，問到痛的性質、影響、脈絡，再決定</td></tr>
+    <tr><td><s class="dim">病人喊累 → 叫他多休息</s></td>
+        <td class="green">先掃<b>七類可逆原因</b>，再依 0 至 10 分流；處方是<b>運動</b></td></tr>
+    <tr><td><s class="dim">痛得更厲害 → 再給一次止痛藥</s></td>
+        <td class="green">先掃<b>紅旗與腫瘤急症</b>；有新神經症狀就<b>立刻通知醫師</b></td></tr>
+  </table>
+  <p style="margin-top:1.3em;font-size:4vmin;text-align:center">
+    改變的不是你的<span class="dim">知識量</span>，<br>
+    是你把<b class="accent">已經學過的基礎醫學</b>，接到了<b class="warn">病人床邊</b>。</p>
+</section>
+
+<section class="slide center" data-act="結尾" data-notes="
+<b>結尾元素②：感性故事</b>（福哥 5-4：理性陳述，感性結尾）。前面三小時都是理性的，這裡只需要一個真實的人。<br><br>
+<b>講稿（用自己的話，不要唸。約 50 秒）</b>：<br>
+『我跟你們說實話，我沒有一個癌症病人的故事可以講。我要講的是我剛出來上班的時候，一位腹部被刀刺傷的病人。<br>
+他不是癌症病人。可是今天這三個小時我一直在講的那件事，我是從他身上學會的。<br><br>
+他的止痛醫囑裡，有一支 NS，當安慰劑。那個年代，醫師擔心成癮。<br><br>
+有一天他跟我說：<b>這次打的不是止痛藥。</b><br>
+他知道。他自己跟我說的。<br><br>
+我書上早就背過「疼痛是主觀的，以病人主訴為準」。<br>
+可是那一刻我心裡很清楚：<b>我沒有真的相信他。</b><br><br>
+後來他日漸恢復。可是那句話我記到現在。』<br><br>
+🔴 <b>講完停兩秒，不要解釋，直接翻下一頁。</b><br>
+🔴 <b>不要說出年代、醫院、病房、任何可辨識的時間地點</b>（已去識別化，不要臨場補細節）。<br>
+🔴 <b>不要講成在指責醫師</b>。重點是<b>我自己那一刻的心裡</b>，不是誰對誰錯。<br>
+🔴 <b>回扣第 49 張</b>：因為怕成癮而不敢用藥造成的疼痛控制不良，才是更常發生的傷害。這個故事就是那句話的實例。">
+  <span class="badge" style="background:var(--red);align-self:flex-start">最後，一個病人</span>
+  <h1 style="font-size:8vmin;line-height:1.35;margin-top:.4em">「這次打的<br>不是止痛藥。」</h1>
+  <p class="sub" style="font-size:3.4vmin;margin-top:.6em">是他自己跟我說的。</p>
+  <h2 class="warn" style="font-size:5.2vmin;line-height:1.5;margin-top:1.1em">
+    那一刻我才知道，<br>我沒有<span class="u">真的相信他</span>。</h2>
+  <div class="ref" style="margin-top:1.6em">安慰劑不得用於評估或處理疼痛：<b>ASPMN 立場聲明</b></div>
+</section>
+
+<section class="slide center" data-act="結尾" data-notes="
+<b>把上一頁的故事拉到現在。</b>沒有這一頁，學生會以為那是三十年前的事，下一頁的三件事就不痛不癢。<br><br>
+<b>你要講的（螢幕上只有標題，內容你自己說）</b>：<br>
+一、我現在的工作之一是做臨床稽核。<br>
+二、到今天，還是會看到極少數病人中重度疼痛持續五天以上。<br>
+三、追下去問原因，仍然有該依醫囑開立麻醉性止痛藥品而沒有開立的情況。<br>
+四、指引沒有模糊：癌痛應持續監測治療成效（食藥署 2021，5As）；強效類鴉片依療效與副作用滴定（第 41 張），不是依已經用很多了喊停。<br>
+五、所以我們能做的，就是不斷傳達。而你們是第一個看到病人的人。<br><br>
+🔴 <b>不要帶院內稽核的原始數字、科別、病房、任何病人資料上台</b>，講到『極少數』就好。<br>
+🔴 <b>五天以上是院內稽核的觀察口徑，不是指引寫的數字</b>，不要說成指引規定。<br>
+🔴 <b>不要講成指責醫師</b>，框成系統議題。<br>
+🔴 回扣第 41 張（滴定）與第 49 張（怕成癮反而造成傷害）。">
+  <span class="badge" style="background:var(--red);align-self:flex-start">這不是三十年前的事</span>
+  <h1 class="warn" style="font-size:7vmin;line-height:1.45;margin-top:.6em">
+    到今天，稽核還是會看到<br><span class="u">中重度疼痛持續五天以上</span></h1>
+  <h2 style="font-size:5vmin;margin-top:1.2em">我們能做的，就是<span class="u">不斷傳達</span>。</h2>
+  <div class="ref" style="margin-top:1.6em">
+    癌痛應持續監測治療成效：<b>食藥署 2021（5As）</b>／依療效與副作用滴定：<b>WHO 三階梯</b>。
+    「五天以上」為院內稽核觀察口徑，非指引數值。</div>
+</section>
+
+<section class="slide" data-act="結尾" data-notes="
+<b>結尾元素③：呼籲行動</b>（福哥 5-4）。<br>
+🔴 要<b>具體到他們明天做得到</b>，不要講「提升照護品質」這種話。三件事就好。">
+  <h2>下次上臨床，請做這<span class="accent">三件事</span></h2>
+  <ol class="num" style="font-size:1.08em">
+    <li>病人說「痛」的時候，<b>在給藥之前多問一句</b>：<br>
+        <span class="warn">「是怎麼個痛法？跟昨天比有沒有不一樣的地方？」</span></li>
+    <li>病人用了救援藥，<b>把次數寫進紀錄</b>：<br>
+        <span class="warn">不是「予 PRN 一次」，是「今日第 3 次」。</span></li>
+    <li>病人說「累」的時候，<b>先看三個數字再開口</b>：<br>
+        <span class="warn">Hb、最近的疼痛分數、體重變化。</span></li>
+  </ol>
+</section>
+
+<section class="slide center" data-act="結尾" data-notes="
+<b>結尾元素④：金句</b>（福哥 5-4）。<br>
+🔴 <b>一定要背熟，不能回頭看投影片。</b>唸完停，不要再補話。">
+  <h1 class="warn" style="font-size:9vmin;line-height:1.4">
+    症狀是<span class="u">資料</span>，<br>不是只要壓下去的東西。</h1>
+</section>
+
+<section class="slide center" data-act="結尾" data-notes="
+🔴 <b>最後的誠實對話。</b>整堂課的價值宣告。<b>螢幕上只有四行，內容你自己講</b>，不要唸稿。<br><br>
+<b>你要講的</b>：<br>
+『今天教的不是更多的名詞。<br>
+我希望今天之後，留在你們身上的是四件事。<br><br>
+第一，<b>相信病人說的痛</b>。他說痛就是痛，這不是你要不要相信的選擇題，這是評估的起點。<br>
+第二，<b>知道藥為什麼有效、為什麼有副作用</b>。你們的基礎醫學已經夠了，嗎啡作用在哪個受體、
+便祕為什麼不會耐受，你們都會，缺的是把它接到床邊那一步。<br>
+第三，<b>能把它講給病人和家屬聽</b>。家屬問會不會上癮的時候，你答得出來，那一針才打得下去。<br>
+第四，<b>把生活品質當成治療目標</b>，不是止痛之外的附加品。指引裡癌痛治療的主要目標就是這兩件事：
+緩解疼痛，提升生活品質。<br><br>
+這一步沒有捷徑，只能一次一次在床邊練。今天先給你一條可以跟著走的流程。』<br><br>
+🔴 不要講成勵志，重點是<b>知識你們已經夠了，缺的是接到床邊那一步</b>。<br>
+🔴 講完就下課，<b>不要再加內容</b>。<b>12:00 準時結束</b>（福哥 5-5：寧可早 3 分鐘）。">
+  <h2 style="margin-bottom:.2em">我希望今天之後，<br>留在你們身上的是四件事</h2>
+  <div style="display:flex;flex-direction:column;gap:.55em;align-items:flex-start;margin-top:1em;text-align:left">
+    <div style="font-size:5.4vmin;line-height:1.4"><span class="accent">1</span>　相信病人<span class="u">說的痛</span></div>
+    <div style="font-size:5.4vmin;line-height:1.4"><span class="accent">2</span>　知道藥<span class="u">為什麼有效、為什麼有副作用</span></div>
+    <div style="font-size:5.4vmin;line-height:1.4"><span class="accent">3</span>　能把它<span class="u">講給病人和家屬聽</span></div>
+    <div style="font-size:5.4vmin;line-height:1.4"><span class="accent">4</span>　把<span class="u">生活品質</span>當成治療目標</div>
+  </div>
+  <div class="ref" style="margin-top:1.5em">
+    癌痛治療目標（5As）主要目標：<b>緩解疼痛、提升生活／生命品質</b>。來源：食藥署 2021</div>
+</section>
+
+<section class="slide center" data-act="結尾" data-notes="
+結束頁。<b>不要用「謝謝」或「The End」</b>（福哥 4-2 點名這是最可怕的最後一頁）。<br>
+留問題時間。下一頁是參考文獻，留在畫面上讓學生拍照。">
+  <h1>問題？</h1>
+  <p class="sub" style="margin-top:2em">講義與類鴉片藥理附錄已發下<br>下一頁是本課教材依據，可以拍照</p>
+</section>
+
+<section class="slide" data-act="結尾" data-notes="
+<b>參考文獻頁。</b>下課後留在畫面上，讓學生拍照。<br>
+如果有學生問「這些去哪裡找」：前兩份都可以公開下載，NCCN 需要註冊免費帳號。">
+  <h2>本課教材依據</h2>
+  <ol class="num" style="font-size:.82em">
+    <li>Swarm RA, Youngwerth JM, Agne JL, et al.
+      <b>Adult Cancer Pain, Version 2.2025, NCCN Clinical Practice Guidelines in Oncology.</b><br>
+      <i>J Natl Compr Canc Netw.</i> 2025;23(7):e250032. doi:10.6004/jnccn.2025.0032</li>
+    <li>衛生福利部食品藥物管理署（2021年12月）。<b>癌症疼痛照護及成癮性麻醉藥品使用參考手冊</b>。</li>
+    <li>台灣癌症安寧緩和醫學會、台灣腫瘤護理學會（2017年11月，第一版第二刷）。<br>
+      <b>癌因性疲憊症之臨床治療指引</b>。</li>
+    <li>胡文郁等（2024）。<b>成人癌症疼痛臨床照護指引 2024</b>。<br>
+      腫瘤護理雜誌，24(增訂刊)，77 至 124。doi:10.6880/TJON.202412/SP_24.05</li>
+    <li>World Health Organization. <i>Cancer pain relief.</i> Geneva: WHO; 1986.</li>
+    <li>Arnstein P, Broglio K, Wuhrman E, Kean MB.
+        <b>Use of placebos in pain management.</b>
+        <i>Pain Manag Nurs.</i> 2011;12(4):225-229. doi:10.1016/j.pmn.2010.10.033
+        （American Society for Pain Management Nursing 立場聲明，2021 年 7 月修訂為
+        <i>Deceptive Use of Placebos in the Assessment and Management of Pain</i>）
+      </li>
+
+  </ol>
+  <p class="sub" style="margin-top:1em">
+    講義內文的上標數字對應本清單編號。NCCN 指引引用的是刊登於 JNCCN 的期刊版；
+    完整版演算法圖需至 NCCN.org 取得。</p>
+</section>
+
+</div>
+
+<div class="hud">
+  <div class="left"><button id="home" title="回到第一頁（Home）">⇤ 第一頁</button><div id="act"></div></div>
+  <div id="timer">00:00</div>
+  <div><span id="num"></span>　<span style="opacity:.7">← → 換頁　Home 回首頁　S 備忘　T 計時　O 總覽</span></div>
+</div>
+
+<div id="notes"></div>
+<div id="grid"><h3 style="color:var(--accent)">總覽（點擊跳頁）　按 O 或 Esc 關閉</h3><div class="g" id="gridin"></div></div>
+
+<script>
+const slides=[...document.querySelectorAll('.slide')];
+let i=0, notesOn=false;
+
+function render(){
+  slides.forEach((s,k)=>s.classList.toggle('on',k===i));
+  document.getElementById('num').textContent=(i+1)+' / '+slides.length;
+  document.getElementById('act').textContent=slides[i].dataset.act||'';
+  document.getElementById('bar').style.width=((i+1)/slides.length*100)+'%';
+  document.getElementById('notes').innerHTML=slides[i].dataset.notes||'<span style="color:#475569">（本頁無備忘）</span>';
+  try{localStorage.setItem('slide',i)}catch(e){}
+}
+function go(n){i=Math.max(0,Math.min(slides.length-1,n));render()}
+
+document.addEventListener('keydown',e=>{
+  const g=document.getElementById('grid');
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();go(i+1)}
+  else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+  else if(e.key==='Home'){go(0)} else if(e.key==='End'){go(slides.length-1)}
+  else if(e.key==='s'||e.key==='S'){notesOn=!notesOn;document.getElementById('notes').classList.toggle('on',notesOn)}
+  else if(e.key==='t'||e.key==='T'){toggleTimer()}
+  else if(e.key==='r'||e.key==='R'){resetTimer()}
+  else if(e.key==='o'||e.key==='O'){g.classList.toggle('on')}
+  else if(e.key==='Escape'){g.classList.remove('on')}
+});
+/* 回第一頁：滑鼠／觸控用（無鍵盤時的 Home 鍵替代） */
+document.getElementById('home').addEventListener('click',e=>{
+  e.stopPropagation(); document.getElementById('grid').classList.remove('on'); go(0);
+});
+document.addEventListener('click',e=>{
+  if(e.target.closest('#grid')||e.target.closest('#notes')||e.target.closest('#home'))return;
+  go(i+(e.clientX>innerWidth*0.32?1:-1));
+});
+
+/* 計時器：福哥 5-5「現場一定要有計時提醒」 */
+let t0=null,acc=0,tick=null;
+function fmt(ms){const s=Math.floor(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function paint(){document.getElementById('timer').textContent=fmt(acc+(t0?Date.now()-t0:0))}
+function toggleTimer(){
+  const el=document.getElementById('timer');
+  if(t0){acc+=Date.now()-t0;t0=null;clearInterval(tick);el.classList.remove('run')}
+  else{t0=Date.now();tick=setInterval(paint,500);el.classList.add('run')}
+  paint();
+}
+function resetTimer(){acc=0;t0=null;clearInterval(tick);document.getElementById('timer').classList.remove('run');paint()}
+
+document.getElementById('gridin').innerHTML=slides.map((s,k)=>{
+  const h=s.querySelector('h1,h2');
+  return `<div class="c" data-k="${k}"><span class="n">${k+1}</span>${(h?h.textContent:'（圖文頁）').slice(0,26)}</div>`;
+}).join('');
+document.getElementById('gridin').addEventListener('click',e=>{
+  const c=e.target.closest('.c'); if(!c)return;
+  go(+c.dataset.k); document.getElementById('grid').classList.remove('on');
+});
+
+/* 還原上次位置；網址帶 ?p=N 可直接跳到第 N 頁（現場救援用，N 從 1 起算） */
+try{const v=localStorage.getItem('slide'); if(v!==null)i=Math.min(+v,slides.length-1)}catch(e){}
+const qp=new URLSearchParams(location.search).get('p');
+if(qp!==null&&!isNaN(+qp))i=Math.max(0,Math.min(slides.length-1,+qp-1));
+render();
+</script>
+</body>
+</html>
