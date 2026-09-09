@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>講義（答案卷版）｜腫瘤病人的疼痛與疲憊</title>
+<style>
+/* 🔴 純靜態、強制淺色列印版：互動投影片不能直接印，此檔專供轉 PDF */
+@page{size:A4;margin:16mm 14mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;color:#111;
+  font-family:"Noto Sans TC","Microsoft JhengHei","PingFang TC",system-ui,sans-serif;
+  font-size:10.5pt;line-height:1.65;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* 🔴 不要用 page-break-after:always，內容一旦溢到第二頁就會留下大片空白
+   （2026-09-06 第一版 8 段變成 15 頁，多數是白的）。改成自然流動＋不切斷區塊。 */
+.page{padding-bottom:2mm}
+table,.box,.bridge,.q,.lines{page-break-inside:avoid}
+.keep{page-break-inside:avoid}   /* 情境與題目必須同頁，否則「上面兩句話」會跨頁 */
+h1,h2,h3{page-break-after:avoid}
+tr{page-break-inside:avoid}
+
+h1{font-size:19pt;line-height:1.35;margin-bottom:2mm;letter-spacing:.01em}
+h2{font-size:13.5pt;margin:6mm 0 2.5mm;padding-bottom:1.2mm;border-bottom:1.6pt solid #1e3a8a;color:#1e3a8a}
+h3{font-size:11.5pt;margin:4.5mm 0 2mm;color:#0369a1}
+p{margin:1.6mm 0}
+small,.sub{font-size:9pt;color:#555;line-height:1.55}
+b{font-weight:700}
+.hd{border-left:4pt solid #1e3a8a;padding-left:4mm;margin-bottom:5mm}
+.meta{font-size:9pt;color:#555;line-height:1.6}
+
+table{border-collapse:collapse;width:100%;margin:2.5mm 0;font-size:9.5pt}
+th,td{border:.6pt solid #999;padding:1.9mm 2.4mm;text-align:left;vertical-align:top;line-height:1.5}
+th{background:#e8eef7;font-weight:700;color:#1e3a8a}
+td.k{background:#f3f5f9;font-weight:700;white-space:nowrap;width:1%}
+tr.hi td{background:#fff7e0}
+
+ul{margin:1.5mm 0 1.5mm 5mm}
+li{margin:1mm 0}
+ol{margin:1.5mm 0 1.5mm 5.5mm}
+
+.box{border:.8pt solid #1e3a8a;border-radius:1.6mm;padding:3mm 3.6mm;margin:3mm 0;background:#f7f9fc}
+.box.warn{border-color:#b45309;background:#fffbeb}
+.box.red{border-color:#b91c1c;background:#fef2f2}
+.box .t{font-weight:700;color:#1e3a8a;margin-bottom:1.2mm}
+.box.warn .t{color:#b45309}
+.box.red .t{color:#b91c1c}
+
+/* 三欄橋 */
+.bridge{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2mm;margin:2.5mm 0}
+.bc{border:.6pt solid #999;border-top:2.4pt solid #999;border-radius:1.2mm;padding:2.4mm;font-size:9pt;line-height:1.5}
+.bc h4{font-size:8pt;letter-spacing:.1em;color:#666;margin-bottom:1.2mm;font-weight:700}
+.bc.b1{border-top-color:#b91c1c}
+.bc.b2{border-top-color:#0369a1}
+.bc.b3{border-top-color:#15803d}
+
+/* 填答線 */
+.fill{border-bottom:.8pt dotted #666;display:inline-block;min-width:22mm;height:1em}
+.lines{margin-top:2mm}
+.lines div{border-bottom:.6pt dotted #999;height:7.5mm}
+.q{background:#f3f5f9;border-left:3pt solid #0369a1;padding:2.4mm 3mm;margin:2.5mm 0;font-weight:700;font-size:10pt}
+
+.act{display:inline-block;background:#1e3a8a;color:#fff;font-size:8.5pt;font-weight:700;
+  padding:.9mm 3mm;border-radius:9mm;margin-bottom:2mm;letter-spacing:.05em}
+.tag{display:inline-block;background:#15803d;color:#fff;font-size:8pt;font-weight:700;
+  padding:.7mm 2.4mm;border-radius:1mm;margin-right:1.5mm}
+.red{color:#b91c1c}.warn{color:#b45309}.green{color:#15803d}.blue{color:#1e3a8a}
+.u{border-bottom:1.6pt solid #fbbf24;padding-bottom:.3mm}
+
+/* 出處徽章（附錄用） */
+.src{display:inline-block;font-size:8pt;font-weight:700;padding:.4mm 1.6mm;border-radius:.8mm;
+  background:#1e3a8a;color:#fff;margin-left:1.5mm;vertical-align:1pt}
+.src.tw{background:#15803d}
+sup.c{font-size:7.5pt;color:#1e3a8a;font-weight:700;vertical-align:super}
+h4{font-size:11pt;margin:3.5mm 0 1.5mm;color:#333}
+.apx{page-break-before:always;border-top:2.4pt solid #1e3a8a;padding-top:4mm;margin-top:6mm}
+.apx .lbl{font-size:9pt;letter-spacing:.3em;color:#1e3a8a;font-weight:700}
+/* 欄框列框一致的表格 */
+.grid td, .grid th{width:auto}
+.grid td:first-child, .grid th:first-child{width:30%;white-space:normal}
+/* 填空與答案 */
+.bl{display:inline-block;border-bottom:1pt solid #333;height:1.05em;vertical-align:-2pt;margin:0 1mm}
+.an{display:inline-block;border-bottom:1pt solid #b91c1c;color:#b91c1c;font-weight:700;text-align:center;vertical-align:-2pt;margin:0 1mm;padding:0 1mm}
+.foot{margin-top:6mm;padding-top:2.5mm;border-top:.6pt solid #ccc;font-size:8.5pt;color:#666}
+</style>
+</head>
+<body>
+
+<!-- ═══════ P1 ═══════ -->
+<div class="page">
+  <div class="hd">
+    <h1>腫瘤病人的<span class="warn">疼痛</span>與<span class="warn">疲憊</span><span style="font-size:12pt;color:#b91c1c">　（答案卷版）</span></h1>
+    <p class="meta">115-1 內外科護理學（大學部三年級）｜2026.09.09（三）09:10 至 12:00<br>
+      依據：NCCN《Adult Cancer Pain》V2.2025；衛福部食藥署《癌症疼痛照護及成癮性麻醉藥品使用參考手冊》2021；
+      台灣癌症安寧緩和醫學會 × 台灣腫瘤護理學會《癌因性疲憊症之臨床治療指引》2017<br>
+      <b>內文上標數字對應文末參考文獻編號。</b>　本講義後半附<b>類鴉片藥理附錄</b>。<br><b style="color:#b91c1c">紅字加底線處為填寫版的答案，位置與填寫版完全一致。</b></p>
+  </div>
+
+  <div class="box warn">
+    <div class="t">這份講義想改變你的三個直覺</div>
+    <table style="margin:1.5mm 0">
+      <tr><th style="width:46%">你現在的直覺</th><th>三小時後</th></tr>
+      <tr><td>病人喊痛 → 查 PRN → 給藥 → 記錄</td><td class="green">先問 <span class="an" style="min-width:10mm">五</span> 件事再決定</td></tr>
+      <tr><td>病人喊累 → 叫他多休息</td><td class="green">先掃 <span class="an" style="min-width:10mm">七</span> 類可逆原因；處方是 <span class="an" style="min-width:18mm">運動</span></td></tr>
+      <tr><td>痛得更厲害 → 再給一次止痛藥</td><td class="green">先掃 <span class="an" style="min-width:10mm">六</span> 個紅旗</td></tr>
+    </table>
+  </div>
+
+  <h2>今天每一段，都走這三步</h2>
+  <div class="bridge">
+    <div class="bc b1"><h4>既有印象</h4>你現在的直覺</div>
+    <div class="bc b2"><h4>基礎醫學</h4>你<b>已經學過</b>的<br>解剖・生理・病理・藥理</div>
+    <div class="bc b3"><h4>臨床判斷</h4>床邊<b>真正要做</b>的決定</div>
+  </div>
+  <p><b>中間那一欄，你們已經有了。</b>今天不是教你新的基礎醫學，是把它接到病人床邊。</p>
+
+  <h2>今天的主角</h2>
+  <div class="box">
+    <b>陳女士，55 歲。</b>乳癌，兩年前手術，現在多處<b>骨轉移</b>。因疼痛控制不佳住院，今天是住院第 3 天。你是她的主護。
+  </div>
+  <table>
+    <tr><th style="width:12%">幕</th><th style="width:36%">她說了什麼</th><th>你要跨的那一步</th></tr>
+    <tr><td class="k">第一幕</td><td>「背好痛……大概 7 分吧」</td><td><b>分數 → 評估</b></td></tr>
+    <tr><td class="k">第二幕</td><td>「還是痛，而且腳有點麻、使不上力」</td><td><b>止痛 → 判斷急症</b></td></tr>
+    <tr><td class="k">第三幕</td><td>「我什麼都不想做，睡 10 小時起來還是累」</td><td><b>同情 → 開處方</b></td></tr>
+  </table>
+
+  <h2>這堂課要補的那一段</h2>
+  <p>你在基礎醫學已經學過<b>嗎啡作用在哪個受體</b>、學過<b>類鴉片的副作用</b>、
+    學過<b>腫瘤的分期分級與骨轉移好發癌別</b>。這些知識<b>不需要重學</b>。</p>
+  <p>但從「骨轉移」跨到「<b>這個骨轉移病人喊背痛，我該擔心什麼</b>」，
+    從「嗎啡作用在 μ 受體」跨到「<b>為什麼這個病人加藥還是痛</b>」，
+    這一步需要的是<b class="red">臨床判斷</b>，而不是更多的名詞。</p>
+  <p><b>這三小時要補的就是那一步。</b>教材依據的是<b>臨床指引</b>。</p>
+</div>
+
+<!-- ═══════ P2 第一幕 ═══════ -->
+<div class="page">
+  <span class="act">第 一 幕　分數 → 評估</span>
+
+  <div class="q">✍️ <b>想一想</b>　在給藥之前，你要再問陳女士<b>三個問題</b>。請寫下你<b>會怎麼問出口的原句</b>。
+    <br><small>🔴 要寫<b>對病人講的原句</b>，不是「評估疼痛性質」這種標題。範例：「陳女士，這個痛是一直都在，還是一陣一陣的？」</small></div>
+  <div class="lines"><div></div><div></div><div></div></div>
+
+  <h3>對答案：你剛才問的，落在哪幾格？</h3>
+  <table class="grid">
+    <tr><th>病程</th><th>機轉</th><th>病因</th><th>嚴重度</th><th class="warn">節奏</th></tr>
+    <tr><td><span class="an" style="min-width:20mm">多久了</span></td><td><span class="an" style="min-width:24mm">怎麼個痛法</span></td><td><span class="an" style="min-width:34mm">跟腫瘤、治療，還是老毛病有關</span></td><td><span class="an" style="min-width:20mm">0 至 10 分</span></td><td class="warn"><span class="an" style="min-width:30mm">持續／間歇／突發</span></td></tr>
+  </table>
+  <p class="sub">🔴 最少被想到的通常是<b><span class="an" style="min-width:14mm">節奏</span></b>與<b><span class="an" style="min-width:14mm">病因</span></b>。
+    但這兩格分別決定了<b>用長效藥還是短效救援藥</b>、以及<b>要不要處理病因</b>。</p>
+
+  <h2>癌痛不只是「痛」</h2>
+  <p><b>生理 ＋ 心理 ＋ 社會</b>（biopsychosocial）→ 所以癌痛採<b>全人照護</b>。
+    一個「痛 8 分」的病人，可能有一半的分數來自「我是不是快死了」「我拖累家人」。<b>只處理藥，處理不完。</b></p>
+
+  <h3>癌痛治療目標：5A</h3>
+  <table class="grid">
+    <tr><th style="width:30%">A</th><th>意思</th></tr>
+    <tr><td><b>Analgesia</b></td><td>適當緩解疼痛</td></tr>
+    <tr class="hi"><td><b>Activities</b></td><td><b>恢復身體與生活功能</b>　目標不是「<span class="an" style="min-width:14mm">零分</span>」，是「<span class="an" style="min-width:34mm">能做想做的事</span>」</td></tr>
+    <tr><td><b>Adverse effect</b></td><td>降低治療副作用</td></tr>
+    <tr><td><b>Affect</b></td><td>維持良好情緒</td></tr>
+    <tr><td><b>Aberrant drug taking</b></td><td>防止藥品濫用</td></tr>
+  </table>
+
+  <div class="box warn">
+    <div class="t">🔴 「7 分」是一個欄位，不是一次評估</div>
+    它告訴你<b>強度</b>，但沒告訴你 <span class="an" style="min-width:20mm">是什麼</span> 痛、<span class="an" style="min-width:20mm">為什麼</span> 痛、有沒有 <span class="an" style="min-width:16mm">危險</span> 。
+  </div>
+
+  <h2>全面疼痛評估　Comprehensive Pain Assessment　<span class="sub">［NCCN V2.2025］<sup>1</sup></span></h2>
+
+  <div class="box">
+    <div class="t">起點：所有癌症病人都應被篩檢</div>
+    <p>篩檢疼痛與生活品質的三個時機：<span class="an" style="min-width:26mm">初次評估時</span>、<span class="an" style="min-width:26mm">每一次接觸時</span>、<span class="an" style="min-width:32mm">每次開始新治療時</span>。</p>
+    <p>沒有痛，下次見面<b>還是要再篩</b>：癌症疼痛對同一位病人而言<b>是高度動態的</b>。</p>
+    <p><b>疼痛本質上是主觀的，病人自己說的分數就是目前的照護標準。</b></p>
+  </div>
+
+  <h3>① 痛本身要問到什麼</h3>
+  <table>
+    <tr><td class="k">類型與性質</td><td>是哪一種痛、痛起來是什麼感覺</td></tr>
+    <tr><td class="k">疼痛病史</td><td>何時開始、持續多久、變化過程</td></tr>
+    <tr class="hi"><td class="k warn">強度</td><td class="warn"><b><span class="an" style="min-width:18mm">休息時</span></b>的痛與<b><span class="an" style="min-width:18mm">活動時</span></b>的痛要分開問 🔴</td></tr>
+    <tr><td class="k">預估走向</td><td>這個痛接下來可能怎麼變</td></tr>
+    <tr><td class="k">位置</td><td>位置、<b>轉移型態</b>（referral pattern）、<b>放射</b>（radiation）</td></tr>
+    <tr><td class="k">加重與緩解</td><td>什麼讓它更痛、什麼讓它變好</td></tr>
+  </table>
+
+  <h3>② 痛造成什麼影響、目前怎麼處理</h3>
+  <table>
+    <tr class="hi"><td class="k warn">影響</td><td class="warn">干擾到<b>工作、睡眠、人際互動</b>了嗎 🔴</td></tr>
+    <tr><td class="k">目前計畫</td><td>現在的疼痛處置計畫是什麼</td></tr>
+    <tr><td class="k">治療反應</td><td>病人的<b>疼痛經驗</b>與對目前治療的<b>反應</b></td></tr>
+    <tr><td class="k">過去治療</td><td>以前用過哪些止痛方式</td></tr>
+    <tr class="hi"><td class="k warn">突發痛</td><td class="warn">現行處方<b>沒能控制住</b>的突發性或陣發性疼痛 🔴</td></tr>
+    <tr><td class="k">目標</td><td>病人對疼痛處置的<b>目標與期待</b>，包含舒適與功能的程度；<b>家屬照顧者一起討論</b></td></tr>
+  </table>
+
+  <h3>③ 心理社會脈絡與痛的意義</h3>
+  <table>
+    <tr><td class="k">心理社會</td><td>病人的<b>身心困擾</b>、<b>家屬與照顧者的支持</b>、<b>精神科病史</b></td></tr>
+    <tr class="hi"><td class="k warn">風險因子</td><td class="warn">疼痛<b>未被充分治療</b>的風險因子 🔴</td></tr>
+    <tr><td class="k">痛的意義</td><td>疼痛對<b>病人與家屬</b>的意義，包含病人過去的<b>醫療創傷</b>經驗</td></tr>
+    <tr><td class="k">文化</td><td>對疼痛、<b>疼痛表達</b>、以及治療的<b>文化信念</b></td></tr>
+    <tr><td class="k">心靈</td><td>靈性或宗教考量、<b>存在性的受苦</b>（existential suffering）</td></tr>
+  </table>
+
+  <div class="box warn">
+    <div class="t">評估不只是「問」，還要「查」</div>
+    <p>完整的<b>身體檢查</b>，加上檢視相關的<b>實驗室檢驗與影像檢查</b>，
+      目的是判斷這個痛<b>是不是來自一個需要特定治療的病因</b>。<sup>1</sup></p>
+    <p>NCCN 舉的例子：對一個<b>即將發生脊髓壓迫</b>的病人<b>只給類鴉片，是不恰當的</b>。
+      沒有<b>類固醇</b>與<b>局部放射治療</b>，疼痛不會被好好控制，
+      而且病人會持續處在<b class="red">脊髓損傷的高風險</b>。<sup>1</sup></p>
+  </div>
+
+  <div class="box red">
+    <div class="t">全面疼痛評估的終點</div>
+    <p><b>不是給出一個分數，是診斷出 <span class="an" style="min-width:20mm">病因</span> 與 <span class="an" style="min-width:32mm">病理生理機轉</span> 。</b><sup>1</sup></p>
+  </div>
+
+  <p class="sub">📌 評估完<b>必須做成紀錄</b>。沒有紀錄的評估等於沒有評估，因為下一班無法比較。<sup>2</sup></p>
+  <p class="sub">📌 食藥署手冊另列「詳盡評估六面向」，其中<b>生活功能</b>特別點出
+    <b>能不能深呼吸與咳嗽</b>：痛到不敢咳會導致痰積與肺炎，止痛在這裡是<b>預防併發症</b>。<sup>2</sup></p>
+
+  <h2>問疼痛，問這五件事</h2>
+  <table>
+    <tr><th style="width:14%">要素</th><th style="width:30%">問什麼</th><th>為什麼要問</th></tr>
+    <tr><td class="k">病程</td><td>多久了？</td><td>急性 &lt;3 月多來自診斷／處置；慢性 &gt;3 月多來自腫瘤侵犯或治療</td></tr>
+    <tr><td class="k">機轉</td><td>怎麼個痛法？</td><td><b>決定用哪一類藥</b></td></tr>
+    <tr><td class="k">病因</td><td>跟腫瘤、治療、還是老毛病有關？</td><td>決定要不要處理「病因」而不只是「痛」</td></tr>
+    <tr><td class="k">嚴重度</td><td>0 至 10 分</td><td>決定 WHO 階梯與追蹤頻率</td></tr>
+    <tr class="hi"><td class="k warn"><span class="an" style="min-width:14mm">節奏</span></td><td class="warn">持續／間歇／<b><span class="an" style="min-width:14mm">突發</span></b>？</td><td class="warn"><b>決定 <span class="an" style="min-width:22mm">長效藥</span> vs <span class="an" style="min-width:28mm">短效救援藥</span></b></td></tr>
+  </table>
+  <p class="sub">量表：VAS／NRS／VRS、Wong-Baker FACES、BPI、McGill。疼痛已被視為<b>第五生命徵象</b>。</p>
+</div>
+
+<!-- ═══════ P3 突發痛 + 第二幕開頭 ═══════ -->
+<div class="page">
+  <h2>突發性疼痛　breakthrough pain　<span class="sub">（臨床天天遇到）</span></h2>
+  <div class="box">
+    在<b>背景疼痛相對穩定且大致被控制</b>的情況下，自發或被誘發產生的<b>短暫</b>疼痛，
+    強度<b>比背景疼痛更高</b>，<b><span class="an" style="min-width:24mm">3 至 5 分鐘</span></b>內達到最痛，可持續 <b><span class="an" style="min-width:28mm">30 至 60 分鐘</span></b>。
+  </div>
+  <table>
+    <tr><td class="k">1</td><td>自發還是誘發（翻身？換藥？進食？）</td>
+        <td class="k warn">2 🔴</td><td class="warn"><b><span class="an" style="min-width:34mm">每日發作幾次</span></b></td></tr>
+    <tr><td class="k">3</td><td>每次持續多久</td><td class="k">4</td><td>疼痛強度</td></tr>
+    <tr><td class="k">5</td><td>特質（針刺／撕裂／灼燒／痠痛）</td><td class="k">6</td><td>誘發與緩解因素</td></tr>
+  </table>
+  <p class="sub">🔴 第 2 項是護理判斷的關鍵。你只寫「主訴疼痛，予 PRN 一次」，這個資訊<b>永遠不會出現在病歷裡</b>。</p>
+
+  <div class="box red">
+    <div class="t">第一幕・啟示</div>
+    <b>給藥不是錯的。只給藥才是。</b><br>
+    「7 分」告訴你強度，但沒告訴你是什麼痛、為什麼痛、有沒有危險。
+  </div>
+
+  <span class="act" style="margin-top:4mm">第 二 幕　止痛 → 判斷急症</span>
+
+  <div class="keep">
+  <div class="box">
+    <b>陳女士，同一天的兩個時間點</b>
+    <table style="margin-top:2mm">
+      <tr><td class="k">09:00</td><td>「護理師，我背好痛……大概 <b>7 分</b>吧。」<br>
+        <span class="sub">你依醫囑給了短效止痛藥。</span></td></tr>
+      <tr class="hi"><td class="k warn">11:00</td><td>「<b>還是痛</b>……而且我覺得<b>腳有點麻</b>，<b>使不上力</b>。」</td></tr>
+    </table>
+  </div>
+
+  <div class="q">✍️ <b>想一想</b>
+    <br><b>第 1 題</b>　比較上面兩句話。<b>11:00 有、而 09:00 沒有</b>的，是哪<b>兩個詞</b>？請在上表圈出來。
+    <br><b>第 2 題</b>　你要<b>現在就通知醫師</b>，還是<b>等下一班交班時再說</b>？
+    <br><small>第 2 題只能選一個，並寫下<b>一個理由</b>。
+    提示：「麻」跟「使不上力」，在解剖學上指向哪個系統？</small></div>
+  <div class="lines"><div></div><div></div><div></div></div>
+  </div>
+
+  <h3>橋接②　🔴 為什麼「加藥也沒用」？</h3>
+  <div class="bridge">
+    <div class="bc b1"><h4>既有印象</h4>還是痛＝<b>劑量不夠</b> → 再給一次</div>
+    <div class="bc b2"><h4>你學過的藥理學</h4>嗎啡活化 <b>μ 受體</b> → 抑制痛覺傳遞</div>
+    <div class="bc b3"><h4>臨床判斷</h4>若痛的來源是<b>神經本身受損</b>，μ 受體那條路<b>就不是主要戰場</b></div>
+  </div>
+  <p>「止痛藥加到底還是痛」，有時候<span class="u">不是劑量不夠，是用錯類別</span>。</p>
+
+  <h2>癌痛的病理生理分類　<span class="sub">［NCCN V2.2025］<sup>1</sup></span></h2>
+
+  <div class="box">
+    <p>NCCN 指出：<b>治療策略取決於病理生理機轉</b>，而機轉是靠<b>檢查與評估</b>判斷出來的。
+      癌痛有<b>三大機轉</b>：組織傷害性（nociceptive）、神經病變性（neuropathic）、
+      <b class="blue"><span class="an" style="min-width:26mm">痛覺可塑性</span>（nociplastic）</b>。<sup>1</sup></p>
+    <p>此外，分類時也要區分<b>與腫瘤有關的痛、與治療有關的痛、與兩者都無關的痛</b>，
+      並區分<b>急性與慢性</b>，因為這會影響選哪一種治療。<sup>1</sup></p>
+  </div>
+
+  <h3>機轉一：組織傷害性痛　nociceptive</h3>
+  <p class="sub">來自軀體與內臟結構受傷，導致痛覺受器（nociceptor）活化。
+    受器分布於<b>皮膚、內臟、肌肉、結締組織</b>。<sup>1</sup></p>
+  <table>
+    <tr><th style="width:16%"></th><th>軀體痛 somatic</th><th>內臟痛 visceral</th></tr>
+    <tr class="hi"><td class="k warn">病人怎麼形容</td>
+        <td><b>銳痛</b>、<b>位置明確</b>、抽痛、壓迫感</td>
+        <td><b>比較瀰漫</b>、悶痛、絞痛</td></tr>
+    <tr><td class="k">機轉與情境</td>
+        <td>常見於<b>外科手術後</b>或<b>骨轉移</b></td>
+        <td>腹腔或胸腔內臟受到<b>壓迫、浸潤、擴張</b></td></tr>
+  </table>
+
+  <h3>機轉二：神經病變性痛　neuropathic</h3>
+  <table>
+    <tr><td class="k">機轉</td><td><b>周邊或中樞神經系統受損</b><sup>1</sup></td></tr>
+    <tr class="hi"><td class="k warn">病人怎麼形容</td><td class="warn"><b><span class="an" style="min-width:28mm">燒灼 burning</span>、<span class="an" style="min-width:26mm">銳痛 sharp</span>、<span class="an" style="min-width:30mm">電擊樣 shooting</span></b></td></tr>
+    <tr><td class="k">NCCN 舉的例子</td>
+        <td>脊椎狹窄、糖尿病神經病變；以及<b>癌症治療的副作用</b>：
+          <b>化學治療</b>、<b>放射治療</b>、<b>手術傷到神經</b>之後<sup>1</sup><br>
+          <span class="sub">指引舉 vincristine 為例。大腸直腸癌臨床上最常見的是 <b>oxaliplatin</b>，
+          其急性型以<b>冷刺激誘發</b>為特徵，衛教重點是治療後數日內<b>避免接觸冰冷</b>。</span></td></tr>
+    <tr><td class="k red">對一般止痛藥</td><td class="red"><b>常常「加藥也沒用」</b>；需輔助藥：TCA、gabapentin、pregabalin、局部麻醉貼布<sup>2</sup></td></tr>
+  </table>
+
+  <h3>機轉三：痛覺可塑性痛　nociplastic　<span class="blue">（指引新增的第三種機轉）</span></h3>
+  <div class="box">
+    <p>源自<b>痛覺處理本身被改變</b>（altered nociception）。這一類疼痛<b>沒有明確證據</b>
+      顯示存在實際或即將發生的組織損傷去活化周邊痛覺受器，
+      也<b>沒有明確證據</b>顯示體感覺系統有疾病或病灶造成疼痛。<sup>1</sup></p>
+    <p>指引認為它<b>參與了部分癌痛症候群</b>，也參與慢性下背痛、頭痛、纖維肌痛症。<sup>1</sup></p>
+    <p>🧠 <b>對護理的意義</b>：「檢查找不到明確的組織損傷」<b class="u">不等於</b>「這個人在裝痛」。
+      這一類疼痛<b class="green">是被指引承認的機轉</b>。</p>
+  </div>
+
+  <h3>收成一張：病人的<span class="warn">形容詞</span>就是線索</h3>
+  <table style="font-size:8.8pt">
+    <tr><th style="width:15%"></th><th>軀體痛</th><th>內臟痛</th><th class="warn">神經病變痛</th></tr>
+    <tr class="hi"><td class="k warn">怎麼形容</td>
+        <td>銳、<b>位置明確</b>、抽痛、壓迫感</td>
+        <td><b>瀰漫</b>、悶痛、絞痛</td>
+        <td class="warn"><b>燒灼、電擊、針刺、麻木</b></td></tr>
+    <tr><td class="k">癌症情境</td><td><b>骨轉移</b>、手術後</td>
+        <td>肝腫脹、腸阻塞、後腹腔</td>
+        <td>神經叢侵犯、<b>脊髓神經根壓迫</b>、化療周邊神經病變</td></tr>
+    <tr><td class="k">一般止痛藥</td><td>通常有反應</td><td>通常有反應</td>
+        <td class="red"><b>常常「加藥也沒用」</b></td></tr>
+    <tr><td class="k">治療方向</td><td>NSAIDs、類鴉片、放射治療</td><td>類鴉片、處理病因</td>
+        <td class="warn"><b>需輔助藥</b>：TCA、gabapentin、pregabalin、局部麻醉貼布</td></tr>
+  </table>
+
+  <p class="sub">🔴 護理端要做的<b>不是自己換藥</b>，是把「病人形容的是燒灼、電擊、麻」<b>寫進紀錄並回報</b>。</p>
+
+  <div class="q">✍️ <b>判讀練習</b>　三句病人原話，各屬<b>哪一種機轉</b>？
+    <br><small>只要答機轉名稱。</small></div>
+  <table>
+    <tr><td class="k">①</td><td>「這裡<b>按下去</b>就痛，位置我指得出來。」</td><td style="width:30%"></td></tr>
+    <tr><td class="k">②</td><td>「肚子<b>悶悶脹脹</b>的，說不上來到底哪裡。」</td><td></td></tr>
+    <tr><td class="k">③</td><td>「腳像<b>被電到</b>，棉被碰到就痛。」</td><td></td></tr>
+  </table>
+</div>
+
+<!-- ═══════ P4 紅旗 + 處置 ═══════ -->
+<div class="page">
+  <h2>🔴 六個紅旗：須<span class="red">緊急處置</span>的狀況</h2>
+  <table style="font-size:9.2pt">
+    <tr><th style="width:6%">#</th><th style="width:34%">紅旗</th><th>護理可觀察到的線索</th></tr>
+    <tr><td class="k">①</td><td>轉移至<b>腦內或腦膜</b></td><td>頭痛（早晨加劇）、噁心嘔吐、意識或行為改變、神經學缺損</td></tr>
+    <tr class="hi"><td class="k warn">②</td><td class="warn"><b>轉移至脊髓腔或硬脊膜外腔</b></td>
+        <td class="warn"><b>新出現的 <span class="an" style="min-width:24mm">下肢無力</span>、<span class="an" style="min-width:18mm">麻木</span>、大小便失禁、背痛加劇</b></td></tr>
+    <tr><td class="k">③</td><td>腸道<b>阻塞或穿孔</b></td><td>腹脹、嘔吐、無排氣排便、腹部僵硬</td></tr>
+    <tr><td class="k">④</td><td>主要骨幹<b>骨折或即將骨折</b></td><td>突然劇痛、無法承重、活動時異常疼痛</td></tr>
+    <tr><td class="k">⑤</td><td><b>感染、膿瘍或敗血症</b></td><td>發燒、局部紅腫熱痛、生命徵象變化</td></tr>
+    <tr><td class="k">⑥</td><td><b>心肺功能急性衰竭</b></td><td>呼吸窘迫、血氧下降、意識改變</td></tr>
+  </table>
+
+  <h3>NCCN 怎麼講同一件事：<span class="red">腫瘤急症</span></h3>
+  <p class="sub">定義：<b>直接或間接與病人的癌症或癌症治療有關的、危及生命的事件</b>。<sup>1</sup></p>
+  <table>
+    <tr><td class="k">承重骨</td><td><b>骨折或即將骨折</b></td></tr>
+    <tr class="hi"><td class="k warn">神經軸</td><td class="warn"><b>神經軸轉移合併有損傷之虞</b></td></tr>
+    <tr><td class="k">感染</td><td>感染</td></tr>
+    <tr><td class="k">內臟</td><td><b>阻塞或穿孔</b>（急性腹症）</td></tr>
+    <tr><td class="k">血栓</td><td>血栓栓塞急症</td></tr>
+  </table>
+  <p class="sub">🔴 處置原則：<b>直接治療疼痛，同時並行處理背後那個狀況</b>。<sup>1</sup></p>
+
+  <div class="box red">
+    <div class="t">一句話記法</div>
+    <b>「<span class="an" style="min-width:30mm">止痛藥沒效</span>」＋「<span class="an" style="min-width:48mm">新出現的神經或全身症狀</span>」＝ 這不是止痛問題，是 <span class="an" style="min-width:18mm">急症</span> 。</b><br>
+    <small>陳女士：乳癌骨轉移 ＋ 背痛加劇 ＋ 新出現的下肢麻、無力 → <b>紅旗②：脊髓壓迫</b>。
+      你要做的不是再給一次 PRN，是<b>立刻通知醫師</b>。延遲＝可能永久癱瘓。</small>
+  </div>
+
+  <h2>進入藥之前：同一類藥，你會看到<span class="warn">四種叫法</span></h2>
+  <table>
+    <tr><th style="width:26%">用詞</th><th style="width:22%">出自哪個脈絡</th><th>你會在哪裡看到</th></tr>
+    <tr class="hi"><td class="k blue">類鴉片<br>opioid</td>
+        <td><b><span class="an" style="min-width:20mm">藥理學</span></b>：依作用受體定義</td>
+        <td><b>藥理與指引文獻</b>；台灣官方指引的定調用詞</td></tr>
+    <tr class="hi"><td class="k blue">麻醉性止痛劑<br>narcotic analgesic</td>
+        <td><b><span class="an" style="min-width:20mm">法規</span></b>：管制藥品管理條例的分類</td>
+        <td><b>醫院的管制藥品文件與用藥紀錄</b>；食藥署手冊<b>書名</b>「成癮性麻醉藥品」用的就是這一套</td></tr>
+    <tr><td class="k">鴉片類藥物</td><td>混用</td><td>偶見於毒物學脈絡</td></tr>
+    <tr><td class="k">類嗎啡</td><td>不精確</td>
+        <td>部分衛教文章。<b class="red">不建議用</b>：opioid 的定義是「作用於類鴉片受體」，
+          不是「結構像嗎啡」。fentanyl 與 methadone 結構跟嗎啡差很多</td></tr>
+  </table>
+  <div class="box">
+    <p>另外一組常被混用的：<b>opiate（鴉片製劑）</b>專指鴉片來的天然生物鹼；
+      <b>opioid（類鴉片）</b>涵蓋全部作用於該受體者，包含內生性腦內啡與全合成藥物。</p>
+    <p>🔴 <b>為什麼要先講這個</b>：因為<b>藥理與法規是兩套不同的語彙系統</b>。
+      看到「麻醉性止痛劑」不要以為是另一種藥。</p>
+  </div>
+
+  <h2>WHO 三階梯與給藥時機</h2>
+  <table>
+    <tr><td class="k">一（輕度）</td><td>非類鴉片：acetaminophen、aspirin、NSAIDs（＋必要時輔助藥）</td></tr>
+    <tr><td class="k">二（輕至中度）</td><td>弱效類鴉片：codeine、tramadol（＋必要時第一階梯藥）</td></tr>
+    <tr><td class="k">三（中至重度）</td><td>強效類鴉片：morphine、fentanyl（＋必要時第二階梯藥）</td></tr>
+  </table>
+  <div class="box warn">
+    <div class="t">🔴 癌痛最容易被做錯的一件事</div>
+    <b>定時給的是「<span class="an" style="min-width:20mm">地板</span>」，PRN 給的是「<span class="an" style="min-width:20mm">補洞</span>」。地板塌了，補洞補不完。</b><br>
+    <span class="red">✗</span> 長效藥「等病人喊痛再給」
+    <span class="green">✓</span> 長期持續的癌痛：<b>常規定時</b>給長效藥（around the clock），突發痛才輔以<b>短效</b>藥。
+  </div>
+
+  <h3>突發痛的救援劑量原則</h3>
+  <table>
+    <tr><td class="k">用什麼</td><td>快速作用的<b>短效</b>類鴉片（ROOs），口服或口腔黏膜給藥</td></tr>
+    <tr><td class="k">給多少</td><td>約每日類鴉片總量的 <b><span class="an" style="min-width:36mm">1/6，或 10 至 20%</span></b></td></tr>
+    <tr class="hi"><td class="k warn">🔴 何時回報醫師</td>
+        <td class="warn"><b>每日突發痛 ≥ <span class="an" style="min-width:10mm">3</span> 次且連續 <span class="an" style="min-width:10mm">2</span> 日</b> → 考慮把每日常規劑量<b>調高 <span class="an" style="min-width:24mm">25 至 50%</span></b></td></tr>
+    <tr><td class="k">要會分辨</td><td><b>終末劑量不足</b>：給藥間隔快到時才痛 → 縮短間隔或加常規量，<b>不是一直加 PRN</b></td></tr>
+  </table>
+  <p class="sub">🔴 病人一天喊 4 次痛、連兩天都這樣，這不是病人「愛喊」，<b>這是常規劑量不足的訊號</b>。</p>
+
+  <div class="q">✍️ <b>寫一句交班</b>　陳女士<b>昨天用 4 次</b>救援藥、<b>今天也 4 次</b>。你交班時要說的那<b>一句話</b>是什麼？
+    <br><small>🔴 不能只寫「我會回報」，要把那句話寫出來，而且<b>要有數字</b>。</small></div>
+  <div class="lines"><div></div><div></div></div>
+
+  <h2>🔴 護理端的四個把關點<span class="sub">（剛上臨床最可能踩到的地方）</span></h2>
+  <table style="font-size:9.2pt">
+    <tr><td class="k">①</td><td><b>pethidine 不用於癌痛</b></td><td>代謝產物 norpethidine 具中樞神經副作用</td></tr>
+    <tr><td class="k">②</td><td><b>混合促效／拮抗劑（nalbuphine、butorphanol）不可與類鴉片促效劑併用</b></td>
+        <td>止痛較弱、有<b>天花板效應</b>，併用易致<b>戒斷症候群</b></td></tr>
+    <tr class="hi"><td class="k warn">③</td><td class="warn"><b>codeine 與 tramadol：<span class="an" style="min-width:12mm">12</span> 歲以下病童禁用</b></td>
+        <td class="warn">代謝<b>基因多型性</b> → 藥效與呼吸抑制風險不可預測</td></tr>
+    <tr><td class="k">④</td><td><b>長效藥不可當 PRN</b></td>
+        <td>劑型與適應症綁定，<b>用錯就是給藥錯誤</b>；
+          <b>經皮 fentanyl 不能用來快速調量</b>，只用在已對類鴉片耐受且疼痛已被控制之後<sup>1</sup></td></tr>
+  </table>
+
+</div>
+
+<!-- ═══════ P5 副作用 ═══════ -->
+<div class="page">
+  <h3>橋接③　為什麼便秘要<span class="warn">從第一天</span>就預防？</h3>
+  <div class="bridge">
+    <div class="bc b1"><h4>既有印象</h4>副作用<b>等發生了再處理</b></div>
+    <div class="bc b2"><h4>你學過的藥理學</h4>大多數類鴉片副作用會隨時間<b>產生耐受性</b> → 會逐漸變好</div>
+    <div class="bc b3"><h4>臨床判斷</h4>🔴 有<b>兩個例外</b>：<b>便秘</b>與<b>瞳孔收縮</b><b>不會</b>耐受</div>
+  </div>
+  <p><b>不會變好的東西，只能預防，不能等。</b></p>
+
+  <h3>便秘預防（常態使用類鴉片者幾乎都要做）</h3>
+  <ol>
+    <li>常態使用類鴉片者，<b>幾乎都要預防便秘</b></li>
+    <li>預防性給軟便劑（如 MgO）或刺激性瀉劑（如 sennoside、cascara），
+        <b class="warn">類鴉片劑量上調時，這些藥也要跟著上調</b></li>
+    <li>每日足量水分　4. 每日高纖蔬果　5. 鼓勵運動促進腸蠕動</li>
+  </ol>
+  <p class="sub">發生便秘時先<b>鑑別</b>：其他藥物？腫瘤？<b class="warn">腸道阻塞？</b>（← 紅旗③）</p>
+
+  <h2>呼吸抑制：藥理知識<span class="blue">直接變成</span>觀察頻率</h2>
+  <table>
+    <tr><td class="k red">警戒值</td>
+        <td><b>呼吸 &lt; <span class="an" style="min-width:12mm">10</span> 次／分即須處理</b>；通常<b>高二氧化碳血症會先發生</b><sup>2</sup></td></tr>
+    <tr class="hi"><td class="k warn">🔴 關鍵</td>
+        <td class="warn"><b>naloxone 血漿半衰期約 <span class="an" style="min-width:16mm">60</span> 分鐘，比許多類鴉片短</b>。
+          給了 naloxone 病人醒過來，<b>不等於安全了</b>，可能再度昏睡與呼吸抑制。
+          → <b>護理必須持續監測。</b><sup>2</sup></td></tr>
+    <tr><td class="k red">最危險組合</td>
+        <td>類鴉片加上<b>苯二氮平類（BZD）</b>、其他中樞抑制劑、或酒精<sup>2</sup></td></tr>
+  </table>
+
+  <h2>家屬問：「打嗎啡會不會上癮？」</h2>
+  <table>
+    <tr><th>名詞</th><th>意思</th><th>是不是問題</th></tr>
+    <tr><td class="k">耐藥性 tolerance</td><td>需增加劑量才能達到原效果</td><td class="green"><b>生理現象</b>，可預期</td></tr>
+    <tr><td class="k">身體依賴</td><td>突然停藥會有戒斷症狀</td><td class="green"><b>生理現象</b>，減藥要漸進</td></tr>
+    <tr><td class="k">成癮</td><td>DSM-5 定義的<b>行為疾患</b></td><td class="red">是問題，需專業評估</td></tr>
+  </table>
+  <div class="box warn">
+    <div class="t">🔴 DSM-5 準則自帶的但書</div>
+    若耐藥性與戒斷症狀是<b>「處方藥在正確使用下」</b>造成的，<b>不列入成癮的計分</b>。<br>
+    反過來說：<b>因為怕成癮而不敢用藥</b>造成的疼痛控制不良，<b class="red">才是實際上更常發生的傷害</b>。
+  </div>
+
+  <div class="q">✍️ <b>回答家屬</b>　陳女士的女兒問你：<b>「打嗎啡會不會上癮？可不可以不要打？」</b>用<b>一句話</b>回答她。
+    <br><small>🔴 不能只說「不會啦」，要有依據；而且要講給<b>家屬</b>聽，不是背 DSM-5。</small></div>
+  <div class="lines"><div></div><div></div></div>
+
+  <div class="box red">
+    <div class="t">第二幕・啟示</div>
+    <b>止痛藥沒效，有時候不是劑量的問題，是分類的問題，甚至不是痛的問題。</b>
+  </div>
+</div>
+
+<!-- ═══════ P6 第三幕 ═══════ -->
+<div class="page">
+  <span class="act">第 三 幕　同情 → 開處方</span>
+
+  <div class="box">
+    <b>兩週後。</b>脊髓壓迫已處理，疼痛控制在 2 至 3 分。陳女士說：<br>
+    「我什麼都不想做。走到巷口就要休息。<b>晚上睡 10 小時，起來還是累。</b>」<br>
+    <small>病歷：Hb <b>9.8</b> g/dL｜上次疼痛紀錄 <b>4 分</b>｜三週瘦 <b>3 公斤</b></small>
+  </div>
+
+  <div class="q">✍️ <b>想一想</b>　先不要給建議。這三個數字，各用<b>一句話</b>說出它可能<b>怎麼讓陳女士「累」</b>。
+    <br><small>用你學過的生理病理去推。</small></div>
+  <table style="margin-top:2mm">
+    <tr><td class="k">Hb 9.8 g/dL</td><td style="height:9mm"></td></tr>
+    <tr><td class="k">疼痛 4 分</td><td style="height:9mm"></td></tr>
+    <tr><td class="k">三週瘦 3 公斤</td><td style="height:9mm"></td></tr>
+  </table>
+
+  <h3>橋接④　🔴 這一次，你既有的掛勾<span class="red">會誤導你</span></h3>
+  <div class="bridge">
+    <div class="bc b1"><h4>既有印象</h4>累＝體力不夠 → <b>休息就會好</b></div>
+    <div class="bc b2"><h4>你學過的基礎醫學</h4>基礎醫學裡跟「累」有關、你真的學過的疾病是<b>重症肌無力</b>（神經肌肉接合處）</div>
+    <div class="bc b3"><h4>臨床判斷</h4>那是<b>肌肉無力</b>，<b class="warn">不是疲憊</b>。癌因性疲憊是另一個東西</div>
+  </div>
+  <p class="sub">※ 這不是你們沒學，而是<b>癌因性疲憊本來就不在基礎醫學的範圍裡</b>，它屬於腫瘤照護。</p>
+
+  <h2>癌因性疲憊　vs　一般的累</h2>
+  <table>
+    <tr><th style="width:24%">判準</th><th class="warn">癌因性疲憊</th><th>一般的累</th></tr>
+    <tr><td class="k">與活動量的關係</td><td><b>不成比例</b>（沒做什麼也累）</td><td>成比例（做多累多）</td></tr>
+    <tr class="hi"><td class="k warn">🔴 休息後</td><td class="warn"><b><span class="an" style="min-width:36mm">睡再多也沒恢復</span></b></td><td>睡一覺會好</td></tr>
+    <tr><td class="k">持續性</td><td>持續、每天或幾乎每天</td><td>間斷</td></tr>
+    <tr><td class="k">影響</td><td><b>足以影響正常生活</b></td><td>通常不影響</td></tr>
+  </table>
+  <p>陳女士睡 10 小時起來還是累 → 對上第二列。<span class="u">這一條就是「叫他多休息沒有用」的原因。</span></p>
+
+  <h2>台灣本土數據<span class="sub">（2015 年，北中南 23 家機構、1,207 位癌症病人）</span></h2>
+  <table>
+    <tr><td class="k">92%</td><td>罹癌期間有疲憊問題</td><td class="k">¼</td><td>屬<b>中重度</b></td></tr>
+    <tr class="hi"><td class="k red">56.2%</td><td class="warn">才會<b>主動</b>向醫護提及疲憊</td>
+        <td class="k red">54.8%</td><td class="warn">醫護有提供改善措施</td></tr>
+  </table>
+  <div class="box warn">
+    <div class="t">🔴 病人為什麼不說？</div>
+    指引明白寫出原因：病人<b>擔心抱怨疲憊會增加醫護工作負擔、甚至轉移醫師對治療的注意力</b>，於是選擇忍耐。<br>
+    → <b>疲憊不會自己走進你的紀錄裡。你不問，就不會有。</b><br>
+    <small>評估時機：住院<b>每日一次</b>｜門診<b>每次回診</b>。</small>
+  </div>
+</div>
+
+<!-- ═══════ P7 疲憊處置 ═══════ -->
+<div class="page">
+  <h3>橋接⑤　🔴 你其實<span class="green">已經會推</span>了：先掃七類可逆原因</h3>
+  <table>
+    <tr><th style="width:26%">可逆原因</th><th>護理可以查到的線索</th><th style="width:22%">陳女士對上了嗎？</th></tr>
+    <tr class="hi"><td class="k warn">貧血</td><td>Hb 值</td><td class="warn"><b>✓ Hb 9.8</b></td></tr>
+    <tr class="hi"><td class="k warn">疼痛</td><td>疼痛紀錄、是否長期未控制</td><td class="warn"><b>✓ 4 分</b></td></tr>
+    <tr class="hi"><td class="k warn">營養失調</td><td>體重變化、進食狀況</td><td class="warn"><b>✓ 三週瘦 3 kg</b></td></tr>
+    <tr><td class="k">抗癌治療或止痛／鎮靜藥物</td><td>用藥紀錄、最近是否增量</td><td>要查</td></tr>
+    <tr><td class="k">情緒困擾</td><td>談話、情緒評估</td><td>要問</td></tr>
+    <tr><td class="k">睡眠困擾</td><td>入睡與夜醒情形</td><td>要問</td></tr>
+    <tr><td class="k">體能下降／其他共病</td><td>ADL、活動耐受度；感染、心肺肝腎、代謝內分泌、神經性疾病</td><td>要查</td></tr>
+  </table>
+  <p>直接跳到「你要多運動」，跟直接跳到「你要多休息」，<b class="red">一樣是跳過了思考</b>。</p>
+
+  <h2>0 至 10 分怎麼分流　<span class="warn"><span class="an" style="min-width:12mm">4</span> 分是分水嶺</span></h2>
+  <table>
+    <tr><td class="k">0</td><td>無疲憊</td><td>仍可用<b>非藥物處置預防</b></td></tr>
+    <tr><td class="k">1 至 3</td><td>輕度</td><td><b>非藥物處置</b>即可改善；定期追蹤</td></tr>
+    <tr class="hi"><td class="k warn">4 至 6</td><td class="warn"><b>中度</b></td>
+        <td class="warn">🔴 <b>特別關注</b>：評估對日常生活、活動與心情的影響；非藥物 ＋ <b>考慮合併藥物</b></td></tr>
+    <tr><td class="k">7 至 10</td><td>重度</td><td>非藥物 ＋ <b>藥物治療</b>，持續追蹤療效</td></tr>
+  </table>
+  <p class="sub">本土數據：疲憊分數 <b>&gt; 3.5 分</b>時，<b>78.8%</b> 符合 ICD-10 準則 → 支持「4 分」這條警戒線。</p>
+
+  <div class="box" style="border-width:1.6pt;text-align:center;padding:4mm">
+    <b style="font-size:13pt">病人喊累，指引的處方是 <span class="warn">運動</span></b><br>
+    <span class="sub"><b class="green">Level IA　Grade A</b>　隨機對照試驗的統合分析，
+      本指引非藥物處置中證據最強的一條</span>
+  </div>
+
+  <h3>橋接⑥　為什麼「多休息」<span class="red">反而更糟</span>？</h3>
+  <div class="bridge">
+    <div class="bc b1"><h4>既有印象</h4>累了就休息，休息可以<b>存體力</b></div>
+    <div class="bc b2"><h4>你學過的生理學</h4>不動 → <b>廢用</b>：肌力↓ 心肺耐力↓ 粒線體氧化能力↓</div>
+    <div class="bc b3"><h4>臨床判斷</h4>同樣的活動<b>更費力</b> → 更累 → 更不想動 → <b class="red">惡性循環</b></div>
+  </div>
+  <p class="sub">※ 此因果鏈為教學上的機轉說明；指引本身給的是「運動有效」的實證結論（Level IA, Grade A）。</p>
+
+  <h2>運動處方<span class="sub">（指引建議五，Level IA / Grade A，本指引非藥物處置中證據最強的一條）</span></h2>
+  <table>
+    <tr><td class="k">起始</td><td><b>從低強度開始</b>，漸進調整</td>
+        <td class="k">強度</td><td>低／中強度；增幅不超過前次心跳的 <b>60 至 75%</b></td></tr>
+    <tr class="hi"><td class="k warn">頻率</td><td class="warn"><b>每週至少 <span class="an" style="min-width:10mm">3</span> 次</b></td>
+        <td class="k warn">時間</td><td class="warn"><b>每次 <span class="an" style="min-width:24mm">20 至 30</span> 分鐘</b></td></tr>
+    <tr class="hi"><td class="k warn">🔴 安全</td><td colspan="3" class="warn"><b>運動前 <span class="an" style="min-width:10mm">5</span> 分鐘 <span class="an" style="min-width:16mm">暖身</span> 、運動後 <span class="an" style="min-width:10mm">5</span> 分鐘 <span class="an" style="min-width:16mm">緩和</span> </b>，所有運動都要有</td></tr>
+    <tr><td class="k">個別化</td><td colspan="3">依年齡、性別、疾病狀況、體能設計；必要時<b>轉介相關專業人員</b></td></tr>
+  </table>
+  <p class="sub">證據：最大規模統合分析納入 <b>70 項研究、4,881 位病人</b>，對治療中與治療結束的病人效果一致。</p>
+
+  <div class="q">✍️ <b>把處方翻成人話</b>　用<b>一句話</b>，把這張運動處方<b>講給陳女士聽</b>。
+    <br><small>🔴 不能念數字表，要像<b>跟病人說話</b>。要蓋到：從多低開始、一週幾次、一次多久、以及前後各 5 分鐘那件事。</small></div>
+  <div class="lines"><div></div><div></div></div>
+
+  <h2>能量保存法（ECAM）六策略</h2>
+  <table style="font-size:9.2pt">
+    <tr><td class="k">A</td><td>設定活動優先順序</td><td class="k">D</td><td>善用能量最高峰的時間</td></tr>
+    <tr><td class="k">B</td><td>分配工作（交給家人朋友）</td><td class="k">E</td><td>調整步調 pacing</td></tr>
+    <tr class="hi"><td class="k">C</td><td>計畫活動方式（分階段、善用工具）</td>
+        <td class="k warn">F</td><td class="warn"><b>休息：想睡只能小睡，不超過 <span class="an" style="min-width:24mm">15 至 20</span> 分鐘</b><br>
+        🔴 能量保存法裡的「休息」<b>是有上限的</b></td></tr>
+  </table>
+</div>
+
+<!-- ═══════ P8 收尾 ═══════ -->
+<div class="page">
+  <h2>那……讓她「睡好一點」總沒錯吧？</h2>
+  <div class="box red">
+    多項隨機對照試驗顯示：睡眠介入確實<b class="green">改善了睡眠品質</b>，
+    但<b class="red">疲憊的嚴重程度與對照組沒有顯著差異</b>。<br>
+    → <b>「睡好一點」不等於「<span class="an" style="min-width:18mm">不累</span>」。</b>這就是指引把睡眠衛生定位成
+    <b>「應搭配其他非藥物處置」</b>（Level IB, Grade B）而非單獨處置的原因。
+  </div>
+
+  <h2>同一本指引，<span class="warn">不是每一條都一樣硬</span></h2>
+  <table>
+    <tr><th style="width:16%">Level</th><th>證據來源</th></tr>
+    <tr class="hi"><td class="k warn">IA</td><td class="warn">隨機對照試驗之<b><span class="an" style="min-width:26mm">統合分析</span></b>　←　<b>運動</b>（建議五）</td></tr>
+    <tr><td class="k">IB</td><td>至少一項隨機對照試驗</td></tr>
+    <tr><td class="k">II / III</td><td>有對照但無隨機／準實驗／非實驗性描述性研究</td></tr>
+    <tr class="hi"><td class="k warn">IV</td><td class="warn"><b>專家意見或臨床經驗</b>　←　<b>疲憊的定義</b>（建議一）</td></tr>
+  </table>
+  <p>讀指引要看等級。<b class="u">這是實證護理最基本的素養。</b></p>
+
+  <div class="box red">
+    <div class="t">第三幕・啟示</div>
+    <b>病人說「我好累」，你要先給的不是建議，是評估。</b><br>
+    而評估完之後，處方是<b>運動</b>，不是休息。
+  </div>
+
+  <h2>三個小時，其實只有一件事</h2>
+  <table>
+    <tr><th style="width:44%">你三小時前的直覺</th><th>現在</th></tr>
+    <tr><td style="text-decoration:line-through;color:#888">病人喊痛 → 查 PRN → 給藥 → 記錄</td>
+        <td class="green">先問<b>五件事</b>（病程／機轉／病因／嚴重度／<b>節奏</b>），再決定</td></tr>
+    <tr><td style="text-decoration:line-through;color:#888">病人喊累 → 叫他多休息</td>
+        <td class="green">先掃<b>七類可逆原因</b>，再依 0 至 10 分流；處方是<b>運動</b></td></tr>
+    <tr><td style="text-decoration:line-through;color:#888">痛得更厲害 → 再給一次止痛藥</td>
+        <td class="green">先掃<b>六個紅旗</b>；有新神經症狀＝<b>立刻通知醫師</b></td></tr>
+  </table>
+  <p>改變的不是你的<b>知識量</b>，而是你把<b class="blue">已經學過的基礎醫學</b>，接到了<b class="warn">病人床邊</b>。</p>
+
+  <div class="box warn">
+    <div class="t">下次上臨床，請做這三件事</div>
+    <ol style="margin-left:5mm">
+      <li>病人說「痛」的時候，<b>在給藥之前多問一句</b>：「是怎麼個痛法？跟昨天比有沒有不一樣的地方？」</li>
+      <li>病人用了救援藥，<b>把次數寫進紀錄</b>：不是「予 PRN 一次」，是「今日第 3 次」。</li>
+      <li>病人說「累」的時候，<b>先看三個數字再開口</b>：Hb、最近的疼痛分數、體重變化。</li>
+    </ol>
+  </div>
+
+  <div class="box" style="border-width:1.6pt;text-align:center;padding:5mm">
+    <b style="font-size:14pt">症狀是<span class="u">資料</span>，不是只要壓下去的東西。</b>
+  </div>
+
+  <div class="apx">
+    <div class="lbl">附　錄</div>
+    <h1 style="font-size:17pt;margin-top:1.5mm">類鴉片藥理：從你學過的接到床邊</h1>
+    <p class="sub">課堂上不逐條講，需要時翻這裡。每一個知識點都標了出處，你可以自己回去查。<br>
+      <span class="src">NCCN</span> 出自 NCCN 成人癌症疼痛指引 V2.2025<sup class="c">1</sup>；
+      <span class="src tw">食藥署</span> 出自衛福部食藥署 2021 年參考手冊<sup class="c">2</sup>。</p>
+  </div>
+
+<h2>附錄一　你已經學過的，這裡不重教</h2>
+
+<p>下列概念你在<b>藥理學</b>與<b>基礎醫學</b>都學過。本附錄不重講這些，
+  只把它們<b>接到指引明文寫下的臨床決策</b>上。</p>
+
+<table>
+  <tr><th style="width:50%">你已經學過的</th><th>本附錄要補的那一步</th></tr>
+  <tr><td>嗎啡的止痛作用<b>活化 μ 受體</b>；μ／κ／δ 受體的差異</td>
+      <td>指引<b>選哪一種藥、起始劑量給多少</b></td></tr>
+  <tr class="hi"><td>類鴉片的<b>常見副作用</b>；副作用會產生<b>耐受性</b></td>
+      <td>🔴 <b>哪兩個副作用不會耐受</b>，所以只能預防不能等</td></tr>
+  <tr><td>便秘要用<b>軟便劑加腸刺激劑</b></td>
+      <td><b>什麼時候開始給</b>，以及類鴉片加量時瀉劑要不要跟著加</td></tr>
+  <tr><td>類鴉片<b>戒斷症候群</b></td>
+      <td><b>哪一種併用組合會誘發它</b>，護理端怎麼把關</td></tr>
+  <tr class="hi"><td>codeine 是 <b>prodrug</b>，代謝酵素多型性導致藥效差異</td>
+      <td>指引補上的<b>機轉與族群差異</b>，以及兒童為什麼禁用</td></tr>
+  <tr><td>NSAIDs 抑制 <b>COX</b> 減少前列腺素</td>
+      <td>三階梯裡它站在哪一階、什麼時候不夠用</td></tr>
+</table>
+
+<h3>耐受性、身體依賴、成癮：三個常被混在一起的詞</h3>
+
+<p>這三個詞你都聽過，但臨床上被混用的後果很嚴重：
+  <b class="red">因為怕「成癮」而不敢給藥</b>，是癌痛控制不良最常見的原因之一。</p>
+
+<table>
+  <tr><th style="width:20%">名詞</th><th style="width:34%">是什麼</th><th>屬於哪一類</th></tr>
+  <tr><td class="k">耐受性<br>tolerance</td>
+      <td>持續使用一段時間後，<b>同樣的劑量效果變差</b>，需要增加劑量才能達到原本的止痛效果</td>
+      <td class="green"><b><span class="an" style="min-width:26mm">藥理學現象</span></b>，受體層次的適應。<b>可預期、可處理</b>，不代表病人有問題</td></tr>
+  <tr><td class="k">身體依賴<br>physical<br>dependence</td>
+      <td><b>突然停藥或給了拮抗劑</b>時，出現戒斷症狀</td>
+      <td class="green"><b>藥理學現象</b>。所以減藥要<b>漸進</b>，不能說停就停</td></tr>
+  <tr class="hi"><td class="k red">成癮<br>（物質使用疾患）</td>
+      <td>DSM-5 定義的<b>行為疾患</b>：對使用<b>失去控制</b>、<b>強迫性地想取得</b>、
+        <b>明知造成傷害仍繼續使用</b>、生活功能因此受損</td>
+      <td class="red"><b><span class="an" style="min-width:26mm">行為疾患</span></b>，需要專業評估與介入</td></tr>
+</table>
+
+<div class="box warn">
+  <div class="t">🔴 為什麼把它們分開很重要</div>
+  <p><b>耐受性與身體依賴是「藥物對身體做了什麼」；成癮是「這個人跟藥物的關係出了什麼問題」。</b>
+    前兩者幾乎每一位長期用藥的癌症病人都會出現，那是正常的；後者不是。</p>
+  <p><b>DSM-5 準則自帶的但書</b>：若耐受性與戒斷症狀是
+    <b>「處方藥在正確使用下」</b>造成的，<b>不列入成癮的計分</b>。<span class="src tw">食藥署</span></p>
+  <p>所以當家屬問「打嗎啡會不會上癮」，你要回答的不是「不會啦」，
+    而是：<b>在正確處方使用下出現的耐受與依賴，不等於成癮</b>；
+    反過來，<b class="red">因為怕成癮而不敢用藥造成的疼痛控制不良，才是實際上更常發生的傷害</b>。</p>
+</div>
+
+<h3>接續：哪些副作用會耐受，哪些不會</h3>
+
+<p>既然耐受性是可預期的藥理現象，那就會有一個實用的推論：
+  <b>會產生耐受性的副作用，撐過初期就會改善；不會產生耐受性的，只能預防。</b></p>
+
+<table>
+  <tr><th style="width:34%"></th><th>副作用</th><th>護理怎麼做</th></tr>
+  <tr><td class="k green">會產生耐受性</td>
+      <td>鎮靜、噁心嘔吐、認知功能影響等<b>大多數副作用</b></td>
+      <td>多發生在<b>初期或增量時</b>，先支持性處理，通常會逐漸改善</td></tr>
+  <tr class="hi"><td class="k red">🔴 不會產生耐受性</td>
+      <td><b><span class="an" style="min-width:40mm">腸道蠕動抑制（便秘）</span></b><br><b><span class="an" style="min-width:30mm">瞳孔收縮</span></b></td>
+      <td class="warn">便秘<b>必須從第一天就預防</b>，而且類鴉片<b>加量時瀉劑要跟著加</b><span class="src tw">食藥署</span></td></tr>
+</table>
+
+<p class="sub">※ 另需知道：長期使用可能出現<b>類鴉片誘發之痛覺過敏</b>（opioid-induced hyperalgesia），
+  表現是加藥反而更痛。這與耐受性不同，處理方向也不同，遇到時應回報。<span class="src tw">食藥署</span></p>
+
+<h2>附錄二　指引怎麼說（每一點都有出處）</h2>
+
+<h3>選哪一種類鴉片</h3>
+
+<table>
+  <tr><td class="k">首選藥理類別</td>
+      <td><b>純促效劑</b>（pure agonists）如 morphine、oxycodone、hydromorphone、fentanyl 是癌痛最常用的藥。
+        這些<b>短半衰期</b>促效劑優先，因為比長半衰期的 methadone、levorphanol 更容易調量。<span class="src">NCCN</span></td></tr>
+  <tr class="hi"><td class="k">初次用藥者</td>
+      <td>對過去未曾接觸類鴉片的病人，<b>morphine 一般視為標準起始用藥</b>，<b>口服為優先途徑</b>。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">弱效 vs 強效</td>
+      <td>一項納入 240 位癌症病人的隨機試驗顯示：治療<b>中度</b>癌痛時，<b>低劑量 morphine</b> 相較「弱效類鴉片」
+        （codeine、codeine 加 acetaminophen、tramadol）有<b>顯著較高的反應率與較早的起效</b>，
+        兩組副作用相當，且低劑量 morphine 組的整體舒適與症狀負擔明顯較佳。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">腎功能波動時</td>
+      <td>morphine、hydromorphone、hydrocodone、oxycodone、oxymorphone、codeine
+        在<b>腎功能波動</b>的病人須<b>謹慎使用</b>，因為經腎清除的代謝產物可能蓄積造成<b>神經毒性</b>。<span class="src">NCCN</span></td></tr>
+</table>
+
+<div class="box">
+  <div class="t">接回你學過的：為什麼腎功能會影響嗎啡</div>
+  <p>morphine 的活性代謝產物 <b>morphine-6-glucuronide</b> 也參與止痛，
+    但在<b>腎功能不全</b>時會蓄積，使副作用惡化。<span class="src">NCCN</span></p>
+  <p>你在藥理學學的「活性代謝物」在這裡不是名詞，是<b>要不要換藥的判斷依據</b>。</p>
+</div>
+
+<h3>起始劑量與給藥途徑</h3>
+
+<table>
+  <tr class="hi"><td class="k">口服起始</td>
+      <td>未曾用過類鴉片者，建議<b>口服短效 morphine sulfate 5 至 15 mg</b> 或等效劑量；
+        <b>衰弱或年長</b>者可考慮用半顆做更低劑量的調整。<span class="src">NCCN</span></td></tr>
+  <tr class="hi"><td class="k">針劑起始</td>
+      <td>需要緊急緩解的重度疼痛應<b>用非腸道途徑</b>（通常靜脈或皮下）。
+        未曾用過類鴉片者建議<b>靜脈 morphine sulfate 2 至 5 mg</b> 或等效劑量。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">口服對針劑</td>
+      <td>若改為非腸道途徑，<b>等效劑量為口服劑量的三分之一</b>。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">貼片</td>
+      <td><b>經皮 fentanyl 不適用於快速調量</b>，只建議用在<b>已經對類鴉片有耐受性</b>、
+        且疼痛已被其他類鴉片妥善控制之後。<span class="src">NCCN</span></td></tr>
+</table>
+
+<div class="box warn">
+  <div class="t">護理端最容易錯的一件事</div>
+  <p><b>貼片不是拿來救急的。</b>它起效慢，不能用來處理現在正在痛的病人。
+    看到病人痛得厲害卻只有貼片醫囑，該做的是回報，不是等貼片發揮作用。</p>
+</div>
+
+<h3>什麼叫「已對類鴉片耐受」</h3>
+
+<div class="box">
+  <p>美國 FDA 定義：<b>持續使用類鴉片達一週以上</b>，且每日用量達到下列任一者：<span class="src">NCCN</span></p>
+  <ul>
+    <li>口服 morphine <b>60 mg</b>／日</li>
+    <li>經皮 fentanyl <b>25 mcg</b>／小時</li>
+    <li>口服 oxycodone <b>30 mg</b>／日</li>
+    <li>口服 hydromorphone <b>8 mg</b>／日</li>
+    <li>口服 oxymorphone <b>25 mg</b>／日</li>
+    <li>或其他類鴉片的等效止痛劑量</li>
+  </ul>
+  <p>未達上述條件者即視為 <b>opioid naïve</b>（未曾接觸類鴉片）。</p>
+  <p class="sub">為什麼護理要知道：整套指引的處置路徑是<b>先分這兩類再分岔</b>的。
+    你交班時說「這個病人已經用嗎啡兩週、一天 60 mg」跟說「病人有在用止痛藥」，是完全不同層級的資訊。</p>
+</div>
+
+<h3>調量與突發痛救援劑量</h3>
+
+<table>
+  <tr class="hi"><td class="k">救援劑量</td>
+      <td>通常為<b>每日類鴉片總量的 10% 至 20%</b>，於嚴重惡化時<b>可每小時口服給予一次</b>
+        （皮下或靜脈途徑可更頻繁）。救援藥應選<b>起效快、作用短</b>的劑型。<span class="src">NCCN</span><br>
+        <span class="sub">食藥署手冊的寫法是「每日總量的六分之一，或 10 至 20%」<span class="src tw">食藥署</span></span></td></tr>
+  <tr class="hi"><td class="k">🔴 何時代表要調常規劑量</td>
+      <td><b>一天需要多次救援劑量</b>，即表示可能需要調整基礎治療。<span class="src">NCCN</span><br>
+        食藥署手冊給的是更具體的門檻：<b>每日突發痛 3 次以上且連續 2 日</b>，
+        考慮把每日常規劑量<b>調高 25 至 50%</b>。<span class="src tw">食藥署</span></td></tr>
+  <tr><td class="k">調量幅度</td>
+      <td>已耐受類鴉片且為中度疼痛者，短效類鴉片可<b>每日總量增加 30% 至 100%</b>直到疼痛緩解。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">轉長效</td>
+      <td>當舒適與功能達到可接受程度、<b>24 小時類鴉片需求穩定</b>後，
+        建議轉為<b>口服緩釋劑型</b>或其他長效劑型（例如經皮 fentanyl），
+        並<b>同時提供同一種長效藥的短效劑型當救援藥</b>。<span class="src">NCCN</span></td></tr>
+</table>
+
+<div class="box red">
+  <div class="t">🔴 兩份指引的門檻寫法不同，這不是矛盾</div>
+  <p>NCCN 寫的是原則（「一天需要多次救援就要調基礎」），食藥署寫的是可操作的數字
+    （「3 次以上且連續 2 日，調高 25 至 50%」）。</p>
+  <p>臨床上用食藥署那個數字做<b>回報的門檻</b>，比較好執行。
+    重點不是背哪個數字，是<b>你有沒有把次數記下來</b>。沒有記錄，兩個門檻都用不上。</p>
+</div>
+
+<h3>指引明文<span class="red">不建議</span>用於癌症病人的藥</h3>
+
+<table>
+  <tr class="hi"><td class="k red">①</td>
+      <td><b>混合促效／拮抗劑</b>（mixed agonist-antagonists），例如 <b>butorphanol、pentazocine</b>。<span class="src">NCCN</span><br>
+        <b>不可與純促效類鴉片併用</b>：對已產生身體依賴的病人，由促效劑換成促效／拮抗劑
+        可能<b>誘發戒斷危機</b>（abstinence syndrome）。<span class="src">NCCN</span><br>
+        <span class="sub">食藥署手冊同樣列出此點，並額外點名 <b>nalbuphine</b>，理由包含止痛較弱與<b>天花板效應</b>。<span class="src tw">食藥署</span></span></td></tr>
+  <tr class="hi"><td class="k red">②</td>
+      <td><b>meperidine</b>（即 pethidine，配西汀）。<span class="src">NCCN</span><br>
+        <b>慢性疼痛禁用</b>，尤其是腎功能不全或脫水的病人：
+        經腎清除的代謝產物蓄積可導致<b>神經毒性（癲癇發作）或心律不整</b>。<span class="src">NCCN</span><br>
+        <span class="sub">食藥署手冊同樣列為癌痛不用，理由是代謝產物 <b>norpethidine</b> 具中樞神經副作用。<span class="src tw">食藥署</span></span></td></tr>
+  <tr><td class="k red">③</td>
+      <td>使用<b>安慰劑</b>治療疼痛是<b>不合倫理的</b>。<span class="src">NCCN</span></td></tr>
+</table>
+
+<h3>藥物基因學：你學過的 codeine prodrug，指引怎麼用</h3>
+
+<div class="bridge">
+  <div class="bc b1"><h4>你學過的</h4>codeine 是 <b>prodrug</b>，需經體內酵素代謝才有活性；
+    代謝酵素活性低的人藥效減弱</div>
+  <div class="bc b2"><h4>指引補上的機轉</h4>codeine 本身<b>幾乎沒有直接止痛作用</b>，主要靠
+    <b>CYP2D6</b> 代謝成 morphine 等產物才有效<span class="src">NCCN</span></div>
+  <div class="bc b3"><h4>床邊要做的判斷</h4><b>慢代謝者</b>止痛效果減弱甚至無效；
+    <b>快代謝者</b>因快速產生 morphine 而<b>可能中毒</b><span class="src">NCCN</span></div>
+</div>
+
+<table>
+  <tr><td class="k">族群差異</td>
+      <td>CYP2D6 在<b>不同族群之間與個體之間都有多型性</b>。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">FDA 列冊的止痛藥</td>
+      <td>具足夠證據顯示基因變異會影響代謝或療效者包含：
+        <b>codeine（CYP2D6）、tramadol（CYP2D6）</b>、amitriptyline（CYP2D6）、
+        doxepin（CYP2D6、CYP2C19）、celecoxib（CYP2C9）、meloxicam（CYP2C9）。<span class="src">NCCN</span></td></tr>
+  <tr class="hi"><td class="k">兒童禁用的依據</td>
+      <td>食藥署手冊列為護理把關點：<b>codeine 與 tramadol，12 歲以下病童禁用</b>，
+        理由正是代謝基因多型性使<b>藥效與呼吸抑制風險不可預測</b>。<span class="src tw">食藥署</span></td></tr>
+</table>
+
+<div class="box">
+  <div class="t">這一段的意義</div>
+  <p>「codeine 是 prodrug」在考卷上是一個選項。在床邊，它是<b>一個病人為什麼吃了藥還是痛、
+    另一個病人為什麼吃一樣的藥卻嗜睡</b>的解釋。同一個知識點，兩種用法。</p>
+</div>
+
+<h3>副作用：預防要跟給藥<span class="warn">同時</span>開始</h3>
+
+<table>
+  <tr class="hi"><td class="k warn">總原則</td>
+      <td>常見類鴉片副作用的處理，應<b>與類鴉片治療同時啟動</b>，不是等發生。<span class="src">NCCN</span></td></tr>
+  <tr class="hi"><td class="k warn">腸道功能障礙</td>
+      <td><b>應預期會發生，並預防性給予刺激性瀉劑</b>以增加腸蠕動。<span class="src">NCCN</span><br>
+        <b>持續治療期間，便秘應常規評估與處理。</b><span class="src">NCCN</span></td></tr>
+  <tr><td class="k">為什麼便秘不能等</td>
+      <td>大多數類鴉片副作用會隨使用時間逐漸減弱，<b class="red">唯獨腸道蠕動抑制（便秘）與瞳孔收縮不會</b>。<span class="src tw">食藥署</span><br>
+        因此便秘<b>必須從第一天就預防</b>，而不是等到發生才處理。<span class="src tw">食藥署</span></td></tr>
+  <tr><td class="k">預防做法</td>
+      <td>預防性給軟便劑（如 MgO）或刺激性瀉劑（如 sennoside、cascara）；
+        <b>類鴉片劑量上調時，這些藥也要跟著上調</b>；每日足量水分、每日高纖蔬果、鼓勵運動。<span class="src tw">食藥署</span></td></tr>
+  <tr><td class="k">貼片的差別</td>
+      <td>Cochrane 回顧與統合分析顯示，<b>經皮 fentanyl 相較口服 morphine 的便秘較少</b>，
+        噁心嘔吐、嗜睡、尿滯留也較低。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">無法耐受時</td>
+      <td>若病人因副作用而<b>無法承受目前類鴉片的加量</b>，必須考慮<b>換用另一種類鴉片</b>。<span class="src">NCCN</span></td></tr>
+</table>
+
+
+<h3>methadone 為什麼要另眼看待</h3>
+
+<table>
+  <tr><td class="k">機轉</td><td>μ 受體促效劑，<b>同時是 NMDA 受體拮抗劑</b>。<span class="src">NCCN</span></td></tr>
+  <tr class="hi"><td class="k warn">半衰期</td><td><b>15 至 120 小時，個體差異極大</b>，使其在癌症病人的使用相當複雜。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">誰能開</td><td>因半衰期長、效價高、個體差異大，<b>應由有經驗的疼痛或安寧緩和專科醫師起始或會診後使用</b>。<span class="src">NCCN</span></td></tr>
+  <tr class="hi"><td class="k warn">護理觀察重點</td>
+      <td>需監測藥物蓄積與副作用，<b>尤其是最初 5 至 7 天</b>；穩定狀態可能要數天到 2 週才達到。
+        調量<b>不應比每 5 至 7 天更頻繁</b>。<br>
+        🔴 <b>在第 5 天之前若出現明顯鎮靜或疼痛明顯改善，可能代表劑量過高</b>，
+        若不立即調整，病人在第 5 至 7 天有<b>過度鎮靜或呼吸抑制</b>的風險。<span class="src">NCCN</span></td></tr>
+  <tr><td class="k">心臟安全</td>
+      <td>高劑量（120 mg 以上）可能導致 <b>QTc 延長與 torsades de pointes</b>，可能猝死。
+        建議劑量<b>大於 30 至 40 mg／日</b>者做基線與追蹤心電圖。<span class="src">NCCN</span></td></tr>
+</table>
+
+<h2>附錄三　把整份收成一張對照表</h2>
+
+<table>
+  <tr><th style="width:26%">你學過的</th><th style="width:37%">指引補上的</th><th>床邊要做的判斷</th></tr>
+  <tr><td>嗎啡活化 <b>μ 受體</b></td>
+      <td>純促效劑短半衰期者優先，morphine 是初次用藥的標準選擇，口服優先<span class="src">NCCN</span></td>
+      <td>看到「只有貼片醫囑」而病人正在痛，要回報</td></tr>
+  <tr><td>codeine 是 <b>prodrug</b></td>
+      <td>靠 CYP2D6 代謝成 morphine；慢代謝者無效、快代謝者可能中毒<span class="src">NCCN</span></td>
+      <td>吃了沒效或異常嗜睡，都要當一回事並記錄</td></tr>
+  <tr class="hi"><td>副作用會產生<b>耐受性</b></td>
+      <td>🔴 便秘與瞳孔收縮<b>不會</b>耐受<span class="src tw">食藥署</span>；預防要與給藥<b>同時</b>開始<span class="src">NCCN</span></td>
+      <td>第一天就給瀉劑；類鴉片加量時瀉劑跟著加</td></tr>
+  <tr><td>便秘用<b>軟便劑加腸刺激劑</b></td>
+      <td>預防性給刺激性瀉劑增加腸蠕動；治療期間常規評估便秘<span class="src">NCCN</span></td>
+      <td>便秘是每天要問的，不是等病人抱怨</td></tr>
+  <tr><td>類鴉片<b>戒斷症候群</b></td>
+      <td>由純促效劑換成混合促效／拮抗劑可<b>誘發戒斷危機</b><span class="src">NCCN</span></td>
+      <td>看到 butorphanol、pentazocine、nalbuphine 與類鴉片促效劑併用，要提出來</td></tr>
+  <tr><td>藥物<b>經腎排除</b>與代謝物蓄積</td>
+      <td>morphine 等六種藥在腎功能波動時須謹慎，代謝物蓄積可致神經毒性<span class="src">NCCN</span>；
+        meperidine 慢性疼痛禁用<span class="src">NCCN</span></td>
+      <td>交班要帶腎功能；看到 meperidine 用於癌痛要提出</td></tr>
+</table>
+
+<div class="box warn">
+  <div class="t">如果這份附錄只能記住三件事</div>
+  <ol>
+    <li><b>便秘的預防要跟第一劑類鴉片同時開始</b>，因為它不會產生耐受性。</li>
+    <li><b>救援藥的使用次數要寫下來</b>，那是判斷常規劑量夠不夠的唯一依據。</li>
+    <li><b>pethidine（meperidine）不用於癌痛</b>。代謝物經腎清除，蓄積可致癲癇發作或心律不整，
+      慢性疼痛屬禁用。看到它出現在癌痛醫囑上，要提出來。</li>
+  </ol>
+</div>
+
+
+  <div class="box">
+    <div class="t">這堂課希望留在你身上的四件事</div>
+    <ol>
+      <li><b>相信病人說的痛。</b>他說痛就是痛。這不是要不要相信的選擇題，是評估的起點。</li>
+      <li><b>知道藥為什麼有效、為什麼有副作用。</b>受體在哪裡、哪一個副作用不會產生耐受性，
+        你們的基礎醫學已經夠了，缺的是接到床邊那一步。</li>
+      <li><b>能把它講給病人和家屬聽。</b>家屬問「會不會上癮」的時候答得出來，那一針才打得下去。</li>
+      <li><b>把生活品質當成治療目標</b>，不是止痛之外的附加品。指引裡癌痛治療的主要目標就是這兩件事：
+        緩解疼痛、提升生活／生命品質<sup class="c">2</sup>。</li>
+    </ol>
+  </div>
+
+  <h2>課後自我檢核<span class="sub">（不用交，但你要答得出來）</span></h2>
+  <ol style="margin-left:5mm;font-size:9.8pt">
+    <li>病人說「痛 7 分」，你還要再問哪五件事？</li>
+    <li>「灼燒、像電到、碰一下就痛」提示哪一類疼痛？處置方向差在哪？</li>
+    <li>六個紅旗是哪六個？哪一個最常以「背痛＋下肢無力」表現？</li>
+    <li>病人昨天用 4 次救援藥、今天也 4 次，你的紀錄與回報要寫什麼？</li>
+    <li>為什麼便秘要從第一天預防，而噁心嘔吐不用？</li>
+    <li>家屬問「打嗎啡會不會上癮」，你怎麼回答，依據是什麼？</li>
+    <li>癌因性疲憊與「一般的累」最關鍵的一個差別是什麼？</li>
+    <li>病人說「我好累」，你在給任何建議之前，要先查哪七類可逆原因？</li>
+    <li>請用一句話寫出一張運動處方（含頻率、時間、強度、安全要求）。</li>
+    <li>為什麼「改善睡眠」不等於「改善疲憊」？指引怎麼定位睡眠衛生？</li>
+  </ol>
+
+  <div class="foot">
+    <b>參考文獻</b><br>
+    1. Swarm RA, Youngwerth JM, Agne JL, et al. <b>Adult Cancer Pain, Version 2.2025,
+       NCCN Clinical Practice Guidelines in Oncology.</b>
+       <i>J Natl Compr Canc Netw.</i> 2025;23(7):e250032. doi:10.6004/jnccn.2025.0032<br>
+    2. 衛生福利部食品藥物管理署（2021年12月）。<b>癌症疼痛照護及成癮性麻醉藥品使用參考手冊</b>。<br>
+    3. 台灣癌症安寧緩和醫學會、台灣腫瘤護理學會（2017年11月，第一版第二刷）。<b>癌因性疲憊症之臨床治療指引</b>。<br>
+    4. 胡文郁等（2024）。<b>成人癌症疼痛臨床照護指引 2024</b>。腫瘤護理雜誌，24(增訂刊)，77 至 124。
+       doi:10.6880/TJON.202412/SP_24.05　※本講義採其四階段思考流程骨架。<br>
+    5. World Health Organization. <i>Cancer pain relief.</i> Geneva: WHO; 1986.<br>
+    6. Arnstein P, Broglio K, Wuhrman E, Kean MB. <b>Use of placebos in pain management.</b>
+       <i>Pain Manag Nurs.</i> 2011;12(4):225-229. doi:10.1016/j.pmn.2010.10.033　※ American Society for Pain Management Nursing 立場聲明，2021 年 7 月修訂為
+       <i>Deceptive Use of Placebos in the Assessment and Management of Pain</i>：安慰劑不得用於評估或處理任何病人的疼痛。<br>
+    <br>※ 內文上標數字對應本清單編號。NCCN 指引引用的是刊登於 JNCCN 的期刊版；完整版演算法圖需至 NCCN.org 取得。
+  </div>
+</div>
+
+</body>
+</html>
